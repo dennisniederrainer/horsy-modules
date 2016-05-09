@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Horsebrands_DBSetup>
+            <version>1.0.0.0</version>
+        </Horsebrands_DBSetup>
+    </modules>
+    <global>
+        <models>
+            <horsebrands_dbsetup>
+                <class>Horsebrands_DBSetup_Model</class>
+            </horsebrands_dbsetup>
+            <horsebrands_dbsetup_resource>
+                <class>Horsebrands_DBSetup_Model_Resource</class>
+            </horsebrands_dbsetup_resource>
+        </models>
+        <resources>
+            <horsebrands_dbsetup_setup>
+                <setup>
+                    <module>Horsebrands_DBSetup</module>
+                </setup>
+            </horsebrands_dbsetup_setup>
+        </resources>
+    </global>
+</config>
