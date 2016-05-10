@@ -14,6 +14,7 @@ $configSwitch->saveConfig('intraship/general/active', '1', $scope, $storeviewId)
 $configSwitch->saveConfig('intraship/account/user', 'horsebrands2', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/account/signature', 'H0Rse2016!', $scope, $storeviewId);
 
+$configSwitch->saveConfig('intraship/shipper/companyName1', 'Horsebrands GmbH', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/shipper/contactPerson', 'Jochen Haget', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/shipper/streetName', 'Robert-Bosch-Strasse', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/shipper/streetNumber', '21', $scope, $storeviewId);
