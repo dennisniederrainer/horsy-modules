@@ -1,9 +1,9 @@
 Horsebrands_DBSetup/app/code/local/Horsebrands/DBSetup/   /app/code/local/Horsebrands/DBSetup/
 Horsebrands_DBSetup/app/etc/modules/Horsebrands_DBSetup.xml   /app/etc/modules/Horsebrands_DBSetup.xml
 
-DHL-Intraship/app/code/etc/modules/Dhl_Account.xml    /app/code/etc/modules/Dhl_Account.xml
-DHL-Intraship/app/code/etc/modules/Dhl_Intraship.xml   /app/code/etc/modules/Dhl_Account.xml
-DHL-Intraship/app/code/etc/modules/Dhl_OnlineRetoure.xml  /app/code/etc/modules/Dhl_OnlineRetoure.xml
+DHL-Intraship/app/etc/modules/Dhl_Account.xml    /app/etc/modules/Dhl_Account.xml
+DHL-Intraship/app/etc/modules/Dhl_Intraship.xml   /app/etc/modules/Dhl_Account.xml
+DHL-Intraship/app/etc/modules/Dhl_OnlineRetoure.xml  /app/etc/modules/Dhl_OnlineRetoure.xml
 
 DHL-Intraship/app/code/community/Dhl/  /app/code/community/Dhl/
 
@@ -14,21 +14,21 @@ DHL-Intraship/app/design/frontend/base/default/template/account/   /app/design/f
 DHL-Intraship/app/design/frontend/base/default/template/dhlonlineretoure/  /app/design/frontend/base/default/template/dhlonlineretoure/
 DHL-Intraship/app/design/frontend/base/default/template/intraship/   /app/design/frontend/base/default/template/intraship/
 
-DHL-Intraship/app/code/locale/de_DE/Dhl_Account.csv    /app/code/locale/de_DE/Dhl_Account.csv
-DHL-Intraship/app/code/locale/de_DE/Dhl_Intraship.csv   /app/code/locale/de_DE/Dhl_Intraship.csv
-DHL-Intraship/app/code/locale/de_DE/Dhl_OnlineRetoure.csv  /app/code/locale/de_DE/Dhl_OnlineRetoure.csv
+DHL-Intraship/app/locale/de_DE/Dhl_Account.csv    /app/locale/de_DE/Dhl_Account.csv
+DHL-Intraship/app/locale/de_DE/Dhl_Intraship.csv   /app/locale/de_DE/Dhl_Intraship.csv
+DHL-Intraship/app/locale/de_DE/Dhl_OnlineRetoure.csv  /app/locale/de_DE/Dhl_OnlineRetoure.csv
 
-DHL-Intraship/app/code/locale/en_US/Dhl_Account.csv  /app/code/locale/en_US/Dhl_Account.csv
-DHL-Intraship/app/code/locale/en_US/Dhl_OnlineRetoure.csv  /app/code/locale/en_US/Dhl_OnlineRetoure.csv
+DHL-Intraship/app/locale/en_US/Dhl_Account.csv  /app/locale/en_US/Dhl_Account.csv
+DHL-Intraship/app/locale/en_US/Dhl_OnlineRetoure.csv  /app/locale/en_US/Dhl_OnlineRetoure.csv
 
 DHL-Intraship/skin/adminhtml/default/default/images/dhl  /skin/adminhtml/default/default/images/dhl
 DHL-Intraship/skin/adminhtml/default/default/intraship.css   /skin/adminhtml/default/default/intraship.css
 
 DHL-Intraship/skin/frontend/base/default/images/dhl    /skin/frontend/base/default/images/dhl
-DHL-Intraship/skin/frontend/base/default/css/dhl_acount.css  /skin/frontend/base/default/css/dhl_acount.css
+DHL-Intraship/skin/frontend/base/default/css/dhl_account.css  /skin/frontend/base/default/css/dhl_account.css
 DHL-Intraship/skin/frontend/base/default/DP_GOGREEN_Leitfaden_Logo.pdf   /skin/frontend/base/default/DP_GOGREEN_Leitfaden_Logo.pdf
 
-DHL-Intraship/skin/frontend/enterprise/default/css/dhl_acount.css  /skin/frontend/enterprise/default/css/dhl_acount.css
+DHL-Intraship/skin/frontend/enterprise/default/css/dhl_account.css  /skin/frontend/enterprise/default/css/dhl_account.css
 
 DHL-Intraship/js/dhl   /js/dhl
 DHL-Intraship/lib/fpdf   /lib/fpdf
