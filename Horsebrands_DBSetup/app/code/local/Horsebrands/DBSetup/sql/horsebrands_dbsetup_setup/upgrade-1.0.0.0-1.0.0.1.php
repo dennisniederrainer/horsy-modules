@@ -20,7 +20,7 @@ $configSwitch->saveConfig('intraship/shipper/streetName', 'Robert-Bosch-Strasse'
 $configSwitch->saveConfig('intraship/shipper/streetNumber', '21', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/shipper/zip', '48153', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/shipper/city', 'Münster', $scope, $storeviewId);
-$configSwitch->saveConfig('intraship/shipper/phone', '+4925167448555', $scope, $storeviewId);
+$configSwitch->saveConfig('intraship/shipper/phone', '025167448555', $scope, $storeviewId);
 $configSwitch->saveConfig('intraship/shipper/email', 'service@horsebrands.de', $scope, $storeviewId);
 
 $configSwitch->saveConfig('intraship/shipper/bank_data_accountOwner', 'Horsebrands GmbH', $scope, $storeviewId);
