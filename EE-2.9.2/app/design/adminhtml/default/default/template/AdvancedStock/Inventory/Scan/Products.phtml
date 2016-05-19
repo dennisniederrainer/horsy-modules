@@ -1,0 +1,29 @@
+<?php $_products = $this->getProducts(); ?>
+<table class="table-touch" id="table_products">
+    <tr>
+        <th></th>
+        <th>sku</th>
+        <th>Product</th>
+        <th>Scanned qty</th>
+        <th>Expected qty</th>
+        <th>Difference</th>
+    </tr>
+    <?php if ($_products->getSize() > 0): ?>
+        <?php foreach($_products as $product): ?>
+            <tr>
+                <td></td>
+                <td><?php echo $product->getSku(); ?></td>
+                <td><?php echo $product->getName(); ?></td>
+                <td>
+                    <input type="button" value=" - " onclick="inventoryObj.decreaseQty(<?php echo $product->getId(); ?>);">
+                    <span style="width: 50px;" id="scanned_qty_<?php echo $product->getId(); ?>"></span>
+                    <input type="button" value=" + " onclick="inventoryObj.increaseQty(<?php echo $product->getId(); ?>);">
+                </td>
+                <td><?php echo (int)$product->geteisp_stock(); ?></td>
+                <td id="diff_<?php echo $product->getId(); ?>">
+                    
+                </td>
+            </tr>
+        <?php endforeach; ?>
+    <?php endif ?>
+</table>

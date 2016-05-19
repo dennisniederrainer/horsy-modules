@@ -1,0 +1,94 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp>
+                        <children>
+                            <order_preparation module="Orderpreparation">
+                                <title>Order Preparation</title>
+                                <children>
+                                    <prepare_order module="Orderpreparation">
+                                        <title>Prepare orders</title>
+                                            <children>
+                                                <fullstock_order module="Orderpreparation">
+                                                    <title>Display fullstock orders</title>
+                                                </fullstock_order>
+                                                <stockless_order module="Orderpreparation">
+                                                    <title>Display stockless orders</title>
+                                                </stockless_order>
+                                                <ignored_order module="Orderpreparation">
+                                                    <title>Display ignored orders</title>
+                                                </ignored_order>
+                                                <allow_scope_change module="Orderpreparation">
+                                                    <title>Allow scope change</title>
+                                                </allow_scope_change>
+                                            </children>
+                                    </prepare_order>
+                                    <carrier_template module="Orderpreparation">
+                                        <title>Carrier Templates</title>
+                                    </carrier_template>
+                                    <!--
+                                    <pickup_delivery_orders module="Orderpreparation">
+                                        <title>Pickup delivery orders</title>
+                                    </pickup_delivery_orders>
+                                    -->
+                                </children>
+                            </order_preparation>
+                        </children>
+                    </erp>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <orderpreparation module="Orderpreparation">
+                                        <title>Order Preparation</title>
+                                    </orderpreparation>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+    <translate>
+        <modules>
+            <MDN_Orderpreparation>
+                <files>
+                    <default>MDN_Orderpreparation.csv</default>
+                </files>
+            </MDN_Orderpreparation>
+        </modules>
+    </translate>
+    <menu>
+        <erp>
+            <children>
+                <order_preparation translate="title" module="Orderpreparation">
+                    <title>Order Preparation</title>
+                    <sort_order>30</sort_order>
+                    <children>
+                        <prepare_order translate="title" module="Orderpreparation">
+                            <title>Prepare orders</title>
+                            <action>OrderPreparation/OrderPreparation</action>
+                            <sort_order>10</sort_order>
+                        </prepare_order>
+                        <carrier_template translate="title" module="Orderpreparation">
+                            <title>Carrier templates</title>
+                            <action>OrderPreparation/CarrierTemplate/Grid</action>
+                            <sort_order>30</sort_order>
+                        </carrier_template>
+                    </children>
+                </order_preparation>
+            </children>
+        </erp>
+    </menu>
+    <layout>
+        <updates>
+            <orderpreparation>
+                <file>orderpreparation.xml</file>
+            </orderpreparation>
+        </updates>
+    </layout>
+</config>

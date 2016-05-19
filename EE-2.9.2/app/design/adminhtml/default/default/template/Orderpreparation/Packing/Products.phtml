@@ -1,0 +1,41 @@
+<h1><?php echo $this->__('Order #%s', $this->getOrder()->getincrement_id()) ?></h1>
+
+<table border="1" width="100%" cellspacing="0">
+    <tr>
+        <td class="packing_th">&nbsp;</th>
+        <td class="packing_th"><?php echo $this->__('Image'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Sku'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Name'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Qty to ship'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Qty scanned'); ?></th>
+        <td class="packing_th"><?php echo $this->__('Qty to scan'); ?></th>
+    </tr>
+    <?php foreach($this->getProducts() as $product): ?>
+        <?php
+            if (!$this->productManageStock($product))
+                continue;
+        ?>
+        <tr>
+            <td class="packing_td" width="50"><img src="" id="checked_<?php echo $product->getId(); ?>" width="30" /></td>
+            <td class="packing_td"><img src="<?php echo $this->getProductImageUrl($product); ?>" height="50"></td>
+            <td class="packing_td"><?php echo $product->getSalesOrderItem()->getSku(); ?></td>
+            <td class="packing_td"><?php echo $product->getSalesOrderItem()->getName(); ?></td>
+            <td class="packing_td"><?php echo $product->getQty(); ?></td>
+            <td class="packing_td" class="a-center">
+                <table border="0" align="center" width="100%"><tr>
+                <?php if ($this->displayQuantityButtons()): ?>
+                    <td><input type="button" value=" - " onclick="objPacking.decreaseProduct(<?php echo $product->getId(); ?>);"></td>
+                <?php endif; ?>
+                <td><div id="qty_scanned_<?php echo $product->getId(); ?>">0</div></td>
+                <?php if ($this->displayQuantityButtons()): ?>
+                    <td><input type="button" value=" + " onclick="objPacking.increaseProduct(<?php echo $product->getId(); ?>);"></td>
+                <?php endif; ?>
+                </tr></table>
+            </td>
+            <td class="packing_td"><div id="qty_to_scan_<?php echo $product->getId(); ?>"></div></td>
+        </tr>
+    <?php endforeach; ?>
+</table>
+<p>&nbsp;</p>
+<input type="button" class="touchscreen-button green-button" value="<?php echo $this->__('COMMIT PACKING'); ?>" onclick="objPacking.commit(<?php echo $this->askForWeight(); ?>, <?php echo $this->getWeight(); ?>);">
+&nbsp;<input type="button" class="touchscreen-button red-button" value="<?php echo $this->__('CANCEL'); ?>" onclick="objPacking.cancel();">

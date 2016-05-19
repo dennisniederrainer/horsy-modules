@@ -1,0 +1,147 @@
+<?xml version="1.0"?>
+<config>
+
+
+    <layout>
+        <updates>
+            <AdvancedStock>
+                <file>AdvancedStock.xml</file>
+            </AdvancedStock>
+        </updates>
+    </layout>
+        
+    <menu>
+        <erp translate="title" module="AdvancedStock">
+            <title>ERP</title>
+            <sort_order>900</sort_order>
+            <children>
+                <products translate="title" module="AdvancedStock">
+                    <title>Products</title>
+                    <action>AdvancedStock/Products/Grid</action>
+                    <sort_order>10</sort_order>
+                </products>
+                <stock_management translate="title" module="AdvancedStock">
+                    <title>Stock Management</title>
+                    <sort_order>11</sort_order>
+                    <children>
+                        <mass_stock_editor translate="title" module="AdvancedStock">
+                            <title>Mass Stock Editor</title>
+                            <action>AdvancedStock/Misc/MassStockEditor</action>
+                            <sort_order>10</sort_order>
+                        </mass_stock_editor>
+                        <stock_transfer translate="title" module="AdvancedStock">
+                            <title>Stock transfer</title>
+                            <action>AdvancedStock/Transfer/Grid</action>
+                            <sort_order>20</sort_order>
+                        </stock_transfer>
+                        <warehouse_grid translate="title" module="AdvancedStock">
+                            <title>Warehouse</title>
+                            <action>AdvancedStock/Warehouse/Grid</action>
+                            <sort_order>30</sort_order>
+                        </warehouse_grid>
+                        <stockmovement_grid translate="title" module="AdvancedStock">
+                            <title>Stock Movements</title>
+                            <action>AdvancedStock/StockMovement/Grid</action>
+                            <sort_order>40</sort_order>                                
+                        </stockmovement_grid>
+                        <inventory translate="title" module="AdvancedStock">
+                            <title>Inventory</title>
+                            <action>AdvancedStock/Inventory/Grid</action>
+                            <sort_order>50</sort_order>
+                        </inventory>
+                        <serials_grid translate="title" module="AdvancedStock">
+                            <title>Product Serials</title>
+                            <action>AdvancedStock/Serial/Grid</action>
+                            <sort_order>60</sort_order>
+                        </serials_grid>
+                    </children>
+                </stock_management>
+                <tools translate="title" module="AdvancedStock">
+                    <title>Tools</title>
+                    <sort_order>90</sort_order>
+                    <children>
+                        <stock_errors translate="title" module="AdvancedStock">
+                            <title>Stock Errors</title>
+                            <action>AdvancedStock/Misc/IdentifyErrors</action>
+                        </stock_errors>
+                        <debug translate="title" module="AdvancedStock">
+                            <title>Debug</title>
+                            <action>AdvancedStock/Debug/Debug</action>
+                        </debug>
+                    </children>
+                </tools>
+            </children>
+        </erp>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <erp module="AdvancedStock">
+                        <title>ERP</title>
+                        <children>
+                            <products module="AdvancedStock" >
+                                <title>Products</title>
+                                <children>
+                                    <edit>
+                                        <title>Edit</title>
+                                    </edit>
+                                    <price_view>
+                                        <title>Price view</title>
+                                    </price_view>
+                                </children>
+                            </products>
+                            <stock_management module="AdvancedStock" >
+                                <title>Stock Management</title>
+                                <children>
+                                    <warehouse_grid module="AdvancedStock">
+                                        <title>Warehouse</title>
+                                    </warehouse_grid>
+                                    <serials_grid module="AdvancedStock">
+                                        <title>Product Serials</title>
+                                    </serials_grid>
+                                    <stockmovement_grid  module="AdvancedStock">
+                                        <title>Stock Movements</title>
+                                    </stockmovement_grid>
+                                    <mass_stock_editor module="AdvancedStock">
+                                        <title>Mass Stock Editor</title>
+                                    </mass_stock_editor>
+                                    <stock_transfer module="AdvancedStock">
+                                        <title>Stock transfer</title>
+                                    </stock_transfer>
+                                </children>
+                            </stock_management>
+                            <tools module="AdvancedStock">
+                                <title>Tools</title>
+                            </tools>
+                        </children>
+                    </erp>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <advancedstock module="AdvancedStock">
+                                        <title>Advanced Stock</title>
+                                    </advancedstock>
+                                </children>
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+
+
+    <translate>
+        <modules>
+            <MDN_AdvancedStock>
+                <files>
+                    <default>MDN_AdvancedStock.csv</default>
+                </files>
+            </MDN_AdvancedStock>
+        </modules>
+    </translate>
+        
+</config>
