@@ -60,4 +60,10 @@ class Horsebrands_BackorderLimit_Model_Observer_Adminhtml
                 'left');
     }
 
+    public function updateProductAvailabilityStatus($observer) {
+      $stock = $observer->getStock();
+
+      $productAvailabilityStatus = mage::getModel('SalesOrderPlanning/ProductAvailabilityStatus')->load($stock->getProductId(), 'pa_product_id');
+      $productAvailabilityStatus->refresh();
+    }
 }

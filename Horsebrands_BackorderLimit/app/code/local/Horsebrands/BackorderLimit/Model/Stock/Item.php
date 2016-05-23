@@ -1,6 +1,6 @@
 <?php
 
-class Horsebrands_BackorderLimit_Model_Stock_Item extends MDN_AdvancedStock_Model_CatalogInventory_Stock_Item 
+class Horsebrands_BackorderLimit_Model_Stock_Item extends MDN_AdvancedStock_Model_CatalogInventory_Stock_Item
 //Mage_CatalogInventory_Model_Stock_Item
 {
     /**
@@ -62,7 +62,26 @@ class Horsebrands_BackorderLimit_Model_Stock_Item extends MDN_AdvancedStock_Mode
         if ($value < 0)
             $value = 0;
 
+        Mage::log('availableforsale: ' . $value,null,'cisi.log');
         return $value;
+    }
+
+    /**
+     * Return available qty
+     *
+     * @return unknown
+     */
+    public function getAvailableQty() {
+      if($this->getBackorders() == Horsebrands_BackorderLimit_Model_Source_Backorders::BACKORDERS_YES_LIMIT) {
+        $value = $this->getqty() - $this->getMinQty() - $this->getstock_ordered_qty();
+      } else {
+        $value = $this->getqty() - $this->getstock_ordered_qty();
+      }
+
+      if ($value < 0)
+        $value = 0;
+
+      return $value;
     }
 
 }

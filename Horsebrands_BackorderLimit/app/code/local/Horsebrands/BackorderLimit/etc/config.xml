@@ -18,11 +18,6 @@
                     <api2_product_rest_admin_v1>Horsebrands_BackorderLimit_Model_Api2_Product_Rest_Admin_V1</api2_product_rest_admin_v1>
                 </rewrite>
             </catalog>
-            <!-- <AdvancedStock>
-                <rewrite>
-                    <cataloginventory_stock_item>Horsebrands_BackorderLimit_Model_Stock_Item</cataloginventory_stock_item>
-                </rewrite>
-            </AdvancedStock> -->
             <cataloginventory>
                 <rewrite>
                     <stock_item>Horsebrands_BackorderLimit_Model_Stock_Item</stock_item>
@@ -33,6 +28,11 @@
                     <source_backorders>Horsebrands_BackorderLimit_Model_Source_Backorders</source_backorders>
                 </rewrite>
             </cataloginventory>
+            <SalesOrderPlanning>
+              <rewrite>
+                <ProductAvailabilityStatus>Horsebrands_BackorderLimit_Model_SalesOrderPlanning_ProductAvailabilityStatus</ProductAvailabilityStatus>
+              </rewrite>
+            </SalesOrderPlanning>
         </models>
         <helpers>
             <Horsebrands_BackorderLimit>
@@ -87,6 +87,14 @@
                     </horsebrands_backorderlimit_catalog_product>
                 </observers>
             </catalog_product_collection_load_before>
+            <advancedstock_stock_aftersave>
+              <observers>
+                  <horsebrands_backorderlimit>
+                      <class>horsebrands_backorderlimit/observer_adminhtml</class>
+                      <method>updateProductAvailabilityStatus</method>
+                  </horsebrands_backorderlimit>
+              </observers>
+            </advancedstock_stock_aftersave>
         </events>
     </adminhtml>
     <frontend>
