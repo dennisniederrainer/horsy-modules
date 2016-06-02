@@ -34,7 +34,7 @@ class MDN_AdvancedStock_Model_Observer {
         //max orders
         $this->_maxOrder = (int) mage::getStoreConfig('advancedstock/cron/order_update_stocks_max');
         $collection->getSelect()->limit($this->_maxOrder);
-        
+
         $count = 0;
         foreach ($collection as $order) {
             $debug .= '<p><b>Processing order #' . $order->getId() . ' at (' . date('Y-m-d H:i:s') . ')</b>';
@@ -43,7 +43,7 @@ class MDN_AdvancedStock_Model_Observer {
                 //parse each product
                 foreach ($order->getAllItems() as $item) {
                     $productId = $item->getproduct_id();
-                    
+
                     $debug .= '<br>Process product '.$item->getName().' : ';
 
                     //get preparation warehouse
@@ -82,7 +82,7 @@ class MDN_AdvancedStock_Model_Observer {
         if (Mage::getStoreConfig('advancedstock/cron/debug'))
             echo $debug;
         mage::log($debug, null, 'erp_new_orders_consideration.log');
-        
+
     }
 
     /**
@@ -216,4 +216,3 @@ class MDN_AdvancedStock_Model_Observer {
     }
 
 }
-

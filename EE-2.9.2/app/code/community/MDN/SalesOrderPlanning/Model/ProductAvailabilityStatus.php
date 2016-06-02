@@ -36,10 +36,10 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
      *
      */
     public function Refresh() {
-        
+      mage::getModel('AdvancedStock/Observer')->UpdateStocksForOrders();
         $this->log('##############################################');
         $this->log('Refresh product availanility status for product #'.$this->getpa_product_id());
-        
+
         $websiteId = $this->getpa_website_id();
         $productId = $this->getpa_product_id();
 
@@ -68,7 +68,7 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
 
         //Save logs
         $this->storeLogs();
-        
+
         //save
         $this->save();
     }
@@ -148,7 +148,7 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
             $this->log('Product doesnt manage stocks');
             return true;
         }
-        
+
         //if product available qty is 0 and backorders set to false, return false
         if ((!$this->getpa_allow_backorders()) && ($this->getpa_available_qty() == 0)) {
             $this->log('No available qty and no back orders');
@@ -176,7 +176,7 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
                 return false;
             }
         }
-        
+
         return true;
     }
 
@@ -312,7 +312,7 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
                 return self::kStatusOutOfStockWithoutInformation;
             }
         }
-        
+
         //message if is saleable
         if ($this->getpa_is_saleable()) {
             $this->log('Is saleable');
@@ -402,16 +402,16 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
     protected function log($txt) {
         $this->_debug .= $txt . "\n";
     }
-    
+
     /**
-     * Sotre debug var in logs 
+     * Sotre debug var in logs
      */
     protected function storeLogs()
     {
         mage::log($this->_debug, null, 'erp_product_availability_status.log');
     }
 
-    
+
     /**
      * Return true if a date is set
      *
@@ -538,7 +538,7 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
     {
         $this->log('##############################################');
         $this->log('Fast update for product #'.$this->getpa_product_id().' with qty = '.$qty);
-        
+
         $qtyBefore = $this->getpa_available_qty();
         $qtyAfter = $qtyBefore + $qty;  //qty must be negative if called from orders
         if ($qtyAfter < 0)
@@ -547,10 +547,10 @@ class MDN_SalesOrderPlanning_Model_ProductAvailabilityStatus extends Mage_Core_M
         $this->setpa_is_saleable($this->getIsSaleable()); //last call as all other information must be set
         $this->setpa_status($this->getStatus());
         $this->save();
-        
+
         //Save logs
         $this->storeLogs();
-        
+
     }
 
     /**
