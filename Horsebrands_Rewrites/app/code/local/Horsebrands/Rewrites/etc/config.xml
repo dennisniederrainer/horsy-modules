@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Horsebrands_Rewrites>
+            <version>1.0.0.1</version>
+        </Horsebrands_Rewrites>
+    </modules>
+    <global>
+        <models>
+            <horsebrands_rewrites>
+                <class>Horsebrands_Rewrites_Model</class>
+            </horsebrands_rewrites>
+            <purchase>
+              <rewrite>
+                <pdf_order>Horsebrands_Rewrites_Model_MDN_Purchase_Pdf_Order</pdf_order>
+                <pdf_pdfhelper>Horsebrands_Rewrites_Model_MDN_Purchase_Pdf_Pdfhelper</pdf_pdfhelper>
+              </rewrite>
+            </purchase>
+        </models>
+    </global>
+</config>
