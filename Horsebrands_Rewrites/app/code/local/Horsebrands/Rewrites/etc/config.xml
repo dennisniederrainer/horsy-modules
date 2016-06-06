@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Horsebrands_Rewrites>
-            <version>1.0.0.1</version>
+            <version>1.0.0.0</version>
         </Horsebrands_Rewrites>
     </modules>
     <global>
@@ -10,12 +10,12 @@
             <horsebrands_rewrites>
                 <class>Horsebrands_Rewrites_Model</class>
             </horsebrands_rewrites>
-            <purchase>
+            <Purchase>
               <rewrite>
-                <pdf_order>Horsebrands_Rewrites_Model_MDN_Purchase_Pdf_Order</pdf_order>
-                <pdf_pdfhelper>Horsebrands_Rewrites_Model_MDN_Purchase_Pdf_Pdfhelper</pdf_pdfhelper>
+                <Pdf_Order>Horsebrands_Rewrites_Model_Purchase_Pdf_Order</Pdf_Order>
+                <!-- <Pdf_Pdfhelper>Horsebrands_Rewrites_Model_Purchase_Pdf_Pdfhelper</Pdf_Pdfhelper> -->
               </rewrite>
-            </purchase>
+            </Purchase>
         </models>
     </global>
 </config>

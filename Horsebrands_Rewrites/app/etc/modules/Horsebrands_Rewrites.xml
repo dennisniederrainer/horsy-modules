@@ -5,7 +5,7 @@
             <active>true</active>
             <codePool>local</codePool>
 			      <depends>
-                <MDN_Purchase/>
+                <MDN_Purchase />
             </depends>
         </Horsebrands_Rewrites>
     </modules>
