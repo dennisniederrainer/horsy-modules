@@ -29,8 +29,8 @@ class Horsebrands_Rewrites_Model_Purchase_Pdf_Order extends MDN_Purchase_Model_P
           $orderInformation = array(
             'order_id' => $order->getpo_order_id(),
             'order_date' => date('d.m.Y', strtotime($order->getpo_date())),
-            'campaign_week_no' => 'KW e.g. 25/2016',
-            'campaign_id' => 'e.g. EQT0200153',
+            'campaign_week_no' => $order->getpo_campaign_week(),
+            'campaign_id' => $order->getpo_campaign_code(),
             'delivery_date' => $order->getpo_supply_date(),
           );
           $address_supplier = $order->getSupplier()->getAddressAsText();
@@ -132,7 +132,7 @@ class Horsebrands_Rewrites_Model_Purchase_Pdf_Order extends MDN_Purchase_Model_P
               $page->drawText('Gesamtbetrag:', 500, $this->y, 'UTF-8');
               $this->y -= 16;
               $page->drawText($itemsTotal, 420, $this->y, 'UTF-8');
-              $page->drawText($order->getCurrency()->formatTxt($order->getTotalTtc()), 530, $this->y, 'UTF-8');
+              $page->drawText($order->getCurrency()->formatTxt($order->getTotalHt()), 530, $this->y, 'UTF-8');
           }
       }
 
@@ -204,12 +204,16 @@ class Horsebrands_Rewrites_Model_Purchase_Pdf_Order extends MDN_Purchase_Model_P
        $page->drawText('Auftragsdatum', 25, $this->y, 'UTF-8');
        $page->drawText($orderInformation['order_date'], $info_right_col_start, $this->y, 'UTF-8');
        $this->y -= 15;
-       $page->drawText('Aktionswoche', 25, $this->y, 'UTF-8');
-       $page->drawText($orderInformation['campaign_week_no'], $info_right_col_start, $this->y, 'UTF-8');
-       $this->y -= 15;
-       $page->drawText('Aktionscode', 25, $this->y, 'UTF-8');
-       $page->drawText($orderInformation['campaign_id'], $info_right_col_start, $this->y, 'UTF-8');
-       $this->y -= 15;
+       if(isset($orderInformation['campaign_week_no'])) {
+         $page->drawText('Aktionswoche', 25, $this->y, 'UTF-8');
+         $page->drawText($orderInformation['campaign_week_no'], $info_right_col_start, $this->y, 'UTF-8');
+         $this->y -= 15;
+       }
+       if(isset($orderInformation['campaign_id'])) {
+         $page->drawText('Aktionscode', 25, $this->y, 'UTF-8');
+         $page->drawText($orderInformation['campaign_id'], $info_right_col_start, $this->y, 'UTF-8');
+         $this->y -= 15;
+       }
        $page->drawText('Liefertermin', 25, $this->y, 'UTF-8');
        $page->drawText($orderInformation['delivery_date'], $info_right_col_start, $this->y, 'UTF-8');
 
