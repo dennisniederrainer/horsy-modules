@@ -6,16 +6,36 @@
         </Horsebrands_Rewrites>
     </modules>
     <global>
-        <models>
-            <horsebrands_rewrites>
-                <class>Horsebrands_Rewrites_Model</class>
-            </horsebrands_rewrites>
-            <Purchase>
-              <rewrite>
-                <Pdf_Order>Horsebrands_Rewrites_Model_Purchase_Pdf_Order</Pdf_Order>
-                <!-- <Pdf_Pdfhelper>Horsebrands_Rewrites_Model_Purchase_Pdf_Pdfhelper</Pdf_Pdfhelper> -->
-              </rewrite>
-            </Purchase>
-        </models>
+      <blocks>
+        <horsebrands_rewrites>
+            <class>Horsebrands_Rewrites_Block</class>
+        </horsebrands_rewrites>
+        <Purchase>
+          <rewrite>
+            <SupplyNeeds_Grid>Horsebrands_Rewrites_Block_Adminhtml_Purchase_SupplyNeeds_Grid</SupplyNeeds_Grid>
+          </rewrite>
+        </Purchase>
+      </blocks>
+      <models>
+          <horsebrands_rewrites>
+              <class>Horsebrands_Rewrites_Model</class>
+          </horsebrands_rewrites>
+          <Purchase>
+            <rewrite>
+              <Pdf_Order>Horsebrands_Rewrites_Model_Purchase_Pdf_Order</Pdf_Order>
+              <!-- <Pdf_Pdfhelper>Horsebrands_Rewrites_Model_Purchase_Pdf_Pdfhelper</Pdf_Pdfhelper> -->
+            </rewrite>
+          </Purchase>
+          <horsebrands_rewrites_resource>
+              <class>Horsebrands_Rewrites_Model_Resource</class>
+          </horsebrands_rewrites_resource>
+      </models>
+      <resources>
+          <horsebrands_rewrites_setup>
+              <setup>
+                  <module>Horsebrands_Rewrites</module>
+              </setup>
+          </horsebrands_rewrites_setup>
+      </resources>
     </global>
 </config>
