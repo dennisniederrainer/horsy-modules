@@ -2,10 +2,10 @@
 <config>
     <modules>
         <Horsebrands_BackorderLimit>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
 			      <depends>
-                <MDN_AdvancedStock/>
+                <!-- <MDN_AdvancedStock/> -->
             </depends>
         </Horsebrands_BackorderLimit>
     </modules>

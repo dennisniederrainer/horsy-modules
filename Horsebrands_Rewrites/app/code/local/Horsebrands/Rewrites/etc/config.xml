@@ -10,26 +10,31 @@
         <horsebrands_rewrites>
             <class>Horsebrands_Rewrites_Block</class>
         </horsebrands_rewrites>
-        <Purchase>
+        <checkout>
+          <rewrite>
+            <cart>Horsebrands_Rewrites_Block_Checkout_Cart</cart>
+          </rewrite>
+        </checkout>
+        <!-- <Purchase>
           <rewrite>
             <SupplyNeeds_Grid>Horsebrands_Rewrites_Block_Adminhtml_Purchase_SupplyNeeds_Grid</SupplyNeeds_Grid>
             <Order_Edit_Tabs_Info>Horsebrands_Rewrites_Block_Adminhtml_Purchase_Order_Edit_Tabs_Info</Order_Edit_Tabs_Info>
           </rewrite>
-        </Purchase>
+        </Purchase> -->
       </blocks>
       <models>
           <horsebrands_rewrites>
               <class>Horsebrands_Rewrites_Model</class>
           </horsebrands_rewrites>
-          <Purchase>
+          <!-- <Purchase>
             <rewrite>
               <Pdf_Order>Horsebrands_Rewrites_Model_Purchase_Pdf_Order</Pdf_Order>
-              <!-- <Pdf_Pdfhelper>Horsebrands_Rewrites_Model_Purchase_Pdf_Pdfhelper</Pdf_Pdfhelper> -->
+              <! - - <Pdf_Pdfhelper>Horsebrands_Rewrites_Model_Purchase_Pdf_Pdfhelper</Pdf_Pdfhelper> - - >
             </rewrite>
-          </Purchase>
-          <horsebrands_rewrites_resource>
+          </Purchase> -->
+          <!-- <horsebrands_rewrites_resource>
               <class>Horsebrands_Rewrites_Model_Resource</class>
-          </horsebrands_rewrites_resource>
+          </horsebrands_rewrites_resource> -->
       </models>
       <resources>
           <horsebrands_rewrites_setup>
@@ -38,5 +43,36 @@
               </setup>
           </horsebrands_rewrites_setup>
       </resources>
+      <events>
+       <sales_quote_collect_totals_before>
+          <observers>
+            <horsebrands_rewrites_checkout_observer>
+              <type>singleton</type>
+              <class>horsebrands_rewrites/checkout_observer</class>
+              <method>setQuoteShippingMethod</method>
+            </horsebrands_rewrites_checkout_observer>
+          </observers>
+        </sales_quote_collect_totals_before>
+        <cart_updateShipping>
+          <observers>
+            <horsebrands_rewrites_checkout_observer>
+              <type>singleton</type>
+              <class>horsebrands_rewrites/checkout_observer</class>
+              <method>updateShipping</method>
+            </horsebrands_rewrites_checkout_observer>
+          </observers>
+        </cart_updateShipping>
+      </events>
     </global>
+    <frontend>
+      <routers>
+        <checkout>
+          <args>
+            <modules>
+              <Horsebrands_Rewrites before="Mage_Checkout">Horsebrands_Rewrites_Checkout</Horsebrands_Rewrites>
+            </modules>
+          </args>
+        </checkout>
+      </routers>
+    </frontend>
 </config>
