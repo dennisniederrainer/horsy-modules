@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!-- ce fichier doit se trouver dans adminhtml/default/default sinon pas pris en compte.. -->
 <layout version="0.1.0">
-       
+
 	<!-- manufacturer -->
 
     <purchase_manufacturers_list>
@@ -48,7 +48,7 @@
             </action>
         </reference>
     </purchase_suppliers_edit>
-		
+
     <purchase_suppliers_list>
         <reference name="content">
             <block type="Purchase/Supplier_Grid" name="supplierlist" template="Purchase/Supplier/Grid.phtml" />
@@ -63,16 +63,17 @@
 
     <purchase_suppliers_edit>
         <reference name="left">
-            <block type="Purchase/Supplier_Edit_Tabs" name="suppliertabs">
-            </block>
+            <!-- <block type="Purchase/Supplier_Edit_Tabs" name="suppliertabs">
+            </block> -->
+            <block type="horsebrands_rewrites/purchase_supplier_edit_tabs" name="suppliertabs"/>
         </reference>
         <reference name="content">
             <block type="Purchase/Supplier_Edit" name="supplier_edit"></block>
         </reference>
     </purchase_suppliers_edit>
-        
+
     <!-- Contacts -->
-   
+
     <purchase_contacts_list>
         <reference name="content">
             <block type="Purchase/Contact_Grid" name="contactlist" template="Purchase/Contact/Grid.phtml" />
@@ -85,7 +86,7 @@
     </purchase_contacts_edit>
 
     <!-- Purchase Order -->
-            
+
     <purchase_orders_list>
         <reference name="content">
             <block type="Purchase/Order_Grid" name="orderlist" template="Purchase/Order/Grid.phtml" />
@@ -169,7 +170,7 @@
     </purchase_orders_importfromsupplyneeds>
 
     <!-- Supply needs -->
-    
+
     <purchase_supplyneeds_grid>
         <reference name="head">
             <action method="addJs">
@@ -198,7 +199,7 @@
             </action>
         </reference>
     </purchase_supplyneeds_grid>
-	
+
     <purchase_supplyneeds_stats>
         <reference name="content">
             <block type="Purchase/SupplyNeeds_Stats" name="supplyneeds_stats" template="Purchase/SupplyNeeds/Stats.phtml" />
@@ -211,7 +212,7 @@
             <block type="Purchase/RemainingSupplyQuantities_Grid" name="remainingsupplyquantitieslist" template="Purchase/RemainingSupplyQuantities/Grid.phtml" />
         </reference>
     </purchase_remainingsupplyquantities_list>
-    
+
     <!-- Misc -->
 
     <purchase_tax_list>
