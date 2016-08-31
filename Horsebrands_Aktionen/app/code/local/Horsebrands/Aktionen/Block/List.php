@@ -8,12 +8,12 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
 
     public function __construct() {
         // if (isset($_GET["previewMode"]) && $_GET["previewMode"] == "sBpRaCKkLBv2y5Wrdn66") {
-        if (isset($_GET["previewMode"]) 
+        if (isset($_GET["previewMode"])
             && $_GET["previewMode"] == "be548bb6350a41284d652f877329b6ef7d9462f610681062833bca5a06cfd4e6") {
             Mage::getSingleton("customer/session")->setPreviewMode(true);
             Mage::log(Mage::getSingleton("customer/session")->getCustomer()->getEmail() . ': preview ACTIVATED.',
                 null, 'previewmode.log');
-        } elseif (Mage::getSingleTon("customer/session")->getPreviewMode() != true 
+        } elseif (Mage::getSingleTon("customer/session")->getPreviewMode() != true
             || (isset($_GET["previewMode"]) && $_GET["previewMode"] == "disable")) {
             Mage::getSingleton("customer/session")->setPreviewMode(false);
         }
@@ -21,7 +21,7 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
         parent::__construct();
     }
 
-    public function getCurrentFlashsales() {
+    public function getOngoingFlashsales() {
         if(Mage::getSingleton("customer/session")->getPreviewMode() == true) {
             $this->currentFlashsales = Mage::getModel('PrivateSales/FlashSales')->getCollection()
                                             ->addFieldToFilter('fs_enabled', array('eq' => '1'))
@@ -46,7 +46,7 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
             $this->upcomingFlashsales = Mage::getModel('PrivateSales/FlashSales')->getCollection()
                                             ->addFieldToFilter('fs_enabled', array('eq' => '1'))
                                             ->addFieldToFilter('fs_start_date', array('gteq' => $now))
-                                            ->setOrder('fs_start_date', 'ASC');    
+                                            ->setOrder('fs_start_date', 'ASC');
         }
         return $this->upcomingFlashsales;
     }
@@ -81,7 +81,7 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
         return $html;
     }
 
-    protected function getCampaignDateString($date) { 
+    protected function getCampaignDateString($date) {
         $html = "";
 
         if($date) {
@@ -101,13 +101,13 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
         }
         return "";
     }
-    
+
     public function getCampaignHtml($campaign, $isUpcomingCampaign = false) {
         $html = "";
         if($campaign) {
             $category = Mage::getModel('catalog/category')->load($campaign->getFsCategoryId());
             $html .= '<div class="row campaign-block"><div class="row">';
-            
+
             //Wenn es eine upcoming campaign ist, lege banner über den container
             if($isUpcomingCampaign) {
                 $html .= '<a href="/aktionen/kommende"><div class="upcoming-banner"></div></a>';
@@ -130,9 +130,9 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
             $html .= '</p></div>';
             $html .= '<div class="columns small-12 large-5 campaign-ends"><p>'
                 // .'<img src="'.$this->getSkinUrl().'/images/endingcampaign_clock_big.png" style="margin-right:10px"/>'
-                .($isUpcomingCampaign ? "Ab ".$this->getCampaignStartsString($campaign->getFsStartDate()) 
+                .($isUpcomingCampaign ? "Ab ".$this->getCampaignStartsString($campaign->getFsStartDate())
                     : $this->getCampaignEndsString($campaign->getFsEndDate())).'</p></div>';
-           
+
 
             // $html .= '<div class="columns small-12"><p class="campaign-name description">';
             //     if(trim($campaign->getFsDescription()) <> "") {
@@ -152,22 +152,22 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
 
         if($campaign) {
             $category = Mage::getModel('catalog/category')->load($campaign->getFsCategoryId());
-            
+
             $html .= '<article title="'.$campaign->getFsName().'">';
                 $html .= '<div class="image-content">';
                     $html .= '<div class="campaign-main-picture">';
                     $html .= '<img title="" src="'.$category->getImageUrl().'" alt="" class="campaign-picture"/>';
                     $html .= '<div class="row campaign-titlepanel">';
-                    
+
                     $html .= '<div class="columns small-12 large-6 medium-7"><p class="campaign-name">'.$campaign->getFsName();
                         if(trim($campaign->getFsDescription()) <> "") {
                             $html .= ' - '.$campaign->getFsDescription();
                         }
                     $html .= '</p></div>';
-                    
+
                     $html .= '<div class="columns small-12 medium-4 large-6 campaign-ends"><p>'
                         .$this->getCampaignStartsString($campaign->getFsStartDate()).'</p></div>';
-                    $html .= '</div>';        
+                    $html .= '</div>';
                 $html .= '</div>';
                 $html .= '<div class="campaign-info">';
                     $html .= '<p>';
