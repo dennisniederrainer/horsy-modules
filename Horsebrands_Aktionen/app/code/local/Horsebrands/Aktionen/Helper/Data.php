@@ -1,0 +1,85 @@
+<?php
+class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
+    protected $weekdays = array("So", "Mo", "Di", "Mi", "Do", "Fr", "Sa");
+	
+    public function hasCategoriesWithoutFlashsaleReferenceByProduct($product) {
+        //category-ID-Array mit einigartigen Werten (keine doppelten Kategorien...)
+        $categoryIds = array_unique($this->getAssignedCategoriesForProduct($product));
+
+        if(count($categoryIds) > 0) {
+            $fsCollection = Mage::getModel('PrivateSales/FlashSales')->getCollection()
+                                ->addFieldToFilter('fs_category_id', array('in' => $categoryIds));
+            $fsCollection->getSelect()->group('fs_category_id');
+
+            //Ist categoryIds > fsCollection, gibt es Kategorien ohne FS-Referenz
+            return (count($categoryIds) > count($fsCollection));
+        }
+
+        return false;
+    }
+
+    public function hasCategoriesWithoutFlashsaleReferenceByProductId($productId) {
+        $product = Mage::getModel('catalog/product')->load($productId);
+        return $this->hasCategoriesWithoutFlashsaleReferenceByProduct($product);
+    }
+
+    /**
+     * Methode gibt ein Array mit den Kategorien-Ids des Produkts und der Parent-Produkte zurück
+     */
+    public function getAssignedCategoriesForProduct($product) {
+        $categoryIds = array();
+        $parentIds = Mage::getResourceSingleton('catalog/product_type_configurable')
+                  ->getParentIdsByChild($product->getId());
+
+        if(count($parentIds) > 0) {
+            foreach ($parentIds as $parentId) {
+                $parent = Mage::getModel('catalog/product')->load($parentId);
+                $categoryIds = array_merge($categoryIds, $this->getAssignedCategoriesForProduct($parent));
+            }
+        }
+
+        return array_merge($categoryIds, $product->getCategoryIds());
+    }
+
+    public function getRecommendationCampaignHtml($campaign) {
+        $html = "";
+        
+        if($campaign) {
+            $category = Mage::getModel('catalog/category')->load($campaign->getFsCategoryId());
+            $html .= '<div class="row campaign-block"><div class="row">';
+
+            $html .= '<div class="columns small-12 campaign-main-picture">';
+            $html .= '<a href="'.$category->getUrl().'">';
+            $html .= '<img title="" src="'.$category->getImageUrl().'" alt="" class="campaign-picture"/>';
+            $html .= '</a></div></div>';
+
+            $html .= '<a href="'.$category->getUrl().'">';
+            $html .= '<div class="row campaign-titlepanel">';
+            $html .= '<div class="columns small-12 large-6 medium-8"><p class="campaign-name">'.$campaign->getFsName().'</p></div>';
+            
+            $html .= '<div class="columns small-12 large-6 medium-4 campaign-ends"><p>'
+                // .'<img src="'.$this->getSkinUrl().'/images/endingcampaign_clock_big.png" style="margin-right:10px"/>'
+                .$this->getCampaignEndsString($campaign->getFsEndDate()).'</p></div>';
+
+            $html .= '</div></a></div>';
+        }
+
+        // return $campaign->getId();
+        return $html;
+    }
+
+    protected function getCampaignEndsString($enddate) {
+        $html = "";
+
+        if($enddate) {
+            $dateInTime = strtotime($enddate);
+            $html .= "Aktion endet: ";
+
+            // get day of week string from array
+            $html .= $this->weekdays[date("w", $dateInTime)] . ", ";
+            $html .= date("d.m. H", $dateInTime) . " Uhr";
+        }
+
+        return $html;
+    }
+}

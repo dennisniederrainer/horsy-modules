@@ -1,0 +1,105 @@
+<div class="aktionenlist content">
+<?php if(count($this->getCurrentFlashsales()) == 0): ?>
+    <p>Es existieren leider keine laufenden Aktionen</p>
+<?php else: ?>
+    <!-- TOP CAMPAIGN (newest campaign) -->
+    <div class="aktionen topcampaign row">
+        <div class="columns small-12 medium-12 large-9 topcampaign-container">
+        <!-- <div class="" style="padding-right: .46875rem;" data-equalizer-watch> -->
+            <div class="new-banner"><img src="<?php echo $this->getSkinUrl().'/images/neu.png' ?>" /></div>
+            <?php echo $this->getTopCampaignHtml(); ?>
+        </div>
+        <!-- <div id="teaser-right-vertSlider" class="teaser-right" style="padding-left: .46875rem;" data-equalizer-watch> -->
+        <div class="columns large-3 show-for-large-up teaser-right">
+            <!-- GUTSCHEINE! -->
+            <div class="teaser-right-slider">
+                <?php echo $this->getLayout()->createBlock('cms/block')->setBlockId('campaign_teaser_right')->toHtml(); ?>
+            </div>
+        </div>
+    </div>
+
+    <!-- Following Campaigns -->
+    <?php $campaignIndex = 0; ?>
+    <?php foreach ($this->getCurrentFlashsales() as $campaign): ?>
+        <?php if($campaignIndex == 0) { $campaignIndex++; continue; } // Skip Top Campaign ?>
+        <?php if(($campaignIndex % 2) == 1) { echo '<div class="aktionen row">'; } // start new row? ?>
+            <div class="columns small-12 medium-6 <?php echo (($campaignIndex % 2) == 1 ? "campaign-column-left" : "campaign-column-right") ?>">
+                <?php echo $this->getCampaignHtml($campaign); ?>
+            </div>
+        <?php if(($campaignIndex % 2) == 0
+                    || (($campaignIndex + 1) == count($this->getCurrentFlashsales()))) { echo '</div>'; } // end new row? ?>
+        <?php $campaignIndex++; ?>
+    <?php endforeach; ?>
+<?php endif; ?>
+
+    <!-- Kommende Aktionen Carousel -->
+<?php if(count($this->getUpcomingFlashsales()) > 0): ?>
+    <hr class="show-for-medium-up" style="border-color: rgba(103,55,16,.2);"/>
+
+    <div class="row">
+        <div class="columns large-12 upcoming-header-container">
+            <h5>Bald bei Horsebrands:</h5>
+        </div>
+    </div>
+
+    <div class="aktionen upcoming row">
+        <div class="columns large-12" style="padding-left: 1.25rem; padding-right: .75rem;">
+            <!-- <ul id="upcomingCampaignSlider" class="hide-for-large-up"> -->
+            <div id="upcomingCampaignSlider">
+                <?php foreach ($this->getUpcomingFlashsales() as $campaign): ?>
+                    <div class="slide"><?php echo $this->getCampaignHtml($campaign, true); ?></div>
+                <?php endforeach; ?>
+            </div>
+        </div>
+    </div>
+<?php endif; ?>
+</div>
+<?php if(Mage::getSingleton('core/session')->getWelcomemessage() == 'YES'): ?>
+    <?php echo $this->getLayout()->createBlock('hello/view')->setTemplate('hello/view/welcome.phtml')->toHtml(); ?>
+<?php endif; ?>
+
+
+<script type="text/javascript">
+    var showWelcome = <?php echo (Mage::getSingleton('core/session')->getWelcomemessage() == 'YES' ? 'true' : 'false'); Mage::getSingleton('core/session')->unsWelcomemessage(); ?>;
+    var openSidecart =
+        <?php echo (Mage::getSingleton('core/session')->getShoppingcart() == 'YES' ? 'true' : 'false'); Mage::getSingleton('core/session')->unsShoppingcart(); ?>;
+
+    var clientWidth = document.documentElement.clientWidth;
+
+    jQuery(document).ready(function() {
+        $j('.main-container').find('span.legal-advice').html("<em>*</em> vom UVP des Herstellers");
+
+        if(Modernizr.mq('(min-width:510px)')) {
+            $j('#upcomingCampaignSlider').bxSlider({
+                pager: false,
+                minSlides: 2,
+                maxSlides: 3,
+                moveSlides: 1,
+                slideWidth: 460,
+                slideMargin: 15
+            });
+        }else if(Modernizr.mq('(max-width:510px)')) {
+            $j('#upcomingCampaignSlider').bxSlider({
+                pager: false,
+                minSlides: 1,
+                maxSlides: 1,
+                moveSlides: 1,
+                slideWidth: 1000,
+                slideMargin: 10
+            });
+        }
+
+        $j('.teaser-right-slider').slippry({
+            adaptiveHeight: false,
+            pager: false,
+            transition: 'horizontal',
+            auto: true,
+        });
+
+        if(showWelcome) {
+            $j('#welcomeModal').foundation('reveal','open');
+        }
+
+        if(openSidecart) { jQuery('#shoppingcart-offcanvas').slideDown(); }
+    });
+</script>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Horsebrands_Aktionen>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Horsebrands_Aktionen>
+    </modules>
+</config>

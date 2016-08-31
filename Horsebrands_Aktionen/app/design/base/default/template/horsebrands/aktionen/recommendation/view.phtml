@@ -1,0 +1,156 @@
+<?php $recommendationCampaign = $this->getRecommendationCampaign() ?>
+<?php $recommendationProduct = $this->getRecommendationProduct() ?>
+<?php $flashSale = $this->getFlashSale() ?>
+<?php $_helper = $this->helper('catalog/output'); ?>
+<?php $_catalogImageHelper = Mage::helper('catalog/image') ?>
+<?php $coreHelper = Mage::helper('core') ?>
+<?php $taxHelper = Mage::helper('tax') ?>
+<?php $backlink = Mage::getBaseUrl().'aktionen/'; ?>
+
+<?php 
+    if($recommendationProduct) {
+        $backlink = $recommendationProduct->getProductUrl();
+    }elseif($recommendationCampaign) {
+        
+        $backlink = $recommendationCampaign->getUrl();
+    }
+?>
+
+<div id="recommendation-container">
+    <div class="row">
+        <div class="columns small-12">
+            <?php if($recommendationProduct): ?>
+                <h2 class="pagetitle">Artikel empfehlen</h2>
+            <?php else: ?>
+                <h2 class="pagetitle">Aktion empfehlen</h2>
+            <?php endif; ?>
+        </div>
+    </div>
+    <div class="row">
+        <div class="columns small-12">
+            <h6 style="margin-bottom: 30px;">Ist <?php echo ($recommendationProduct ? "dieses Produkt" : "diese Aktion"); ?> auch interessant für deine Freunde? Dann informiere sie darüber per E-Mail.</h6>
+        </div>
+        <div class="columns small-12 large-6">
+        <?php if($recommendationProduct): ?>
+            <div class="recommendation-title">
+                <?php if ($recommendationProduct->getData('manufacturer')): ?>
+                <h5>
+                    <?php echo nl2br($recommendationProduct->getResource()->getAttribute('manufacturer')->getFrontend()->getValue($recommendationProduct)) . "<br/>"; ?>
+                </h5>
+                <?php endif; ?>
+                <h4><?php echo $recommendationProduct->getName(); ?></h4>
+            </div>
+            <div class="recommendation-image" style="text-align: center;">
+                <a style="" href="<?php echo $recommendationProduct->getProductUrl() ?>" title="<?php echo $recommendationProduct->getName() ?>">
+                    <img src="<?php echo $_catalogImageHelper->init($recommendationProduct, 'image') ?>" class="product" alt="<?php echo $recommendationProduct->getName() ?>"/>
+                </a>
+            </div>
+            <div class="product-price-block" style="text-align: center;">
+                <?php if ($recommendationProduct->getData('msrp')): ?>
+                    <?php $msrp =  nl2br($recommendationProduct->getResource()->getAttribute('msrp')->getFrontend()->getValue($recommendationProduct)) ?>
+                <?php else: ?>
+                    <?php $msrp = 0; ?>
+                <?php endif; ?>
+                <?php if ($msrp > 0): ?>
+                <span class="msrp">
+                    <?php echo Mage::helper('core')->currency($msrp, true, false); ?>
+                </span>
+                <?php endif; ?>
+                <span class="savings">
+                    <?php if ($recommendationProduct->getData('show_savings') && $msrp > 0) { 
+                        echo "-".Mage::helper('shop')->calculateSavings($recommendationProduct->getPrice(), $msrp)." %";
+                    } ?>
+                </span>
+                <span><?php echo Mage::helper('core')->currency($recommendationProduct->getPrice(), true, false); ?></span>
+            </div>
+        <?php elseif($recommendationCampaign): ?>
+            <?php echo Mage::helper('aktionen')->getRecommendationCampaignHtml($recommendationCampaign->getFlashSale()); ?>
+            <!-- <div class="recommendation-title">
+                <h4><?php echo $recommendationCampaign->getFlashSale()->getFsDescription(); ?></h4>
+            </div>
+            <div class="recommendation-image">
+                <a href="<?php echo $recommendationCampaign->getUrl(); ?>" title="Zur Aktion">
+                    <img class="catalog" src="<?php echo $recommendationCampaign->getImageUrl(); ?>" alt="<?php echo $recommendationCampaign->getFlashSale()->getFsName() ?>"  title="<?php echo $recommendationCampaign->getFlashSale()->getFsName() ?>"/>
+                </a>
+            </div> -->
+        <?php endif; ?>
+        </div>
+        <div class="columns small-12 large-6">
+        <form id="recommendation-form" method="post">
+            <p style="margin-bottom: 10px;">Gib hier die E-Mail-Adressen deiner Freunde an:</p>
+            <input type="hidden" name="recommendationCampaignID" value="<?php if(!is_null($recommendationCampaign)) echo $recommendationCampaign->getId() ?>" />
+            <input type="hidden" name="recommendationArticleID" value="<?php if(!is_null($recommendationProduct)) echo $recommendationProduct->getId() ?>" />
+            <?php if($flashSale):?>
+                <input type="hidden" name="recommendationFlashSaleID" value="<?php echo $flashSale->getFsId()?>" />
+            <?php endif; ?>
+            <?php if($recommendationProduct): ?>
+                <input type="hidden" name="recommendationLink" value="<?php echo $recommendationProduct->getProductUrl() ?>" />
+            <?php elseif($recommendationCampaign): ?>
+                <input type="hidden" name="recommendationLink" value="<?php echo $recommendationCampaign->getUrl() ?>" />
+            <?php endif; ?>
+
+            <?php for($i=0; $i<3; $i++): ?>
+                <div class="row collapse prefix-radius">
+                    <div class="columns small-12 large-4">
+                        <span class="prefix">E-Mail-Adresse</span>
+                    </div>
+                    <div class="columns small-12 large-8">
+                        <input type="text" name="recommendationEmail[]" class="validate-email"/>
+                    </div>
+                </div>
+            <?php endfor; ?>
+            <a class="hobra-button button right" style="margin-bottom: 0;"
+            onclick="jQuery('#recommendation-form').submit(); return false;">
+                Absenden
+                <div class='spinner small'></div>
+            </a>
+        </form>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var recommendationForm = new VarienForm('recommendation-form', true);
+
+    $j('#recommendation-form').submit(function() {
+        if(ajaxProcessing) {
+            return false;
+        }
+
+        if(recommendationForm.validator && recommendationForm.validator.validate()) {
+            $j.ajax({
+                type: "POST",
+                url: "/aktionen/recommendation/formPost",
+                data: $j('#recommendation-form').serialize(),
+                beforeSend: function() {
+                    $j('#recommendation-form').find('a.hobra-button .spinner.small').show();
+                },
+                success: function(response) {
+                    try {
+                        var result = JSON.parse(response);
+                        // if(result.success) {
+                            $j('#recommendation-form input').each(function() {
+                                $j(this).val('');
+                            });
+                            $j('.messages-container').html(result.messageblock);
+                            setTimeout(function() {
+                                window.location = '<?php echo $backlink; ?>';
+                            }, 2000);
+
+                        // }
+                    } catch(err) {
+                        console.log("fehler im accountcontroller: " + err);
+                    }
+                },
+                error: function(message, type) {
+                    alert("Fehler in der Uebertragung");
+                },
+                complete: function() {
+                    $j('#recommendation-form').find('a.hobra-button .spinner.small').hide();
+                }
+            });    
+        }
+
+        return false;
+    });
+</script>

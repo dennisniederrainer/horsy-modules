@@ -1,0 +1,36 @@
+<?php $upcomingFlashsales = $this->getUpcomingFlashsales(); ?>
+<div id="upcomingCampaigns-container">
+	<?php if(count($upcomingFlashsales)>0): ?>
+		<?php foreach($upcomingFlashsales as $fs): ?>
+			<div class="upcoming row">
+				<div class="columns small-12 medium-6 large-4">
+					<!-- Aktionsbild -->
+					<?php echo $this->getUpcomingCampaignHtml($fs); ?> 
+				</div>
+				<div class="columns small-12 medium-6 large-8">
+					<!-- Aktionsbeschreibung -->
+					<h1 class="category-header-title">
+						<?php echo $fs->getFsName(); ?>
+                		<?php if(trim($fs->getFsDescription()) <> ""): ?>
+                		<?php echo ' - '.$fs->getFsDescription(); ?>
+                		<?php endif; ?>
+					</h1>
+					<p class="category-header-description">
+						<?php echo Mage::getModel('catalog/category')->load($fs->getFsCategoryId())->getDescription(); ?>
+					</p>
+				</div>
+			</div>	
+		<?php endforeach; ?>
+	<?php else: ?>
+		<div class="row">
+			<div class="columns small-12">
+				Es bestehen leider keine kommende Aktionen.
+			</div>
+		</div>
+	<?php endif; ?>
+</div>
+<script type="text/javascript">
+    $j(document).ready(function() {
+        $j('.main-container').find('span.legal-advice').html("<em>*</em> vom UVP des Herstellers");
+    });
+</script>
