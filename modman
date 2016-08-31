@@ -1,6 +1,6 @@
 Horsebrands_Aktionen/app/code/local/Horsebrands/Aktionen                    app/code/local/Horsebrands/Aktionen
-Horsebrands_Aktionen/app/design/base/default/layout/aktionen.xml            app/design/base/default/layout/aktionen.xml
-Horsebrands_Aktionen/app/design/base/default/template/horsebrands/aktionen  app/design/base/default/template/horsebrands/aktionen
+Horsebrands_Aktionen/app/design/rwd/default/layout/aktionen.xml            app/design/rwd/default/layout/aktionen.xml
+Horsebrands_Aktionen/app/design/rwd/default/template/horsebrands/aktionen  app/design/rwd/default/template/horsebrands/aktionen
 Horsebrands_Aktionen/app/etc/modules/Horsebrands_Aktionen.xml               app/etc/modules/Horsebrands_Aktionen.xml
 
 Horsebrands_DBSetup/app/code/local/Horsebrands/DBSetup/   /app/code/local/Horsebrands/DBSetup/

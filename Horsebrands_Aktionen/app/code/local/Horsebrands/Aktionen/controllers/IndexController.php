@@ -2,13 +2,13 @@
 class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Action {
 
 	function indexAction() {
-        $session = Mage::getSingleton('customer/session');
-        $this->persistendLogin($session);
+        // $session = Mage::getSingleton('customer/session');
+        // $this->persistendLogin($session);
 
-        if (!$session->isLoggedIn()) {
-            $this->_redirect('hello');
-            return;
-        }
+        // if (!$session->isLoggedIn()) {
+        //     $this->_redirect('hello');
+        //     return;
+        // }
 
         $this->loadLayout();
         $this->getLayout()
