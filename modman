@@ -124,6 +124,6 @@ DHL-Intraship/doc/Dhl_Intraship    /doc/Dhl_Intraship
 Horsebrands_BackorderLimit/app/code/local/Horsebrands/BackorderLimit/   /app/code/local/Horsebrands/BackorderLimit/
 Horsebrands_BackorderLimit/app/etc/modules/Horsebrands_BackorderLimit.xml   /app/etc/modules/Horsebrands_BackorderLimit.xml
 
-Horsebrands_Rewrites/app/code/local/Horsebrands/Rewrites/   /app/code/local/Horsebrands/Rewrites/
-Horsebrands_Rewrites/app/design/adminhtml/default/default/template/horsebrands/    /app/design/adminhtml/default/default/template/horsebrands/
-Horsebrands_Rewrites/app/etc/modules/Horsebrands_Rewrites.xml   /app/etc/modules/Horsebrands_Rewrites.xml
+#Horsebrands_Rewrites/app/code/local/Horsebrands/Rewrites/   /app/code/local/Horsebrands/Rewrites/
+#Horsebrands_Rewrites/app/design/adminhtml/default/default/template/horsebrands/    /app/design/adminhtml/default/default/template/horsebrands/
+#Horsebrands_Rewrites/app/etc/modules/Horsebrands_Rewrites.xml   /app/etc/modules/Horsebrands_Rewrites.xml
