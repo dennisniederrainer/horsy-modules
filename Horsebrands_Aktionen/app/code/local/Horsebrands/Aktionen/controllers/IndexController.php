@@ -1,14 +1,14 @@
 <?php
 class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Action {
 
-	function indexAction() {
-        // $session = Mage::getSingleton('customer/session');
+	public function indexAction() {
+        $session = Mage::getSingleton('customer/session');
         // $this->persistendLogin($session);
 
-        // if (!$session->isLoggedIn()) {
-        //     $this->_redirect('hello');
-        //     return;
-        // }
+        if (!$session->isLoggedIn()) {
+            $this->_redirect('aktionen/index/login');
+            return;
+        }
 
         $this->loadLayout();
         $this->getLayout()
@@ -16,6 +16,11 @@ class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Ac
 
         $this->renderLayout();
     }
+
+	public function loginAction() {
+		$this->loadLayout();
+		$this->renderLayout();
+	}
 
 		public function refreshProductsAction()
     {
