@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Horsebrands_DBSetup>
-            <version>1.0.0.4</version>
+            <version>1.0.0.6</version>
         </Horsebrands_DBSetup>
     </modules>
     <global>
