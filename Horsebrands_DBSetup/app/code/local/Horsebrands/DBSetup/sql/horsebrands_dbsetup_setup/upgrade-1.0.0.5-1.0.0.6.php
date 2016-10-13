@@ -4,7 +4,7 @@ $installer = $this;
 $installer->startSetup();
 
 /* Dein Verein Home */
-$page = Mage::getModel('cms/page')->load('home','deinverein-home');
+$page = Mage::getModel('cms/page')->load('deinverein-home','identifier');
 if($page->getId()){$page->delete();}
 
 $pagecontent = <<<EOF
@@ -21,7 +21,7 @@ $pagecontent = <<<EOF
     </div>
     <div class="content-wrapper">
       <div class="row">
-        <div class="columns small-12 medium-4 large-2">
+        <div class="columns small-12 medium-6 large-3">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
@@ -32,7 +32,7 @@ $pagecontent = <<<EOF
             </p>
           </div>
         </div>
-        <div class="columns small-12 medium-4 large-2">
+        <div class="columns small-12 medium-6 large-3">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
@@ -43,7 +43,7 @@ $pagecontent = <<<EOF
             </p>
           </div>
         </div>
-        <div class="columns small-12 medium-4 large-2">
+        <div class="columns small-12 medium-6 large-3">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
@@ -54,34 +54,12 @@ $pagecontent = <<<EOF
             </p>
           </div>
         </div>
-        <div class="columns small-12 medium-4 large-2">
+        <div class="columns small-12 medium-6 large-3">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
             </div>
             <h3 class="uppercase">Immer verfügbar</h3>
-            <p>
-              Habemus omnes antelis? Habem sime quo publin vit.Unu sulum oravem tanu me maio ina, nondu-cotia? Forum facci tarei sesit vo, ce quasdacrena, nostabiti
-            </p>
-          </div>
-        </div>
-        <div class="columns small-12 medium-4 large-2">
-          <div class="usp-column">
-            <div class="usp-icon-header">
-              <img src="http://placehold.it/100x100" alt="Icon" />
-            </div>
-            <h3 class="uppercase">Ohne Zeitaufwand</h3>
-            <p>
-              Habemus omnes antelis? Habem sime quo publin vit.Unu sulum oravem tanu me maio ina, nondu-cotia? Forum facci tarei sesit vo, ce quasdacrena, nostabiti
-            </p>
-          </div>
-        </div>
-        <div class="columns small-12 medium-4 large-2">
-          <div class="usp-column">
-            <div class="usp-icon-header">
-              <img src="http://placehold.it/100x100" alt="Icon" />
-            </div>
-            <h3 class="uppercase">Beratung</h3>
             <p>
               Habemus omnes antelis? Habem sime quo publin vit.Unu sulum oravem tanu me maio ina, nondu-cotia? Forum facci tarei sesit vo, ce quasdacrena, nostabiti
             </p>
@@ -130,7 +108,7 @@ $cmsPage->setStores(array(0));
 $cmsPage->save();
 
 /* Dein Verein References */
-$block = Mage::getModel('cms/block')->load('footer_content','deinverein-references');
+$block = Mage::getModel('cms/block')->load('deinverein-references','identifier');
 if($block->getId()){$block->delete();}
 
 $pagecontent = <<<EOF
@@ -168,7 +146,7 @@ $cmsBlock->setStores(array(0));
 $cmsBlock->save();
 
 /* Dein Verein References */
-$block = Mage::getModel('cms/block')->load('footer_content','deinverein-home-seo');
+$block = Mage::getModel('cms/block')->load('deinverein-home-seo','identifier');
 if($block->getId()){$block->delete();}
 
 $pagecontent = <<<EOF

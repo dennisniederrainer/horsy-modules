@@ -22,4 +22,4 @@ $cmsBlock->setIsActive(true);
 $cmsBlock->setStores(array(0));
 $cmsBlock->save();
 
-$installer->endSetup;
+$installer->endSetup();
