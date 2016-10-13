@@ -21,7 +21,7 @@ $pagecontent = <<<EOF
     </div>
     <div class="content-wrapper">
       <div class="row">
-        <div class="columns small-12 medium-6 large-3">
+        <div class="columns small-12 medium-4 large-2">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
@@ -32,7 +32,7 @@ $pagecontent = <<<EOF
             </p>
           </div>
         </div>
-        <div class="columns small-12 medium-6 large-3">
+        <div class="columns small-12 medium-4 large-2">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
@@ -43,7 +43,7 @@ $pagecontent = <<<EOF
             </p>
           </div>
         </div>
-        <div class="columns small-12 medium-6 large-3">
+        <div class="columns small-12 medium-4 large-2">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
@@ -54,12 +54,34 @@ $pagecontent = <<<EOF
             </p>
           </div>
         </div>
-        <div class="columns small-12 medium-6 large-3">
+        <div class="columns small-12 medium-4 large-2">
           <div class="usp-column">
             <div class="usp-icon-header">
               <img src="http://placehold.it/100x100" alt="Icon" />
             </div>
             <h3 class="uppercase">Immer verfügbar</h3>
+            <p>
+              Habemus omnes antelis? Habem sime quo publin vit.Unu sulum oravem tanu me maio ina, nondu-cotia? Forum facci tarei sesit vo, ce quasdacrena, nostabiti
+            </p>
+          </div>
+        </div>
+        <div class="columns small-12 medium-4 large-2">
+          <div class="usp-column">
+            <div class="usp-icon-header">
+              <img src="http://placehold.it/100x100" alt="Icon" />
+            </div>
+            <h3 class="uppercase">Ohne Zeitaufwand</h3>
+            <p>
+              Habemus omnes antelis? Habem sime quo publin vit.Unu sulum oravem tanu me maio ina, nondu-cotia? Forum facci tarei sesit vo, ce quasdacrena, nostabiti
+            </p>
+          </div>
+        </div>
+        <div class="columns small-12 medium-4 large-2">
+          <div class="usp-column">
+            <div class="usp-icon-header">
+              <img src="http://placehold.it/100x100" alt="Icon" />
+            </div>
+            <h3 class="uppercase">Beratung</h3>
             <p>
               Habemus omnes antelis? Habem sime quo publin vit.Unu sulum oravem tanu me maio ina, nondu-cotia? Forum facci tarei sesit vo, ce quasdacrena, nostabiti
             </p>
@@ -89,21 +111,16 @@ $pagecontent = <<<EOF
 </div>
 EOF;
 
-// $design = <<<EOF
-// <reference name="head">
-//       <action method="addItem"><type>skin_css</type><name>css/slick-theme.css</name></action>
-//       <action method="addItem"><type>skin_css</type><name>css/slick.css</name></action>
-//       <action method="addItem"><type>skin_js</type><name>js/slick.min.js</name></action>
-//       <action method="addItem"><type>skin_css</type><name>css/grafenfels/review_styles.css</name></action>
-// </reference>
-// EOF;
+$design = <<<EOF
+<remove name="breadcrumbs" />
+EOF;
 
 $cmsPage = Mage::getModel('cms/page');
 $cmsPage->setTitle('Dein Verein Home');
 $cmsPage->setIdentifier('deinverein-home');
 $cmsPage->setContent($pagecontent);
 $cmsPage->setIsActive(true);
-// $cmsPage->setLayoutUpdateXml($design);
+$cmsPage->setLayoutUpdateXml($design);
 $cmsPage->setStores(array(0));
 $cmsPage->save();
 
