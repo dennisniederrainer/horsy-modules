@@ -111,21 +111,16 @@ $pagecontent = <<<EOF
 </div>
 EOF;
 
-// $design = <<<EOF
-// <reference name="head">
-//       <action method="addItem"><type>skin_css</type><name>css/slick-theme.css</name></action>
-//       <action method="addItem"><type>skin_css</type><name>css/slick.css</name></action>
-//       <action method="addItem"><type>skin_js</type><name>js/slick.min.js</name></action>
-//       <action method="addItem"><type>skin_css</type><name>css/grafenfels/review_styles.css</name></action>
-// </reference>
-// EOF;
+$design = <<<EOF
+<remove name="breadcrumbs" />
+EOF;
 
 $cmsPage = Mage::getModel('cms/page');
 $cmsPage->setTitle('Dein Verein Home');
 $cmsPage->setIdentifier('deinverein-home');
 $cmsPage->setContent($pagecontent);
 $cmsPage->setIsActive(true);
-// $cmsPage->setLayoutUpdateXml($design);
+$cmsPage->setLayoutUpdateXml($design);
 $cmsPage->setStores(array(0));
 $cmsPage->save();
 
