@@ -1,0 +1,95 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Horsebrands_Reporting>
+            <version>0.1.0</version>
+        </Horsebrands_Reporting>
+    </modules>
+    
+    <admin>
+        <routers>
+            <reporting>
+                <use>admin</use>
+                <args>
+                    <module>Horsebrands_Reporting</module>
+                    <frontName>reporting</frontName>
+                </args>
+            </reporting>
+        </routers>
+    </admin>
+    
+    <adminhtml>
+        <menu>
+            <report>
+                <children>
+                    <orderpreparation translate="title" module="reports">
+                        <title>Bestellabwicklung</title>
+                        <sort_order>20</sort_order>
+                        <children>
+                            <checklist translate="title" module="reporting">
+                                <title>Prüfliste</title>
+                                <action>reporting/adminhtml_checklist</action>
+                            </checklist>
+                            <orderoverview translate="title" module="reporting">
+                                <title>Bestellübersicht</title>
+                                <action>reporting/adminhtml_orderoverview</action>
+                            </orderoverview>
+                        </children>
+                    </orderpreparation>
+                </children>
+            </report>
+        </menu>
+        <acl>
+            <resources>
+                <all>
+                    <title>Allow Everything</title>
+                </all>
+                <admin>
+                    <children>
+                        <report>
+                            <children>
+                                <orderpreparation translate="title" module="reports">
+                                    <title>Bestellabwicklung</title>
+                                    <sort_order>10</sort_order>
+                                    <children>
+                                        <checklist translate="title" module="reporting">
+                                            <title>Prüfliste</title>
+                                            <sort_order>10</sort_order>
+                                            <!--action>reporting/adminhtml_checklist</action-->
+                                        </checklist>
+                                        <orderoverview translate="title" module="reporting">
+                                            <title>Bestellübersicht</title>
+                                            <sort_order>20</sort_order>
+                                            <!--action>reporting/adminhtml_orderoverview</action-->
+                                        </orderoverview>
+                                    </children>
+                                </orderpreparation>
+                            </children>
+                        </report>
+                    </children>
+                </admin>
+            </resources>
+        </acl>
+        
+        <layout>
+            <updates>
+                <reporting>
+                    <file>horsebrands/reporting.xml</file>
+                </reporting>
+            </updates>
+        </layout>
+    </adminhtml>
+    
+    <global>
+        <blocks>
+            <reporting>
+                <class>Horsebrands_Reporting_Block</class>
+            </reporting>
+        </blocks>
+        <helpers>
+            <reporting>
+                <class>Horsebrands_Reporting_Helper</class>
+            </reporting>
+        </helpers>
+    </global>
+</config>
