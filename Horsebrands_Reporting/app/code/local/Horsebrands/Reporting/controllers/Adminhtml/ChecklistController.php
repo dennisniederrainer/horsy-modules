@@ -5,21 +5,20 @@ class Horsebrands_Reporting_Adminhtml_ChecklistController extends Mage_Adminhtml
         $this->loadLayout();
         return $this;
     }
-    
+
     public function indexAction()
     {
         $this->_initAction()->renderLayout();
     }*/
     public function indexAction()
     {
-        //Mage::log("indexaction", null, 'ChecklistController.log');
         $this->_title($this->__('Report'))->_title($this->__('Prüfliste Bestellabwicklung'));
         $this->loadLayout();
         $this->_setActiveMenu('reports');
         //$this->_addContent($this->getLayout()->createBlock('reporting/adminhtml_checklist'));
         $this->renderLayout();
     }
-    
+
     public function gridAction()
     {
         //$this->loadLayout();
@@ -27,7 +26,7 @@ class Horsebrands_Reporting_Adminhtml_ChecklistController extends Mage_Adminhtml
             $this->getLayout()->createBlock('reporting/adminhtml_checklist')->toHtml()
         );
     }
-    
+
     public function exportCsvAction()
     {
         $date = date('Y-m-d', Mage::getModel('core/date')->timestamp(time()));

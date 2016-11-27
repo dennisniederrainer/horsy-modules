@@ -10,30 +10,30 @@ class Horsebrands_Reporting_Block_Adminhtml_Checklist_Grid extends Mage_Adminhtm
         $this->setSaveParametersInSession(true);
         $this->setUseAjax(true);
     }
-    
+
     protected function _prepareCollection() {
         $collection = Mage::getResourceModel('sales/order_item_collection');
 
-        $storeId = Mage::app()->getStore()->getId();
-        $supskuid = $this->getSupplierIdAttributeId();
+        // $storeId = Mage::app()->getStore()->getId();
+        // $supskuid = $this->getSupplierIdAttributeId();
 
-        $collection->getSelect()
-                ->joinLeft(
-                        array('productentity' => 'catalog_product_entity_varchar'), 'main_table.product_id = productentity.entity_id and productentity.attribute_id = ' . $supskuid, array('supplier_sku' => 'productentity.value')
-                )
-                ->join(
-                        array('order' => 'sales_flat_order'), 'main_table.order_id = order.entity_id', array('increment_id' => 'increment_id',
-                    'order.created_at' => 'created_at',
-                    'customer_lastname' => 'customer_lastname',
-                    'state' => 'state')
-                )
-                ->join(
-                        array('erpoi' => 'erp_sales_flat_order_item'), 'main_table.item_id = erpoi.esfoi_item_id', array('reserved_qty' => 'reserved_qty')
-                )
-                ->joinLeft(
-                        array('product' => 'catalog_product_flat_3'), 'product.entity_id = main_table.product_id', array('product.price' => 'price', 'product.cost' => 'cost')
-                )
-                ->where('main_table.product_type <> \'configurable\'');
+        // $collection->getSelect()
+        //         ->joinLeft(
+        //                 array('productentity' => 'catalog_product_entity_varchar'), 'main_table.product_id = productentity.entity_id and productentity.attribute_id = ' . $supskuid, array('supplier_sku' => 'productentity.value')
+        //         )
+        //         ->join(
+        //                 array('order' => 'sales_flat_order'), 'main_table.order_id = order.entity_id', array('increment_id' => 'increment_id',
+        //             'order.created_at' => 'created_at',
+        //             'customer_lastname' => 'customer_lastname',
+        //             'state' => 'state')
+        //         )
+        //         ->join(
+        //                 array('erpoi' => 'erp_sales_flat_order_item'), 'main_table.item_id = erpoi.esfoi_item_id', array('reserved_qty' => 'reserved_qty')
+        //         )
+        //         ->joinLeft(
+        //                 array('product' => 'catalog_product_flat_3'), 'product.entity_id = main_table.product_id', array('product.price' => 'price', 'product.cost' => 'cost')
+        //         )
+        //         ->where('main_table.product_type <> \'configurable\'');
 
         //join catalog_product_flat_3 As product on product.entity_id = sfqi.product_id
         //herstellercode: ersten 3 stellen von sku
@@ -206,7 +206,7 @@ class Horsebrands_Reporting_Block_Adminhtml_Checklist_Grid extends Mage_Adminhtm
             'filter' => false,
             'renderer' => 'Horsebrands_Reporting_Block_Adminhtml_Renderer_Category'
         ));
-        
+
         $this->addExportType('*/*/exportCsv', $helper->__('CSV'));
         $this->addExportType('*/*/exportExcelXml', $helper->__('Excel XML'));
 
