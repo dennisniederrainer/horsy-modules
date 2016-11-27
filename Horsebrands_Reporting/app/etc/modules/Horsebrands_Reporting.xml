@@ -1,0 +1,8 @@
+<config>
+  <modules> 
+    <Horsebrands_Reporting>
+      <active>true</active>
+      <codePool>local</codePool>
+    </Horsebrands_Reporting>
+  </modules>
+</config>

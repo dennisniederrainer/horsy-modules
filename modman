@@ -1,12 +1,15 @@
 Horsebrands_Aktionen/app/code/local/Horsebrands/Aktionen                    app/code/local/Horsebrands/Aktionen
-Horsebrands_Aktionen/app/design/frontend/base/default/layout/aktionen.xml            app/design/frontend/base/default/layout/aktionen.xml
-Horsebrands_Aktionen/app/design/frontend/base/default/template/horsebrands/aktionen  app/design/frontend/base/default/template/horsebrands/aktionen
+Horsebrands_Aktionen/app/design/frontend/rwd/default/layout/aktionen.xml            app/design/frontend/base/default/layout/aktionen.xml
+Horsebrands_Aktionen/app/design/frontend/rwd/default/template/horsebrands/aktionen  app/design/frontend/base/default/template/horsebrands/aktionen
 Horsebrands_Aktionen/app/etc/modules/Horsebrands_Aktionen.xml               app/etc/modules/Horsebrands_Aktionen.xml
 
 Horsebrands_DBSetup/app/code/local/Horsebrands/DBSetup        app/code/local/Horsebrands/DBSetup
 Horsebrands_DBSetup/app/etc/modules/Horsebrands_DBSetup.xml   app/etc/modules/Horsebrands_DBSetup.xml
 
 Horsebrands_Reporting/app/code/local/Horsebrands/Reporting    app/code/local/Horsebrands/Reporting
+Horsebrands_Reporting/app/design/adminhtml/default/default/horsebrands/newsletteradvanced.xml   app/design/adminhtml/default/default/horsebrands/newsletteradvanced.xml
+Horsebrands_Reporting/app/design/adminhtml/default/default/horsebrands/reporting.xml            app/design/adminhtml/default/default/horsebrands/reporting.xml
+Horsebrands_Reporting/app/etc/modules/Horsebrands_Reporting.xml   app/etc/modules/Horsebrands_Reporting.xml
 
 DHL-Intraship/app/etc/modules/Dhl_Account.xml         app/etc/modules/Dhl_Account.xml
 DHL-Intraship/app/etc/modules/Dhl_Intraship.xml       app/etc/modules/Dhl_Account.xml

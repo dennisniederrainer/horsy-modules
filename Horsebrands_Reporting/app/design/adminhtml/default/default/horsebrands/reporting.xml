@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<layout version="0.1.0">
+    <reporting_adminhtml_orderoverview_index>
+        <reference name="content">
+            <block type="reporting/adminhtml_orderoverview" name="orderoverview" />
+        </reference>
+    </reporting_adminhtml_orderoverview_index>
+    <reporting_adminhtml_checklist_index>
+        <reference name="content">
+            <block type="reporting/adminhtml_checklist" name="checklist" />
+        </reference>
+    </reporting_adminhtml_checklist_index>
+</layout>
