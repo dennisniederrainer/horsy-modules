@@ -18,27 +18,24 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
         $ridingstyle_attid = $this->getRidingStyleAttributeId();
 
         $collection->getSelect()
-                ->joinLeft(
-                        array('payment' => 'sales_flat_order_payment'), 'main_table.entity_id = payment.parent_id', array('paymentmethod' => 'payment.method')
-                )
-                ->joinLeft(
-                        array('address' => 'sales_flat_order_address'), 'main_table.shipping_address_id = address.entity_id', 
-                        array(
-                            'postcode' => 'address.postcode', 
-                            'country' => 'address.country_id',
-                            'firstname' => 'address.firstname',
-                            'middlename' => 'address.middlename',
-                            'lastname' => 'address.lastname'
-                        )
-                )
-                ->joinLeft(
-                        array('customer' => 'customer_entity'), 'main_table.customer_id = customer.entity_id', array('customerregistrationdate' => 'customer.created_at')
-                )           
-                ->joinLeft(
-                        array('ridingstyle' => 'customer_entity_text'), 'main_table.customer_id = ridingstyle.entity_id and ridingstyle.attribute_id = ' . $ridingstyle_attid, array('ridingstyle' => 'ridingstyle.value')
-                );
+          ->joinLeft(
+            array('payment' => 'sales_flat_order_payment'), 'main_table.entity_id = payment.parent_id', array('paymentmethod' => 'payment.method')
+          )
+          ->joinLeft(
+            array('address' => 'sales_flat_order_address'), 'main_table.shipping_address_id = address.entity_id',
+            array(
+                'postcode' => 'address.postcode',
+                'country' => 'address.country_id',
+                'firstname' => 'address.firstname',
+                'middlename' => 'address.middlename',
+                'lastname' => 'address.lastname'
+            )
+          )
+          ->joinLeft(
+                  array('customer' => 'customer_entity'), 'main_table.customer_id = customer.entity_id', array('customerregistrationdate' => 'customer.created_at')
+          );
 
-        // echo $collection->getSelect();
+        //  echo $collection->getSelect();
 
         $collection->setOrder('main_table.created_at', 'DESC');
 
@@ -49,30 +46,28 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
     }
 
     protected function _prepareColumns() {
-        $helper = Mage::helper('horsebrands_checklist');
-
         //Kundennummer
         $this->addColumn('main_table.customer_id', array(
-            'header' => $helper->__('Kundennummer'),
+            'header' => $this->__('Kundennummer'),
             'type' => 'number',
             'align' => 'left',
             'index' => 'customer_id'
         ));
         //Bestellnummer
         $this->addColumn('main_table.increment_id', array(
-            'header' => $helper->__('Bestellung#'),
+            'header' => $this->__('Bestellung#'),
             'index' => 'increment_id'
         ));
         //Bestelldatum
         $this->addColumn('main_table.created_at', array(
-            'header' => $helper->__('Bestelldatum'),
+            'header' => $this->__('Bestelldatum'),
             'type' => 'datetime',
             'index' => 'created_at'
         ));
-        
+
         //Rechnung an
         $this->addColumn('address.lastname', array(
-            'header' => $helper->__('Rechnung an'),
+            'header' => $this->__('Rechnung an'),
             'type' => 'text',
             'width' => '100px',
             'index' => 'lastname',
@@ -81,11 +76,11 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
         ));
         //Umsatz in Euro
         $this->addColumn('main_table.base_grand_total', array(
-            'header' => $helper->__('Umsatz [€]'),
+            'header' => $this->__('Umsatz [€]'),
             'type' => 'number',
             'index' => 'base_grand_total',
             //'renderer' => 'Horsebrands_Reporting_Block_Adminhtml_Renderer_Price'
-        ));        
+        ));
         //Bestellstatus
         $this->addColumn('main_table.state', array(
             'header' => 'Status',
@@ -100,13 +95,6 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
             'type' => 'text',
             'index' => 'paymentmethod',
         ));
-        
-        //Disziplin
-        $this->addColumn('ridingstyle.value', array(
-            'header' => $helper->__('Disziplin'),
-            'type' => 'text',
-            'index' => 'ridingstyle',
-        ));
         //PLZ
        $this->addColumn('address.postcode', array(
             'header' => 'PLZ',
@@ -119,7 +107,7 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
             'type' => 'text',
             'index' => 'country',
         ));
-        
+
         //angewandte Rabatte
         $this->addColumn('main_table.discount_amount', array(
             'header' => 'Rabatt [€]',
@@ -133,7 +121,7 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
             'type' => 'datetime',
             'index' => 'customerregistrationdate'
         ));
-        
+
         /*
         //Kategorie
         $this->addColumn('countorder', array(
@@ -142,9 +130,9 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
             'renderer' => 'Horsebrands_Checklist_Block_Adminhtml_Report_Renderer_CountOrder'
         ));
         */
-        
-        $this->addExportType('*/*/exportCsv', $helper->__('CSV'));
-        $this->addExportType('*/*/exportExcelXml', $helper->__('Excel XML'));
+
+        $this->addExportType('*/*/exportCsv', $this->__('CSV'));
+        $this->addExportType('*/*/exportExcelXml', $this->__('Excel XML'));
 
         return parent::_prepareColumns();
     }
