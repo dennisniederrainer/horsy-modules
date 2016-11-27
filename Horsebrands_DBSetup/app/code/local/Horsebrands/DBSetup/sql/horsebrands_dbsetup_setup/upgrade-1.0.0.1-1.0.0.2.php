@@ -2,7 +2,6 @@
 
 /* @var $installer Mage_Customer_Model_Entity_Setup */
 $installer = Mage::getModel('customer/entity_setup', 'core_setup');
-
 $installer->startSetup();
 
 $installer->updateAttribute(
