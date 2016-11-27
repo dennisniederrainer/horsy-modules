@@ -26,14 +26,14 @@ class Horsebrands_Reporting_Block_Adminhtml_Checklist_Grid extends Mage_Adminhtm
               'order.created_at' => 'created_at',
               'customer_lastname' => 'customer_lastname',
               'state' => 'state')
-          );
+          )
           // ->join(
           //         array('erpoi' => 'erp_sales_flat_order_item'), 'main_table.item_id = erpoi.esfoi_item_id', array('reserved_qty' => 'reserved_qty')
           // )
           // ->joinLeft(
           //         array('product' => 'catalog_product_flat_3'), 'product.entity_id = main_table.product_id', array('product.price' => 'price', 'product.cost' => 'cost')
           // )
-          // ->where('main_table.product_type <> \'configurable\'');
+          ->where('main_table.product_type <> \'configurable\'');
 
         //join catalog_product_flat_3 As product on product.entity_id = sfqi.product_id
         //herstellercode: ersten 3 stellen von sku

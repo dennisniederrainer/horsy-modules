@@ -15,7 +15,7 @@ class Horsebrands_Reporting_Block_Adminhtml_Orderoverview_Grid extends Mage_Admi
         $collection = Mage::getResourceModel('sales/order_collection');
 
         $storeId = Mage::app()->getStore()->getId();
-        $ridingstyle_attid = $this->getRidingStyleAttributeId();
+        // $ridingstyle_attid = $this->getRidingStyleAttributeId();
 
         $collection->getSelect()
           ->joinLeft(
