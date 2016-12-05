@@ -121,9 +121,17 @@ EE-2.9.2/skin/adminhtml/default/default/images/wizard.png   skin/adminhtml/defau
 
 EE-2.9.2/skin/frontend/default/default/images/planning/   skin/frontend/default/default/images/planning/
 
-Horsebrands_BackorderLimit/app/code/local/Horsebrands/BackorderLimit/   /app/code/local/Horsebrands/BackorderLimit/
-Horsebrands_BackorderLimit/app/etc/modules/Horsebrands_BackorderLimit.xml   /app/etc/modules/Horsebrands_BackorderLimit.xml
 
+Fishpigs_Attribute_Splash_Page/app/code/community/Fishpig/AttributeSplash                         app/code/community/Fishpig/AttributeSplash
+Fishpigs_Attribute_Splash_Page/app/design/adminhtml/default/default/layout/attribute-splash.xml   app/design/adminhtml/default/default/layout/attribute-splash.xml
+Fishpigs_Attribute_Splash_Page/app/design/frontend/base/default/layout/attribute-splash.xml       app/design/frontend/base/default/layout/attribute-splash.xml
+Fishpigs_Attribute_Splash_Page/app/design/frontend/base/default/template/attribute-splash/        app/design/frontend/base/default/template/attribute-splash/
+
+Fishpigs_Attribute_Splash_Page/app/etc/modules/Fishpig_AttributeSplash.xml                        app/etc/modules/Fishpig_AttributeSplash.xml
+Fishpigs_Attribute_Splash_Page/skin/frontend/base/default/css/attribute-splash.css                skin/frontend/base/default/css/attribute-splash.css
+
+#Horsebrands_BackorderLimit/app/code/local/Horsebrands/BackorderLimit/   /app/code/local/Horsebrands/BackorderLimit/
+#Horsebrands_BackorderLimit/app/etc/modules/Horsebrands_BackorderLimit.xml   /app/etc/modules/Horsebrands_BackorderLimit.xml
 #Horsebrands_Rewrites/app/code/local/Horsebrands/Rewrites/   /app/code/local/Horsebrands/Rewrites/
 #Horsebrands_Rewrites/app/design/adminhtml/default/default/template/horsebrands/    /app/design/adminhtml/default/default/template/horsebrands/
 #Horsebrands_Rewrites/app/etc/modules/Horsebrands_Rewrites.xml   /app/etc/modules/Horsebrands_Rewrites.xml
