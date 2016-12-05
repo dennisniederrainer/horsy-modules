@@ -125,3 +125,11 @@ EE-2.9.2/skin/adminhtml/default/default/images/scanner/   skin/adminhtml/default
 EE-2.9.2/skin/adminhtml/default/default/images/wizard.png   skin/adminhtml/default/default/images/wizard.png
 
 EE-2.9.2/skin/frontend/default/default/images/planning/   skin/frontend/default/default/images/planning/
+
+Fishpigs_Attribute_Splash_Page/app/code/community/Fishpig/AttributeSplash                         app/code/community/Fishpig/AttributeSplash
+Fishpigs_Attribute_Splash_Page/app/design/adminhtml/default/default/layout/attribute-splash.xml   app/design/adminhtml/default/default/layout/attribute-splash.xml
+Fishpigs_Attribute_Splash_Page/app/design/frontend/base/default/layout/attribute-splash.xml       app/design/frontend/base/default/layout/attribute-splash.xml
+Fishpigs_Attribute_Splash_Page/app/design/frontend/base/default/template/attribute-splash/        app/design/frontend/base/default/template/attribute-splash/
+
+Fishpigs_Attribute_Splash_Page/app/etc/modules/Fishpig_AttributeSplash.xml                        app/etc/modules/Fishpig_AttributeSplash.xml
+Fishpigs_Attribute_Splash_Page/skin/frontend/base/default/css/attribute-splash.css                skin/frontend/base/default/css/attribute-splash.css
