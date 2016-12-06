@@ -136,9 +136,9 @@ Fishpigs_Attribute_Splash_Page/skin/frontend/base/default/css/attribute-splash.c
 
 OrganicInternet_Scp/app/code/community/OrganicInternet/SimpleConfigurableProducts/                    app/code/community/OrganicInternet/SimpleConfigurableProducts/
 
-OrganicInternet_Scp/app/design/frontend/base/default/template/product/view/scpajaxoptions.phtml       app/design/frontend/base/default/template/product/view/scpajaxoptions.phtml
-OrganicInternet_Scp/app/design/frontend/base/default/template/product/view/scpoptions.phtml       app/design/frontend/base/default/template/product/view/scpoptions.phtml
-OrganicInternet_Scp/app/design/frontend/base/default/template/product/view/options/scpwrapper.phtml   app/design/frontend/base/default/template/product/view/options/scpwrapper.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml       app/design/frontend/base/default/template/catalog/product/view/scpajaxoptions.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml       app/design/frontend/base/default/template/catalog/product/view/scpoptions.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml   app/design/frontend/base/default/template/catalog/product/view/options/scpwrapper.phtml
 OrganicInternet_Scp/app/design/frontend/base/default/template/page/scpcontentonly.phtml               app/design/frontend/base/default/template/page/scpcontentonly.phtml
 OrganicInternet_Scp/app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml    app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
 OrganicInternet_Scp/app/design/frontend/base/default/layout/simpleconfigurableproducts.xml    app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
