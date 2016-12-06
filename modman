@@ -133,3 +133,16 @@ Fishpigs_Attribute_Splash_Page/app/design/frontend/base/default/template/attribu
 
 Fishpigs_Attribute_Splash_Page/app/etc/modules/Fishpig_AttributeSplash.xml                        app/etc/modules/Fishpig_AttributeSplash.xml
 Fishpigs_Attribute_Splash_Page/skin/frontend/base/default/css/attribute-splash.css                skin/frontend/base/default/css/attribute-splash.css
+
+OrganicInternet_Scp/app/code/community/OrganicInternet/SimpleConfigurableProducts/                    app/code/community/OrganicInternet/SimpleConfigurableProducts/
+
+OrganicInternet_Scp/app/design/frontend/base/default/template/product/view/scpajaxoptions.phtml       app/design/frontend/base/default/template/product/view/scpajaxoptions.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/product/view/scpoptions.phtml       app/design/frontend/base/default/template/product/view/scpoptions.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/product/view/options/scpwrapper.phtml   app/design/frontend/base/default/template/product/view/options/scpwrapper.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/page/scpcontentonly.phtml               app/design/frontend/base/default/template/page/scpcontentonly.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml    app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
+OrganicInternet_Scp/app/design/frontend/base/default/layout/simpleconfigurableproducts.xml    app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
+OrganicInternet_Scp/app/etc/modules/OrganicInternet_SimpleConfigurableProducts.xml            app/etc/modules/OrganicInternet_SimpleConfigurableProducts.xml
+
+OrganicInternet_Scp/skin/frontend/base/default/images/scp-ajax-loader.gif     skin/frontend/base/default/images/scp-ajax-loader.gif
+OrganicInternet_Scp/skin/frontend/base/default/js/scp_product_extension.js    skin/frontend/base/default/js/scp_product_extension.js
