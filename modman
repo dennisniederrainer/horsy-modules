@@ -133,16 +133,3 @@ Fishpigs_Attribute_Splash_Page/app/design/frontend/base/default/template/attribu
 
 Fishpigs_Attribute_Splash_Page/app/etc/modules/Fishpig_AttributeSplash.xml                        app/etc/modules/Fishpig_AttributeSplash.xml
 Fishpigs_Attribute_Splash_Page/skin/frontend/base/default/css/attribute-splash.css                skin/frontend/base/default/css/attribute-splash.css
-
-simple-config-product/app/code/community/OrganicInternet/SimpleConfigurableProducts/                    app/code/community/OrganicInternet/SimpleConfigurableProducts/
-
-simple-config-product/app/design/frontend/base/default/template/product/view/scpajaxoptions.phtml       app/design/frontend/base/default/template/product/view/scpajaxoptions.phtml
-simple-config-product/app/design/frontend/base/default/template/product/view/scpoptions.phtml       app/design/frontend/base/default/template/product/view/scpoptions.phtml
-simple-config-product/app/design/frontend/base/default/template/product/view/options/scpwrapper.phtml   app/design/frontend/base/default/template/product/view/options/scpwrapper.phtml
-simple-config-product/app/design/frontend/base/default/template/page/scpcontentonly.phtml               app/design/frontend/base/default/template/page/scpcontentonly.phtml
-simple-config-product/app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml    app/design/frontend/base/default/template/sales/reorder/scpsidebar.phtml
-simple-config-product/app/design/frontend/base/default/layout/simpleconfigurableproducts.xml    app/design/frontend/base/default/layout/simpleconfigurableproducts.xml
-simple-config-product/app/etc/modules/OrganicInternet_SimpleConfigurableProducts.xml            app/etc/modules/OrganicInternet_SimpleConfigurableProducts.xml
-
-simple-config-product/skin/frontend/base/default/images/scp-ajax-loader.gif     skin/frontend/base/default/images/scp-ajax-loader.gif
-simple-config-product/skin/frontend/base/default/js/scp_product_extension.js    skin/frontend/base/default/js/scp_product_extension.js
