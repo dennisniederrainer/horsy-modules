@@ -1,0 +1,19 @@
+<config>
+  <sections>
+    <privatesales module="aktionen">
+      <groups>
+        <general>
+          <fields>
+            <parole translate="label">
+                <label>Preview Mode Parole</label>
+                <frontend_type>text</frontend_type>
+                <sort_order>100</sort_order>
+                <show_in_default>1</show_in_default>
+                <show_in_website>1</show_in_website>
+            </parole>
+          </fields>
+        </general>
+      </groups>
+    </privatesales>
+  </sections>
+</config>

@@ -2,72 +2,87 @@
 class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Action {
 
 	public function indexAction() {
-        $session = Mage::getSingleton('customer/session');
-        // $this->persistendLogin($session);
+    $session = Mage::getSingleton('customer/session');
+    // $this->persistendLogin($session);
 
-        if (!$session->isLoggedIn()) {
-            $this->_redirect('aktionen/index/login');
-            return;
-        }
-
-        $this->loadLayout();
-        $this->getLayout()
-                ->getBlock('aktionen');
-
-        $this->renderLayout();
+    if (!$session->isLoggedIn()) {
+        $this->_redirect('aktionen/index/login');
+        return;
     }
+
+    $this->loadLayout();
+    $this->getLayout()
+            ->getBlock('aktionen');
+
+		$this->_initLayoutMessages('customer/session');
+
+    $this->renderLayout();
+  }
+
+	public function enablePreviewAction() {
+		$secret = Mage::getStoreConfig('privatesales/general/parole');
+		$key = $_GET['parole'];
+
+		if ($key && $key == $secret) {
+			Mage::getSingleton('customer/session')->setPreviewMode(true);
+			Mage::getSingleton('customer/session')->addSuccess('Preview Modus erfolgreich aktiviert!');
+		} else {
+			Mage::getSingleton('customer/session')->addError('Die Parole stimmt nicht überein.');
+		}
+
+		$this->_redirect('aktionen');
+	}
 
 	public function loginAction() {
 		$this->loadLayout();
 		$this->renderLayout();
 	}
 
-		public function refreshProductsAction()
-    {
-      $catId = 1292;
-      $category = Mage::getModel('catalog/category')->load($catId);
+	public function refreshProductsAction() {
+    $catId = 1292;
+    $category = Mage::getModel('catalog/category')->load($catId);
 
-			$all_cat_ids = explode(",", $category->getAllChildren());
+		$all_cat_ids = explode(",", $category->getAllChildren());
 
-      $prodCollection = Mage::getResourceModel('catalog/product_collection')
-  			->addCategoryFilter($category)
-  			->addAttributeToSelect('*');
+    $prodCollection = Mage::getResourceModel('catalog/product_collection')
+			->addCategoryFilter($category)
+			->addAttributeToSelect('*');
 
-			echo $prodCollection->count() . ' Products<br/>';
+		echo $prodCollection->count() . ' Products<br/>';
 
-      foreach ($prodCollection as $product) {
-      	try
-      	{
-					if($product->getTypeId() == 'configurable') {
-						$childProducts = Mage::getModel('catalog/product_type_configurable')
-                    ->getUsedProducts(null,$product);
+    foreach ($prodCollection as $product) {
+    	try
+    	{
+				if($product->getTypeId() == 'configurable') {
+					$childProducts = Mage::getModel('catalog/product_type_configurable')
+                  ->getUsedProducts(null,$product);
 
-						foreach ($childProducts as $child) {
-							$productAvailabilityStatus = mage::getModel('SalesOrderPlanning/ProductAvailabilityStatus')->load($child->getId(), 'pa_product_id');
-							$productAvailabilityStatus->refresh();
-						}
-
-					}elseif($product->getTypeId() == 'simple') {
-						$productAvailabilityStatus = mage::getModel('SalesOrderPlanning/ProductAvailabilityStatus')->load($product->getId(), 'pa_product_id');
+					foreach ($childProducts as $child) {
+						$productAvailabilityStatus = mage::getModel('SalesOrderPlanning/ProductAvailabilityStatus')->load($child->getId(), 'pa_product_id');
 						$productAvailabilityStatus->refresh();
 					}
-        }
-      	catch (Exception $ex)
-      	{
-      		// Mage::getSingleton('adminhtml/session')->addSuccess($this->__('An error occured : ').$ex->getMessage());
-      	}
+
+				}elseif($product->getTypeId() == 'simple') {
+					$productAvailabilityStatus = mage::getModel('SalesOrderPlanning/ProductAvailabilityStatus')->load($product->getId(), 'pa_product_id');
+					$productAvailabilityStatus->refresh();
+				}
       }
-    	// $this->_redirect('SalesOrderPlanning/ProductAvailabilityStatus/Grid/');
-
-      die('refreshed.');
+    	catch (Exception $ex)
+    	{
+    		// Mage::getSingleton('adminhtml/session')->addSuccess($this->__('An error occured : ').$ex->getMessage());
+    	}
     }
+  	// $this->_redirect('SalesOrderPlanning/ProductAvailabilityStatus/Grid/');
 
-		public function testAction() {
-	  		$product = Mage::getModel('catalog/product')->load('BIE0200231','sku');
-				echo $product->isSalable() . '<br/>';
+    die('refreshed.');
+  }
 
-				die('moin.');
-	  }
+	public function testAction() {
+  		$product = Mage::getModel('catalog/product')->load('BIE0200231','sku');
+			echo $product->isSalable() . '<br/>';
+
+			die('moin.');
+  }
 
     protected function persistendLogin($session) {
         try {

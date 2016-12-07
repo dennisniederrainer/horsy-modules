@@ -7,17 +7,6 @@ class Horsebrands_Aktionen_Block_List extends Mage_Core_Block_Template {
     protected $weekdays = array("So", "Mo", "Di", "Mi", "Do", "Fr", "Sa");
 
     public function __construct() {
-        // if (isset($_GET["previewMode"]) && $_GET["previewMode"] == "sBpRaCKkLBv2y5Wrdn66") {
-        if (isset($_GET["previewMode"])
-            && $_GET["previewMode"] == "be548bb6350a41284d652f877329b6ef7d9462f610681062833bca5a06cfd4e6") {
-            Mage::getSingleton("customer/session")->setPreviewMode(true);
-            Mage::log(Mage::getSingleton("customer/session")->getCustomer()->getEmail() . ': preview ACTIVATED.',
-                null, 'previewmode.log');
-        } elseif (Mage::getSingleTon("customer/session")->getPreviewMode() != true
-            || (isset($_GET["previewMode"]) && $_GET["previewMode"] == "disable")) {
-            Mage::getSingleton("customer/session")->setPreviewMode(false);
-        }
-
         parent::__construct();
     }
 

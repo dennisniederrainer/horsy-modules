@@ -1,7 +1,8 @@
 <?php
 class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
+
     protected $weekdays = array("So", "Mo", "Di", "Mi", "Do", "Fr", "Sa");
-	
+
     public function hasCategoriesWithoutFlashsaleReferenceByProduct($product) {
         //category-ID-Array mit einigartigen Werten (keine doppelten Kategorien...)
         $categoryIds = array_unique($this->getAssignedCategoriesForProduct($product));
@@ -43,7 +44,7 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function getRecommendationCampaignHtml($campaign) {
         $html = "";
-        
+
         if($campaign) {
             $category = Mage::getModel('catalog/category')->load($campaign->getFsCategoryId());
             $html .= '<div class="row campaign-block"><div class="row">';
@@ -56,7 +57,7 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
             $html .= '<a href="'.$category->getUrl().'">';
             $html .= '<div class="row campaign-titlepanel">';
             $html .= '<div class="columns small-12 large-6 medium-8"><p class="campaign-name">'.$campaign->getFsName().'</p></div>';
-            
+
             $html .= '<div class="columns small-12 large-6 medium-4 campaign-ends"><p>'
                 // .'<img src="'.$this->getSkinUrl().'/images/endingcampaign_clock_big.png" style="margin-right:10px"/>'
                 .$this->getCampaignEndsString($campaign->getFsEndDate()).'</p></div>';
@@ -82,4 +83,32 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
 
         return $html;
     }
+
+  public function getCountdownDays($fsEndDate) {
+    $now = time();
+    $end = strtotime($fsEndDate);
+    $left = $end - $now;
+
+    return Mage::getModel('core/date')->date('j', $left);
+  }
+
+  public function getEuropeanDateFormat($date) {
+    $date = strtotime($date);
+
+    return Mage::getModel('core/date')->date('j.m.Y', $date);
+  }
+
+  public function getFlashsaleByCategoryId($categoryId) {
+    $collection = Mage::getModel('PrivateSales/FlashSales')->getCollection()
+                    ->addFieldToFilter('fs_enabled', '1')
+                    ->addFieldToFilter('fs_category_id', $categoryId)
+                    ->setOrder('fs_start_date', 'ASC')
+                    ->load();
+
+    if($collection) {
+      return $collection->getFirstItem();
+    }
+
+    return null;
+  }
 }
