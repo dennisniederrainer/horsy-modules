@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <modules>
+      <Horsebrands_Giftcard>
+          <version>1.0.0</version>
+      </Horsebrands_Giftcard>
+  </modules>
+  <global>
+    <models>
+      <giftcard>
+          <class>Horsebrands_Giftcard_Model</class>
+      </giftcard>
+    </models>
+    <blocks>
+      <giftcard>
+          <class>Horsebrands_Giftcard_Block</class>
+      </giftcard>
+    </blocks>
+    <helpers>
+      <giftcard>
+          <class>Horsebrands_Giftcard_Helper</class>
+      </giftcard>
+    </helpers>
+    <events>
+      <sales_order_status_after>
+        <observers>
+          <horsebrands_giftcard_model_observer>
+            <type>singleton</type>
+            <class>giftcard/observer</class>
+            <method>processGiftCard</method>
+          </horsebrands_giftcard_model_observer>
+        </observers>
+      </sales_order_status_after>
+    </events>
+  </global>
+</config>

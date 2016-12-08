@@ -6,6 +6,9 @@ Horsebrands_Aktionen/app/etc/modules/Horsebrands_Aktionen.xml               app/
 Horsebrands_DBSetup/app/code/local/Horsebrands/DBSetup        app/code/local/Horsebrands/DBSetup
 Horsebrands_DBSetup/app/etc/modules/Horsebrands_DBSetup.xml   app/etc/modules/Horsebrands_DBSetup.xml
 
+Horsebrands_Giftcard/app/code/local/Horsebrands/Giftcard        app/code/local/Horsebrands/Giftcard
+Horsebrands_Giftcard/app/etc/modules/Horsebrands_Giftcard.xml   app/etc/modules/Horsebrands_Giftcard.xml
+
 Horsebrands_Reporting/app/code/local/Horsebrands/Reporting    app/code/local/Horsebrands/Reporting
 Horsebrands_Reporting/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml   app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
 Horsebrands_Reporting/app/design/adminhtml/default/default/layout/horsebrands/reporting.xml            app/design/adminhtml/default/default/layout/horsebrands/reporting.xml
