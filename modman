@@ -149,3 +149,6 @@ OrganicInternet_Scp/app/etc/modules/OrganicInternet_SimpleConfigurableProducts.x
 
 OrganicInternet_Scp/skin/frontend/base/default/images/scp-ajax-loader.gif     skin/frontend/base/default/images/scp-ajax-loader.gif
 OrganicInternet_Scp/skin/frontend/base/default/js/scp_product_extension.js    skin/frontend/base/default/js/scp_product_extension.js
+
+coupongift/app/code/local/Sashas/CouponGift/   app/code/local/Sashas/CouponGift/
+coupongift/etc/modules/Sashas_CouponGift.xml   etc/modules/Sashas_CouponGift.xml
