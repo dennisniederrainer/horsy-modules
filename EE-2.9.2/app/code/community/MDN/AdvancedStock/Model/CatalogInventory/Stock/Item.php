@@ -229,7 +229,7 @@ class MDN_AdvancedStock_Model_CatalogInventory_Stock_Item extends Mage_CatalogIn
 
     /**
      * return prefered stock level (warning stock level)
-     * 
+     *
      * @return unknown
      */
     public function getWarningStockLevel() {
@@ -344,6 +344,12 @@ class MDN_AdvancedStock_Model_CatalogInventory_Stock_Item extends Mage_CatalogIn
      * @param unknown_type $warehouseId
      */
     public function createStock($productId, $warehouseId) {
+
+      // stop weird error message
+      if($productId == 8 || $productId == 27) {
+        return;
+      }
+
         //always create stock from default one
         $defaultStock = mage::getModel('cataloginventory/stock_item')->loadByProductWarehouse($productId, $this->_defaultWarehouseId);
         $newStock = null;
