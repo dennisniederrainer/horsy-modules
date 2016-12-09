@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <newsletter translate="title" module="newsletter">
+            <title>Newsletter</title>
+            <sort_order>60</sort_order>
+            <children>
+                <type>
+                    <title>Newslettertypen</title>
+                    <action>adminhtml/type/index</action>
+                </type>
+            </children>
+        </newsletter>
+    </menu>
+
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <!-- Same as above, but instead of referencing the config/menu node, you reference the acl/resources node of adminhtml.xml -->
+                    <newsletter>
+                        <children>
+                            <!-- Keep the same naming convention as above -->
+                            <type>
+                                <!-- This is how the ACL text will be displayed on System > Permissions > Roles > Role > Role Resources -->
+                                <title>Newslettertypen</title>
+                            </type>
+                        </children>
+                    </newsletter>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
