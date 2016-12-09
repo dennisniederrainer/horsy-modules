@@ -308,6 +308,6 @@ OrganicInternet_Scp/skin/frontend/base/default/js/scp_product_extension.js    sk
 coupongift/app/code/local/Sashas/CouponGift/   app/code/local/Sashas/CouponGift/
 coupongift/app/etc/modules/Sashas_CouponGift.xml   app/etc/modules/Sashas_CouponGift.xml
 
-Horsebrands_NewsletterAdvanced/app/code/local/Horsebrands/NewsletterAdvanced   app/code/local/Horsebrands/NewsletterAdvanced
-Horsebrands_NewsletterAdvanced/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml    app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
-Horsebrands_NewsletterAdvanced/app/etc/modules/Horsebrands_NewsletterAdvanced.xml    app/etc/modules/Horsebrands_NewsletterAdvanced.xml
+Horsebrands_Newsletter/app/code/local/Horsebrands/NewsletterAdvanced/   app/code/local/Horsebrands/NewsletterAdvanced/
+Horsebrands_Newsletter/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml    app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
+Horsebrands_Newsletter/app/etc/modules/Horsebrands_NewsletterAdvanced.xml    app/etc/modules/Horsebrands_NewsletterAdvanced.xml
