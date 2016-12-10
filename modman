@@ -311,3 +311,6 @@ coupongift/app/etc/modules/Sashas_CouponGift.xml   app/etc/modules/Sashas_Coupon
 Horsebrands_Newsletter/app/code/local/Horsebrands/NewsletterAdvanced/   app/code/local/Horsebrands/NewsletterAdvanced/
 Horsebrands_Newsletter/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml    app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
 Horsebrands_Newsletter/app/etc/modules/Horsebrands_NewsletterAdvanced.xml    app/etc/modules/Horsebrands_NewsletterAdvanced.xml
+
+Horsebrands_Appextension/app/code/local/Horsebrands/Appextensions/   app/code/local/Horsebrands/Appextensions/
+Horsebrands_Appextension/app/etc/modules/Horsebrands_Appextensions.xml    app/etc/modules/Horsebrands_Appextensions.xml
