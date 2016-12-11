@@ -1,0 +1,241 @@
+<script type="text/javascript" src="<?php echo Mage::getBaseUrl('js'); ?>tiny_mce/tiny_mce.js"></script>
+
+
+<style type = "text/css">
+    label.required:after, span.required:after { content: '' }
+</style>
+
+<div id="window_askquestion" name="window_askquestion">
+
+<div class="page-title">
+    <h1><?php echo $this->__('Contact us'); ?></h1>
+</div>
+
+    <form id="product_question" method="POST" name="product_question" action="<?php echo $this->getSubmitUrl(); ?>" enctype="multipart/form-data">
+
+        <div class="block-grey">
+            <div class="topleft"></div>
+            <div class="topmiddle"></div>
+            <div class="topright"></div>
+            <div class="middleleft"></div>
+            <div class="middleright"></div>
+            <div class="bottomleft"></div>
+            <div class="bottommiddle"></div>
+            <div class="bottomright"></div>
+
+            <fieldset class="group-select">
+
+                <table id="ask-a-question">
+                    <tbody>
+
+                     <tr class="first odd">
+                        <td>
+                              <?php echo $this->__('Category'); ?> : <span class="required" style="color: #D40707 !important;">*</span><br />
+                              
+                              <select id="contact-select" name="ticket[ct_category_id]" onchange="displayContactFormOnCategorySelection(this)" >
+                                  <option value=""><?php echo $this->__('How can we help you ?'); ?></option>
+                                  <?php                                                                  
+                                        echo $this->getLayout()->createBlock('CrmTicket/Admin_Category_Select')->getPublicCategoriesAsHtml('');
+                                  ?>
+                              </select>                           
+                          </td>
+                    </tr>
+                </table>
+
+                <div id="div-contact" style="display: none;">
+                <table id="ask-a-question">
+                    <tbody>
+
+                    <?php if (mage::helper('CrmTicket/Customer')->customerIsConnected()) : ?>
+                        <tr>
+                            <td>                                
+                                <input type="hidden" id="ct_customer_id" name="ticket[ct_customer_id]" value="<?php echo mage::helper('CrmTicket/Customer')->getCustomerId(); ?>"></input>
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <tr>
+                            <td>
+                            <?php echo $this->__('First name'); ?> : <span class="required" style="color: #D40707 !important;">*</span><br />
+                            <input class="input-text required-entry" type="text" id="firts_name_customer" name="customer[first_name_customer]"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <?php echo $this->__('Last name'); ?> : <span class="required" style="color: #D40707 !important;">*</span><br />
+                                <input class="input-text required-entry" type="text" id="last_name_customer" name="customer[last_name_customer]"></input>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <?php echo $this->__('E-mail'); ?> : <span class="required" style="color: #D40707 !important;">*</span><br />
+                                <input class="input-text required-entry" type="text" id="customer_email" name="customer[customer_email]"></input>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+
+                    <tr>
+                        <td>
+                            <?php echo $this->__('Subject'); ?> : <span class="required" style="color: #D40707 !important;">*</span><br />
+                            <input class="input-text required-entry" type="text" id="ct_subject" name="ticket[ct_subject]" style="width: 550px;"></input>
+                        </td>
+                    </tr>
+
+                    <?php if (Mage::helper('CrmTicket')->allowProductSelection()): ?>
+                        <tr class="last even">
+                            <td>
+                                <?php echo $this->__('Product'); ?> : <br />
+                                <select class="select" id="ct_product_id" name="ticket[ct_product_id]">
+                                    <option></option>
+                                    <?php foreach ($this->getProducts() as $pro): ?>
+                                        <option <?php echo ($this->getProduct()->getId() == $pro->getId() ? ' selected ' : ''); ?> value="<?php echo $pro->getId(); ?>"><?php echo $pro->getName(); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+
+                    <?php if (mage::helper('CrmTicket/Customer')->customerIsConnected()) : ?>
+
+                        <?php if (Mage::helper('CrmTicket')->allowCustomerObjectSelection()): ?>
+                            <tr class="last even">
+                                <td>
+                                <?php echo $this->__('It is about'); ?> : <br />
+                                <select class="select" name="ticket[ct_object_id]" id="ct_object_id">
+                                    <option value="">-</option>
+                                    <?php foreach ($this->getCustomerObjects() as $group => $items) : ?>
+                                        <optgroup label="<?php echo $group; ?>">
+                                            <?php foreach($items as $k => $v): ?>
+                                                <option value="<?php echo $k; ?>"><?php echo $v; ?></option>
+                                            <?php endforeach; ?>
+                                        </optgroup>
+                                    <?php endforeach; ?>
+                                </select>
+                                </td>
+                            </tr>
+                        <?php endif; ?>
+
+                        <?php if (Mage::getStoreConfig('crmticket/ticket_data/show_priority')): ?>
+                            <tr class="first odd">
+                              <td>
+                                <?php echo $this->__('Priority'); ?> : <span class="required" style="color: #D40707 !important;">*</span><br />
+                                <select class="required-entry select" id="ct_priority" name="ticket[ct_priority]">
+                                    <option></option>
+                                    <?php foreach ($this->getPriorities() as $priority): ?>
+                                        <option value="<?php echo $priority->getId(); ?>"><?php echo $priority->getctp_name(); ?></option>
+                                    <?php endforeach; ?>
+                                </select>
+                              </td>
+                            </tr>
+                        <?php endif; ?>
+
+                    <?php endif; ?>
+
+                    <tr>                        
+                        <td>
+                            <?php echo $this->__('Message'); ?> : <span class="required" style="color: #D40707 !important;">*</span>
+                            <br/>
+                            <input type="hidden" name="ctm_source_type" id="ctm_source_type" value="<?php echo MDN_CrmTicket_Model_Message::TYPE_FORM; ?>">
+                            <div id="buttonsctm_content" class="buttons-set">
+                                <button type="button" class="scalable show-hide button" style="" id="togglectm_content">
+                                    <span><span class="icon"><?php echo $this->__('Show / Hide Editor'); ?></span></span>
+                                </button>
+                            </div>
+                            <br/>
+                            <textarea name="ctm_content" title="" id="ctm_content" class="textarea required-entry" style="width:650px;height:500px" rows="2" cols="15" ></textarea>
+                            <?php echo $this->setTemplate('CrmTicket/Editor/wysiwig.phtml')->toHtml(); ?>
+                        </td>
+                    </tr>
+
+                    <tr>
+                     <td>
+                      <?php if (Mage::getStoreConfig('crmticket/attachements/allow_attachement_on_message')): ?>
+                         <p><b><?php echo $this->__('Attachments'); ?>  :</b></p>
+                         <?php
+                         $helper = Mage::helper('CrmTicket/Attachment');
+                         $max = $helper->getPublicMaxAttachementAllowed();
+                         $key = $helper->getPublicMessageAttachementKey();
+                         for ($i = 1; $i <= $max; $i++): ?>
+                            <input type="file" name="<?php echo $key.$i; ?>" id="<?php echo $key.$i; ?>"><br/>
+                         <?php endfor; ?>
+                       <?php endif; ?>                       
+                      </td>
+                    </tr>
+
+                    <?php if (Mage::getStoreConfig('crmticket/email_spam/front_anti_spam_protection')): ?>
+                        <tr>                           
+                            <td>
+                                <?php echo $this->__('Write the result'); ?> <span class="required" style="color: #D40707 !important;">*</span>                                
+                                <br/>
+                                <?php echo mage::helper('CrmTicket/Captcha')->getCaptchaDisplay(); ?>
+                                <input required="required" type="text" id="ticket[anti_spam_human_result]" name="ticket[anti_spam_human_result]" class="input-text required-entry check" value="" /><br/>
+                                <input type="hidden" id="ticket[ct_important]" name="ticket[ct_important]" value=""></input>
+                                <input type="hidden" id="ticket[anti_spam_check]" name="ticket[anti_spam_check]" value="<?php echo mage::helper('CrmTicket/Captcha')->getCaptchaResult(); ?>" />
+                            </td>
+                        </tr>
+                    <?php endif; ?>
+                        
+                    </tbody>
+                </table>
+                    
+                <div class="button-set">
+                    <br/>
+                    <p class="required"><?php echo $this->__('* Required Fields'); ?></p>
+                    <button onclick="editForm.submit();" class="button"><span><span class="icon"><?php echo $this->__('Submit'); ?></span></span></button>
+                </div>
+
+                </div>
+            </fieldset>
+        </div>
+    </form>
+
+    <script type="text/javascript">
+        editForm = new VarienForm('product_question', '');
+
+
+        function displayContactFormOnCategorySelection(object)
+        {
+            var selectedIndex = (object.options[object.selectedIndex].value == '' ? 0 : object.options[object.selectedIndex].value);
+      
+            if(selectedIndex)
+            {            
+                document.getElementById('div-contact').style.display = 'block';
+            }
+        }
+
+
+        /**
+         * Call a webservice to verif if custom entry is correct
+         */
+        function checkCaptcha(){
+            var success = false;
+            captcha = document.getElementById("ticket[anti_spam_check]").value;
+            human_response = document.getElementById("ticket[anti_spam_human_result]").value;
+            if(human_response != ''){
+              new Ajax.Request(
+                  "<?php echo $this->getUrl('CrmTicket/Front_Ticket/CheckCaptcha/'); ?>anti_spam_check/"+captcha+"/anti_spam_human_result/"+human_response,
+                  {
+                      asynchronous : false,
+                      methode : 'GET',
+                      onSuccess: function(transport){
+                           //alert(transport.responseText);
+                           if(transport.responseText == 'OK'){
+                             success = true;
+                           }else{
+                             alert("<?php echo $this->__('Incorrect answer, please try again'); ?>");
+                           }
+                      },
+                      onFailure: function(response){
+                          success = false;
+                      }
+                  }
+              );
+            }
+            if(!success){
+              document.getElementById("ticket[anti_spam_human_result]").focus();
+            }
+            return success;
+         }
+    
+    </script>
+    
+</div>

@@ -335,3 +335,13 @@ MDN_Productreturn/skin/adminhtml/default/default/purchase/grid-cal.gif    skin/a
 
 Horsebrands_Appextension/app/code/local/Horsebrands/Appextensions/   app/code/local/Horsebrands/Appextensions/
 Horsebrands_Appextension/app/etc/modules/Horsebrands_Appextensions.xml    app/etc/modules/Horsebrands_Appextensions.xml
+
+MDN_CrmTicket/app/code/community/MDN/CrmTicket/                               app/code/community/MDN/CrmTicket/
+
+MDN_CrmTicket/app/design/adminhtml/default/default/layout/CrmTicket.xml       app/design/adminhtml/default/default/layout/CrmTicket.xml
+MDN_CrmTicket/app/design/adminhtml/default/default/template/CrmTicket         app/design/adminhtml/default/default/template/CrmTicket
+
+MDN_CrmTicket/app/design/frontend/base/default/layout/CrmTicket.xml           app/design/frontend/base/default/layout/CrmTicket.xml
+MDN_CrmTicket/app/design/frontend/base/default/template/CrmTicket             app/design/frontend/base/default/template/CrmTicket
+
+MDN_CrmTicket/app/etc/modules/MDN_CrmTicket.xml                               app/etc/modules/MDN_CrmTicket.xml

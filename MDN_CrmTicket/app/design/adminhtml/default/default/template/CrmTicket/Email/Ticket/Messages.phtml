@@ -1,0 +1,15 @@
+  <hr/>
+<?php $messages = $this->getMessagesInverted(); ?>
+<?php $isLastMessage = true; ?>
+<?php foreach ($messages as $message): ?>
+  <?php 
+  		if($isLastMessage) { 
+  			$isLastMessage = false; 
+  			continue;
+  		} 
+  ?>
+  <p><b><?php echo $message->getPublicMessageHeader(); ?></b></p>
+  <p><pre><?php echo $message->getMessageBody(); ?></pre></p>
+  <hr/>
+<?php endforeach; ?>
+
