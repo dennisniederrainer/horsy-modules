@@ -332,3 +332,6 @@ MDN_Productreturn/app/locale/en_US/template/email/ProductReturn   app/locale/en_
 MDN_Productreturn/js/mdn/productReturn.js   js/mdn/productReturn.js
 MDN_Productreturn/skin/adminhtml/default/default/ProductReturn/mail.png   skin/adminhtml/default/default/ProductReturn/mail.png
 MDN_Productreturn/skin/adminhtml/default/default/purchase/grid-cal.gif    skin/adminhtml/default/default/purchase/grid-cal.gif
+
+Horsebrands_Appextension/app/code/local/Horsebrands/Appextensions/   app/code/local/Horsebrands/Appextensions/
+Horsebrands_Appextension/app/etc/modules/Horsebrands_Appextensions.xml    app/etc/modules/Horsebrands_Appextensions.xml

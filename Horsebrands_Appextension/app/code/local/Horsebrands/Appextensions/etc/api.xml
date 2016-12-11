@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+<config>
+    <api>
+        <resources>
+            <mintellity translate="title" module="Horsebrands_Appextensions">
+                <title>Resource that holds all methods for Horsebrands-App</title>
+                <model>Horsebrands_Appextensions/ObjectModel_Api</model>
+                <methods>
+                    <getActiveFlashSales translate="title" module="Horsebrands_Appextensions">
+                        <title>Get an Array of all active FlashSales</title>
+                        <acl>mintellity/getActiveFlashSales</acl>
+                        <method>getActiveFlashSales</method>
+                    </getActiveFlashSales>
+                    <getComingFlashSales translate="title" module="Horsebrands_Appextensions">
+                        <title>Get an Array of all coming FlashSales</title>
+                        <acl>mintellity/getComingFlashSales</acl>
+                        <method>getComingFlashSales</method>
+                    </getComingFlashSales>
+                    <getProductsForFlashSale translate="title" module="Horsebrands_Appextensions">
+                        <title>Get all Products and related information for a FlashSale</title>
+                        <acl>mintellity/getProductsForFlashSale</acl>
+                        <method>getProductsForFlashSale</method>
+                    </getProductsForFlashSale>
+                    <getProductDetails translate="title" module="Horsebrands_Appextensions">
+                        <title>Get details for a given product</title>
+                        <acl>mintellity/getProductDetails</acl>
+                        <method>getProductDetails</method>
+                    </getProductDetails>
+                    <inviteFriend translate="title" module="Horsebrands_Appextensions">
+                        <title>Send a friend invitation</title>
+                        <acl>mintellity/inviteFriend</acl>
+                        <method>inviteFriend</method>
+                    </inviteFriend>
+                    <addProductToQuote translate="title" module="Horsebrands_Appextensions">
+                        <title>Add a product to an existing Quote</title>
+                        <acl>mintellity/addProductToQuote</acl>
+                        <method>addProductToQuote</method>
+                    </addProductToQuote>
+                    <updateProductForQuote translate="title" module="Horsebrands_Appextensions">
+                        <title>Update Product for Quote</title>
+                        <acl>mintellity/updateProductForQuote</acl>
+                        <method>updateProductForQuote</method>
+                    </updateProductForQuote>
+                    <getQuoteInfo translate="title" module="Horsebrands_Appextensions">
+                        <title>Get information about a Quote</title>
+                        <acl>mintellity/getQuoteInfo</acl>
+                        <method>getQuoteInfo</method>
+                    </getQuoteInfo>
+                    <setOrderStatus translate="title" module="Horsebrands_Appextensions">
+                        <title>Set status of an Order</title>
+                        <acl>mintellity/setOrderStatus</acl>
+                        <method>setOrderStatus</method>
+                    </setOrderStatus>
+                    <getShippingMethodsForCountries translate="title" module="Horsebrands_Appextensions">
+                        <title>Get an associative array of all countries and the shipping methods that belong to them</title>
+                        <acl>mintellity/getShippingMethodsForCountries</acl>
+                        <method>getShippingMethodsForCountries</method>
+                    </getShippingMethodsForCountries>
+                </methods>
+            </mintellity>
+        </resources>
+        <acl>
+            <resources>
+                <mintellity translate="title" module="Horsebrands_Appextensions">
+                    <title>mintellity</title>
+                    <getActiveFlashSales translate="title" module="Horsebrands_Appextensions">
+                        <title>Get an Array of all active FlashSales</title>
+                    </getActiveFlashSales>
+                    <getComingFlashSales translate="title" module="Horsebrands_Appextensions">
+                        <title>Get an Array of all coming FlashSales</title>
+                    </getComingFlashSales>
+                    <getProductsForFlashSale translate="title" module="Horsebrands_Appextensions">
+                        <title>Get all Products and related information for a FlashSale</title>
+                    </getProductsForFlashSale>
+                    <getProductDetails translate="title" module="Horsebrands_Appextensions">
+                        <title>Get details for a given product</title>
+                    </getProductDetails>
+                    <inviteFriend translate="title" module="Horsebrands_Appextensions">
+                        <title>Send a friend invitation</title>
+                    </inviteFriend>
+                    <addProductToQuote translate="title" module="Horsebrands_Appextensions">
+                        <title>Add a product to an existing Quote</title>
+                    </addProductToQuote>
+                    <updateProductForQuote translate="title" module="Horsebrands_Appextensions">
+                        <title>Update Product for Quote</title>
+                    </updateProductForQuote>
+                    <getQuoteInfo translate="title" module="Horsebrands_Appextensions">
+                        <title>Get information about a Quote</title>
+                    </getQuoteInfo>
+                    <setOrderStatus translate="title" module="Horsebrands_Appextensions">
+                        <title>Set status of an Order</title>
+                    </setOrderStatus>
+                    <getShippingMethodsForCountries translate="title" module="Horsebrands_Appextensions">
+                        <title>Get an associative array of all countries and the shipping methods that belong to them</title>
+                    </getShippingMethodsForCountries>
+                </mintellity>
+            </resources>
+        </acl>
+        <resources_alias>
+            <mintellity>mintellity</mintellity>
+        </resources_alias>
+        <faults>
+            <quote_error>
+                <code>1337</code>
+                <message>Es trat ein Fehler beim Verarbeiten Ihrer Anfrage auf. Bitte versuchen Sie es erneut.</message>
+            </quote_error>
+        </faults>
+    </api>
+</config>

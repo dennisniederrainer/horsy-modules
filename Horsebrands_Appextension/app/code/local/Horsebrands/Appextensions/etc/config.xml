@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <modules>
+        <Horsebrands_Appextensions>
+            <version>0.1.0</version>
+        </Horsebrands_Appextensions>
+    </modules>
+    <global>
+        <models>
+            <Horsebrands_Appextensions>
+                <class>Horsebrands_Appextensions_Model</class>
+            </Horsebrands_Appextensions>
+        </models>
+        <helpers>
+            <Horsebrands_Appextensions>
+                <class>Horsebrands_Appextensions_Helper</class>
+            </Horsebrands_Appextensions>
+        </helpers>
+    </global>
+</config>
