@@ -32,13 +32,13 @@
                 <class>MDN_CrmTicket_Model</class>
                 <resourceModel>CrmTicket_mysql4</resourceModel>
             </CrmTicket>
-            
+
             <CrmTicket_mysql4>
                 <class>MDN_CrmTicket_Model_Mysql4</class>
                 <entities>
                     <Ticket>
                         <table>crm_ticket</table>
-                    </Ticket> 
+                    </Ticket>
                     <Category>
                         <table>crm_ticket_category</table>
                     </Category>
@@ -47,16 +47,16 @@
                     </Message>
                     <Attachment>
                         <table>crm_ticket_attachment</table>
-                    </Attachment>   
+                    </Attachment>
                     <Ticket_Priority>
                         <table>crm_ticket_priority</table>
-                    </Ticket_Priority> 
+                    </Ticket_Priority>
                     <Ticket_Status>
                         <table>crm_ticket_status</table>
-                    </Ticket_Status> 
+                    </Ticket_Status>
                     <RouterRules>
                         <table>crm_router_rules</table>
-                    </RouterRules> 
+                    </RouterRules>
                     <Email>
                         <table>crm_ticket_mail</table>
                     </Email>
@@ -84,7 +84,7 @@
                 </entities>
             </CrmTicket_mysql4>
         </models>
-        
+
         <resources>
             <CrmTicket_setup>
                 <setup>
@@ -106,7 +106,7 @@
                 </connection>
             </CrmTicket_read>
         </resources>
-                      
+
         <!-- Email templates -->
         <template>
             <email>
@@ -122,11 +122,11 @@
                 </crmticket_front_template>
             </email>
         </template>
-        
+
     </global>
 
     <adminhtml>
-        
+
            <acl>
             <resources>
                 <admin>
@@ -136,7 +136,7 @@
                                 <config>
                                     <children>
                                         <crmticket module="CrmTicket">
-                                            <title>CRM</title>                                            
+                                            <title>CRM</title>
                                         </crmticket>
                                     </children>
                                 </config>
@@ -144,7 +144,7 @@
                         </system>
                         <crmticket module="CrmTicket">
                             <title>CRM</title>
-                            
+
                             <children>
                                 <all_tickets module="CrmTicket">
                                     <title>All</title>
@@ -225,14 +225,14 @@
                 </admin>
             </resources>
         </acl>
-      
-        
+
+
         <menu>
             <crmticket translate="title" module="CrmTicket">
                 <title>CRM</title>
                 <sort_order>50</sort_order>
                 <children>
-                  
+
                     <search_create translate="title" module="CrmTicket">
                         <title>Search &amp; create ticket</title>
                         <action>CrmTicket/Admin_Ticket/SearchCreate</action>
@@ -277,7 +277,7 @@
                                         <title>Default reply</title>
                                         <action>CrmTicket/Admin_DefaultReply/Grid</action>
                                         <sort_order>13</sort_order>
-                                    </default_reply>                                   
+                                    </default_reply>
                                 </children>
                             </tickets>
 
@@ -299,7 +299,7 @@
                                         <title>Email to ticket management</title>
                                         <action>CrmTicket/Admin_EmailRouterRules/Grid</action>
                                         <sort_order>3</sort_order>
-                                  </email_router_rules>                                
+                                  </email_router_rules>
                                </children>
                             </emails_import>
 
@@ -333,20 +333,20 @@
                                         <title>By user</title>
                                         <action>CrmTicket/Admin_Summary/User</action>
                                         <sort_order>2</sort_order>
-                                    </byuser>                                   
+                                    </byuser>
                                 </children>
                             </summary_dash>
-                            
+
                         </children>
                     </crm_tools>
                 </children>
             </crmticket>
         </menu>
-        
+
         <layout>
             <updates>
                 <CrmTicket>
-                    <file>Ticket.xml</file>
+                    <file>CrmTicket.xml</file>
                 </CrmTicket>
             </updates>
         </layout>
@@ -360,9 +360,9 @@
                 </MDN_CrmTicket>
             </modules>
         </translate>
-        
+
     </adminhtml>
-    
+
     <frontend>
         <routers>
             <CrmTicket>
@@ -373,15 +373,15 @@
                 </args>
             </CrmTicket>
         </routers>
-        
+
         <layout>
             <updates>
                 <CrmTicket>
-                    <file>Ticket.xml</file>
+                    <file>CrmTicket.xml</file>
                 </CrmTicket>
             </updates>
         </layout>
-        
+
         <translate>
             <modules>
                 <MDN_CrmTicket>
@@ -391,9 +391,9 @@
                 </MDN_CrmTicket>
             </modules>
         </translate>
-        
+
     </frontend>
-    
+
     <admin>
         <routers>
             <CrmTicket>
@@ -405,7 +405,7 @@
             </CrmTicket>
         </routers>
     </admin>
-    
+
     <crmticket>
         <customer>
             <objects>
@@ -432,9 +432,9 @@
            </assign>
         </quickaction>
     </crmticket>
-    
+
     <default>
-        <crmticket>            
+        <crmticket>
             <ticket_data>
                 <new_messages_in_first>1</new_messages_in_first>
                 <new_message_field_in_first>1</new_message_field_in_first>
@@ -444,7 +444,7 @@
                 <show_invoicing_status>0</show_invoicing_status>
                 <show_sticky>0</show_sticky>
                 <show_manager>1</show_manager>
-                <show_subject>1</show_subject>               
+                <show_subject>1</show_subject>
                 <change_email_account>1</change_email_account>
                 <edit_subject>1</edit_subject>
                 <change_author>0</change_author>
@@ -452,16 +452,16 @@
                 <parse_attachement_on_email_import>1</parse_attachement_on_email_import>
                 <allow_attachement_on_message>0</allow_attachement_on_message>
                 <send_invoice_default_reply>3</send_invoice_default_reply>
-                <allow_private_comment_on_ticket>1</allow_private_comment_on_ticket>                
+                <allow_private_comment_on_ticket>1</allow_private_comment_on_ticket>
             </ticket_data>
             <notification>
                 <template>crmticket_notification_template</template>
             </notification>
-            <ticket_grid>                
+            <ticket_grid>
                 <auto_refresh_grid>0</auto_refresh_grid>
                 <auto_refresh_grid_rate>10</auto_refresh_grid_rate>
                 <show_view_count>0</show_view_count>
-                <show_message_popup>0</show_message_popup>                
+                <show_message_popup>0</show_message_popup>
                 <display_first_message_preview>0</display_first_message_preview>
                 <display_quick_actions>1</display_quick_actions>
                 <display_deadline>1</display_deadline>
@@ -533,8 +533,8 @@
                     <model>CrmTicket/Observer::cleanOldEmails</model>
                 </run>
             </clean_old_emails>
-            
+
         </jobs>
     </crontab>
-    
+
 </config>

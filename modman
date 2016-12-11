@@ -345,3 +345,21 @@ MDN_CrmTicket/app/design/frontend/base/default/layout/CrmTicket.xml           ap
 MDN_CrmTicket/app/design/frontend/base/default/template/CrmTicket             app/design/frontend/base/default/template/CrmTicket
 
 MDN_CrmTicket/app/etc/modules/MDN_CrmTicket.xml                               app/etc/modules/MDN_CrmTicket.xml
+
+Easylog_15.11.16/app/code/local/TechDivision/Easylog     app/code/local/TechDivision/Easylog
+Easylog_15.11.16/app/design/adminhtml/default/default/layout/easylog.xml   app/design/adminhtml/default/default/layout/easylog.xml
+Easylog_15.11.16/app/design/adminhtml/default/default/template/easylog    app/design/adminhtml/default/default/template/easylog
+
+Easylog_15.11.16/app/design/frontend/base/default/layout/easylog.xml   app/design/frontend/base/default/layout/easylog.xml
+Easylog_15.11.16/app/design/frontend/base/default/template/easylog     app/design/frontend/base/default/template/easylog
+Easylog_15.11.16/app/design/frontend/default/default/layout/easylog.xml   app/design/frontend/default/default/layout/easylog.xml
+Easylog_15.11.16/app/design/frontend/default/default/template/easylog     app/design/frontend/default/default/template/easylog
+
+Easylog_15.11.16/app/etc/modules/TechDivision_Easylog.xml    app/etc/modules/TechDivision_Easylog.xml
+Easylog_15.11.16/app/locale/de_DE/TechDivision_Easylog.csv   app/locale/de_DE/TechDivision_Easylog.csv
+Easylog_15.11.16/app/locale/en_US/TechDivision_Easylog.csv   app/locale/en_US/TechDivision_Easylog.csv
+
+Easylog_15.11.16/doc/TechDivision_Easylog    doc/TechDivision_Easylog
+
+Easylog_15.11.16/skin/adminhtml/default/default/css/modalbox.css   skin/adminhtml/default/default/css/modalbox.css
+Easylog_15.11.16/skin/adminhtml/default/default/js/modalbox.js     skin/adminhtml/default/default/js/modalbox.js
