@@ -1,0 +1,17 @@
+app/code/community/MDN/ProductReturn  app/code/community/MDN/ProductReturn
+
+app/design/adminhtml/default/default/layout/ProductReturn.xml   app/design/adminhtml/default/default/layout/ProductReturn.xml
+app/design/adminhtml/default/default/template/ProductReturn   app/design/adminhtml/default/default/template/ProductReturn
+
+app/design/frontend/base/default/layout/ProductReturn.xml   app/design/frontend/base/default/layout/ProductReturn.xml
+app/design/frontend/base/default/template/ProductReturn   app/design/frontend/base/default/template/ProductReturn
+
+app/etc/modules/MDN_ProductReturn.xml   app/etc/modules/MDN_ProductReturn.xml
+app/locale/de_DE/MDN_ProductReturn.csv   app/locale/de_DE/MDN_ProductReturn.csv
+app/locale/fr_FR/MDN_ProductReturn.csv   app/locale/fr_FR/MDN_ProductReturn.csv
+app/locale/en_US/MDN_ProductReturn.csv    app/locale/en_US/MDN_ProductReturn.csv
+app/locale/en_US/template/email/ProductReturn   app/locale/en_US/template/email/ProductReturn
+
+js/mdn/productReturn.js   js/mdn/productReturn.js
+skin/adminhtml/default/default/ProductReturn/mail.png   skin/adminhtml/default/default/ProductReturn/mail.png
+skin/adminhtml/default/default/purchase/grid-cal.gif    skin/adminhtml/default/default/purchase/grid-cal.gif

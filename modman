@@ -14,6 +14,9 @@ Horsebrands_Reporting/app/design/adminhtml/default/default/layout/horsebrands/ne
 Horsebrands_Reporting/app/design/adminhtml/default/default/layout/horsebrands/reporting.xml            app/design/adminhtml/default/default/layout/horsebrands/reporting.xml
 Horsebrands_Reporting/app/etc/modules/Horsebrands_Reporting.xml   app/etc/modules/Horsebrands_Reporting.xml
 
+Horsebrands_RMA/app/code/local/Horsebrands/ProductReturn        app/code/local/Horsebrands/ProductReturn
+Horsebrands_RMA/app/etc/modules/Horsebrands_ProductReturn.xml   app/etc/modules/Horsebrands_ProductReturn.xml
+
 DHL-Intraship/app/etc/modules/Dhl_Account.xml         app/etc/modules/Dhl_Account.xml
 DHL-Intraship/app/etc/modules/Dhl_Intraship.xml       app/etc/modules/Dhl_Account.xml
 DHL-Intraship/app/etc/modules/Dhl_OnlineRetoure.xml   app/etc/modules/Dhl_OnlineRetoure.xml
@@ -311,3 +314,21 @@ coupongift/app/etc/modules/Sashas_CouponGift.xml   app/etc/modules/Sashas_Coupon
 Horsebrands_Newsletter/app/code/local/Horsebrands/NewsletterAdvanced/   app/code/local/Horsebrands/NewsletterAdvanced/
 Horsebrands_Newsletter/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml    app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
 Horsebrands_Newsletter/app/etc/modules/Horsebrands_NewsletterAdvanced.xml    app/etc/modules/Horsebrands_NewsletterAdvanced.xml
+
+MDN_Productreturn/app/code/community/MDN/ProductReturn  app/code/community/MDN/ProductReturn
+
+MDN_Productreturn/app/design/adminhtml/default/default/layout/ProductReturn.xml   app/design/adminhtml/default/default/layout/ProductReturn.xml
+MDN_Productreturn/app/design/adminhtml/default/default/template/ProductReturn   app/design/adminhtml/default/default/template/ProductReturn
+
+MDN_Productreturn/app/design/frontend/base/default/layout/ProductReturn.xml   app/design/frontend/base/default/layout/ProductReturn.xml
+MDN_Productreturn/app/design/frontend/base/default/template/ProductReturn   app/design/frontend/base/default/template/ProductReturn
+
+MDN_Productreturn/app/etc/modules/MDN_ProductReturn.xml   app/etc/modules/MDN_ProductReturn.xml
+MDN_Productreturn/app/locale/de_DE/MDN_ProductReturn.csv   app/locale/de_DE/MDN_ProductReturn.csv
+MDN_Productreturn/app/locale/fr_FR/MDN_ProductReturn.csv   app/locale/fr_FR/MDN_ProductReturn.csv
+MDN_Productreturn/app/locale/en_US/MDN_ProductReturn.csv    app/locale/en_US/MDN_ProductReturn.csv
+MDN_Productreturn/app/locale/en_US/template/email/ProductReturn   app/locale/en_US/template/email/ProductReturn
+
+MDN_Productreturn/js/mdn/productReturn.js   js/mdn/productReturn.js
+MDN_Productreturn/skin/adminhtml/default/default/ProductReturn/mail.png   skin/adminhtml/default/default/ProductReturn/mail.png
+MDN_Productreturn/skin/adminhtml/default/default/purchase/grid-cal.gif    skin/adminhtml/default/default/purchase/grid-cal.gif

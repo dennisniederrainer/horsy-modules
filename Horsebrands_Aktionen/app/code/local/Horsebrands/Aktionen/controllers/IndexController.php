@@ -34,7 +34,9 @@ class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Ac
 	}
 
 	public function loginAction() {
-		$this->loadLayout();
+		$this->loadLayout()
+					->_initLayoutMessages('customer/session');
+					
 		$this->renderLayout();
 	}
 

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<config>
+    <sections>
+        <Horsebrands_ProductReturn translate="label" module="ProductReturn">
+            <label>Product Return</label>
+            <tab>sales</tab>
+            <frontend_type>text</frontend_type>
+            <sort_order>500</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <emails>
+                    <fields>
+                        <template_amount_refunded translate="label">
+                            <label>Template to notify amount refunded</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_email_template</source_model>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </template_amount_refunded>
+                    </fields>
+                </emails>
+            </groups>
+        </Horsebrands_ProductReturn>
+    </sections>
+</config>
