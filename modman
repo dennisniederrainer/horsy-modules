@@ -363,3 +363,21 @@ Easylog_15.11.16/doc/TechDivision_Easylog    doc/TechDivision_Easylog
 
 Easylog_15.11.16/skin/adminhtml/default/default/css/modalbox.css   skin/adminhtml/default/default/css/modalbox.css
 Easylog_15.11.16/skin/adminhtml/default/default/js/modalbox.js     skin/adminhtml/default/default/js/modalbox.js
+
+snm-portal-pdf-print/app/design/adminhtml/default/default/layout/auit_pdf.xml                   app/design/adminhtml/default/default/layout/auit_pdf.xml
+snm-portal-pdf-print/lib/Varien/Data/Form/Element/Auitfile.php                                  lib/Varien/Data/Form/Element/Auitfile.php
+snm-portal-pdf-print/lib/snm/auit                                                               lib/snm/auit
+snm-portal-pdf-print/app/etc/modules/XAuIt_Pdf.xml                                              app/etc/modules/XAuIt_Pdf.xml
+snm-portal-pdf-print/js/auit/snm-pdf/widgets/widgets.js                                         js/auit/snm-pdf/widgets/widgets.js
+snm-portal-pdf-print/lib/snm/fpdi                                                               lib/snm/fpdi
+snm-portal-pdf-print/app/locale/en_US/AuIt_pdfprint.csv                                         app/locale/en_US/AuIt_pdfprint.csv
+snm-portal-pdf-print/js/auit/snm-pdf/widgets/avi.swf                                            js/auit/snm-pdf/widgets/avi.swf
+snm-portal-pdf-print/app/design/adminhtml/default/default/template/auit/pdf/renderer            app/design/adminhtml/default/default/template/auit/pdf/renderer
+snm-portal-pdf-print/lib/snm/overloads                                                          lib/snm/overloads
+snm-portal-pdf-print/app/locale/de_DE/AuIt_pdfprint.csv                                         app/locale/de_DE/AuIt_pdfprint.csv
+snm-portal-pdf-print/app/design/frontend/base/default/template/auit/pdf                         app/design/frontend/base/default/template/auit/pdf
+snm-portal-pdf-print/lib/snm/tcpdf                                                              lib/snm/tcpdf
+snm-portal-pdf-print/app/code/community/AuIt/Pdf                                                app/code/community/AuIt/Pdf
+snm-portal-pdf-print/app/design/frontend/base/default/layout/auit_pdf.xml                       app/design/frontend/base/default/layout/auit_pdf.xml
+snm-portal-pdf-print/media/snm-portal/sales/pdf/stores/default/template_shipment.pdf            media/snm-portal/sales/pdf/stores/default/template_shipment.pdf
+snm-portal-pdf-print/media/snm-portal/sales/pdf/test.jpg                                        media/snm-portal/sales/pdf/test.jpg                              
