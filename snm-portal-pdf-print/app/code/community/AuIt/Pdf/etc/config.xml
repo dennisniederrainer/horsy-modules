@@ -5,7 +5,7 @@
             <version>2.6.6</version>
         </AuIt_Pdf>
     </modules>
-    
+
     <admin>
         <routers>
             <adminhtml>
@@ -17,7 +17,7 @@
 			</adminhtml>
         </routers>
     </admin>
-    <!--      
+    <!--
     <admin>
         <routers>
             <auit_pdf>
@@ -28,7 +28,7 @@
                 </args>
             </auit_pdf>
         </routers>
-        
+
     </admin>
 -->
     <adminhtml>
@@ -67,7 +67,7 @@
                 </auit_pdf>
             </updates>
         </layout>
-        
+
     </adminhtml>
     <frontend>
 		<translate>
@@ -117,7 +117,7 @@
             </auit_pdf>
 			<adminhtml>
 				<rewrite>
-					<!-- 
+					<!--
 					<sales_order_view>AuIt_Pdf_Block_Adminhtml_Sales_Order_View</sales_order_view>
 					<sales_order_grid>AuIt_Pdf_Block_Adminhtml_Sales_Order_Grid</sales_order_grid>
 					 -->
@@ -186,6 +186,7 @@
 	    			<template1><label>Article with barcode</label><value>invoice/barcode.phtml</value></template1>
 	    			<template2><label>Article with image</label><value>invoice/image.phtml</value></template2>
 	    			<template3><label>Article with tax</label><value>invoice/with_tax.phtml</value></template3>
+            <template4><label>Horsebrands</label><value>invoice/horsebrands.phtml</value></template4>
 	    		</table_templates>
     		</invoice>
     		<shipment>
@@ -197,7 +198,7 @@
     		</shipment>
     		<creditmemo>
 	    		<table_templates>
-	    		<!-- 
+	    		<!--
 	    			<template1><label>With Extended Columns</label><value>creditmemo/creditmemo2.phtml</value></template1>
 	    			 -->
 	    		</table_templates>
@@ -212,7 +213,7 @@
     			<attach_to_email_offer>0</attach_to_email_offer>
     			<attach_to_email_shipment>0</attach_to_email_shipment>
     			<attach_to_email_creditmemo>0</attach_to_email_creditmemo>
-    			
+
     			<fname_to_email_offer>Offer_</fname_to_email_offer>
     			<fname_to_email_offer_name>0</fname_to_email_offer_name>
     			<fname_to_email>Invoice_</fname_to_email>

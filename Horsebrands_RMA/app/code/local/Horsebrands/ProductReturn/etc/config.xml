@@ -134,7 +134,7 @@
         </resources>
       </acl>
     </adminhtml>
-    <crontab>
+    <!-- <crontab>
       <jobs>
           <dashboard_daily>
               <schedule>
@@ -145,5 +145,5 @@
               </run>
           </dashboard_daily>
       </jobs>
-    </crontab>
+    </crontab> -->
 </config>
