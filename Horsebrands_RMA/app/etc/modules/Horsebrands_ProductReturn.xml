@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Horsebrands_ProductReturn>
+            <active>true</active>
+            <codePool>local</codePool>
+			      <depends>
+                <MDN_AdvancedStock />
+                <MDN_ProductReturn />
+            </depends>
+        </Horsebrands_ProductReturn>
+    </modules>
+</config>

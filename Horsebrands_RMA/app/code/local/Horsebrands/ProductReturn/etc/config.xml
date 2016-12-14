@@ -1,0 +1,149 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Horsebrands_ProductReturn>
+            <version>0.0.9</version>
+            <depends></depends>
+        </Horsebrands_ProductReturn>
+    </modules>
+
+    <global>
+        <helpers>
+            <Horsebrands_ProductReturn>
+                <class>Horsebrands_ProductReturn_Helper</class>
+            </Horsebrands_ProductReturn>
+            <ProductReturn>
+                <rewrite>
+                    <CreateCreditmemo>Horsebrands_ProductReturn_Helper_CreateCreditmemo</CreateCreditmemo>
+                </rewrite>
+            </ProductReturn>
+            <ProductReturn>
+                <rewrite>
+                    <data>Horsebrands_ProductReturn_Helper_Data</data>
+                </rewrite>
+            </ProductReturn>
+        </helpers>
+        <blocks>
+            <Horsebrands_ProductReturn>
+                <class>Horsebrands_ProductReturn_Block</class>
+            </Horsebrands_ProductReturn>
+            <adminhtml>
+                <rewrite>
+                    <sales_creditmemo_grid>Horsebrands_ProductReturn_Block_Adminhtml_Sales_Creditmemo_Grid</sales_creditmemo_grid>
+                </rewrite>
+                <rewrite>
+                    <sales_order_creditmemo_view>Horsebrands_ProductReturn_Block_Adminhtml_Sales_Order_Creditmemo_View</sales_order_creditmemo_view>
+                </rewrite>
+            </adminhtml>
+            <!-- <ProductReturn>
+                <rewrite>
+                    <Productreturn_Edit_Tab_Actions>
+                        Horsebrands_ProductReturn_Block_Productreturn_Edit_Tab_Actions
+                    </Productreturn_Edit_Tab_Actions>
+                </rewrite>
+            </ProductReturn> -->
+            <ProductReturn>
+                <rewrite>
+                    <Front_SelectOrder>Horsebrands_ProductReturn_Block_Front_SelectOrder</Front_SelectOrder>
+                    <Front_NewRequest>Horsebrands_ProductReturn_Block_Front_NewRequest</Front_NewRequest>
+                </rewrite>
+            </ProductReturn>
+        </blocks>
+        <models>
+            <Horsebrands_ProductReturn>
+                <class>Horsebrands_ProductReturn_Model</class>
+            </Horsebrands_ProductReturn>
+            <sales>
+                <rewrite>
+                    <order_creditmemo>Horsebrands_ProductReturn_Model_Sales_Order_Creditmemo</order_creditmemo>
+                </rewrite>
+                <rewrite>
+                    <order_creditmemo_total_discount>
+                        Horsebrands_ProductReturn_Model_Sales_Order_Creditmemo_Total_Discount
+                    </order_creditmemo_total_discount>
+                </rewrite>
+            </sales>
+            <ProductReturn>
+                <rewrite>
+                    <Rma>Horsebrands_ProductReturn_Model_Rma</Rma>
+                </rewrite>
+            </ProductReturn>
+        </models>
+
+        <template>
+            <email>
+                <productreturn_emails_template_rma_request_customer translate="label" module="ProductReturn">
+                    <label>Artikelrücksendungsanfrage</label>
+                    <file>ProductReturn/new_request_customer.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_rma_request_customer>
+                <productreturn_emails_template_rma_products_received translate="label" module="ProductReturn">
+                    <label>Retoure eingetroffen</label>
+                    <file>ProductReturn/products_received.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_rma_products_received>
+                <productreturn_emails_template_rma_refund_complete translate="label" module="ProductReturn">
+                    <label>Retourenbetrag erstattet</label>
+                    <file>ProductReturn/refunded.html</file>
+                    <type>html</type>
+                </productreturn_emails_template_rma_refund_complete>
+            </email>
+        </template>
+
+    </global>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Horsebrands_ProductReturn before="Mage_Adminhtml">Horsebrands_ProductReturn_Adminhtml</Horsebrands_ProductReturn>
+                    </modules>
+                </args>
+            </adminhtml>
+            <ProductReturn>
+                <args>
+                    <modules>
+                        <Horsebrands_ProductReturn before="MDN_ProductReturn">Horsebrands_ProductReturn</Horsebrands_ProductReturn>
+                    </modules>
+                </args>
+            </ProductReturn>
+        </routers>
+    </admin>
+    <adminhtml>
+      <acl>
+        <resources>
+          <admin>
+            <children>
+              <report>
+                  <children>
+                      <productreturn translate="title" module="ProductReturn">
+                          <title>Product Return</title>
+                          <children>
+                              <reason translate="title" module="ProductReturn">
+                                  <title>By reason</title>
+                              </reason>
+                              <product translate="title" module="ProductReturn">
+                                  <title>By product</title>
+                              </product>
+                          </children>
+                      </productreturn>
+                  </children>
+              </report>
+            </children>
+          </admin>
+        </resources>
+      </acl>
+    </adminhtml>
+    <!-- <crontab>
+      <jobs>
+          <dashboard_daily>
+              <schedule>
+                  <cron_expr>59 23 * * * *</cron_expr>
+              </schedule>
+              <run>
+                  <model>Horsebrands_ProductReturn/observer::exportReturnsDaily</model>
+              </run>
+          </dashboard_daily>
+      </jobs>
+    </crontab> -->
+</config>

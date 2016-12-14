@@ -1,0 +1,63 @@
+<script type="text/javascript">
+    //<![CDATA[
+    openEditorPopup = function(url, name, specs, parent) {
+        if ((typeof popups == "undefined") || popups[name] == undefined || popups[name].closed) {
+            if (typeof popups == "undefined") {
+                popups = new Array();
+            }
+            var opener = (parent != undefined ? parent : window);
+            popups[name] = opener.open(url, name, specs);
+        } else {
+            popups[name].focus();
+        }
+        return popups[name];
+    }
+
+    closeEditorPopup = function(name) {
+        if ((typeof popups != "undefined") && popups[name] != undefined && !popups[name].closed) {
+            popups[name].close();
+        }
+    }
+    //]]>
+</script>
+<script type="text/javascript">
+    //<![CDATA[
+    if ("undefined" != typeof(Translator)) {
+        Translator.add({
+            "Insert Image...":"Insert Image...",
+            "Insert Media...":"Insert Media...",
+            "Insert File...":"Insert File..."}
+            );
+    }
+    wysiwygctm_content = new tinyMceWysiwygSetup("ctm_content", {
+        "enabled":true,
+        "hidden":false,
+        "use_container":false,
+        "add_variables":false,
+        "add_widgets":false,
+        "no_display":false,
+        "translator":{},
+        "encode_directives":true,
+        "force_br_newlines":true,
+        "force_p_newlines":false,
+        "width":"100%",
+        "plugins":[],
+        "add_images":false,
+        "files_browser_window_url":"",
+        "files_browser_window_width":1000,
+        "files_browser_window_height":600,
+        "document_base_url":null,
+        "store_id":0,
+        "add_directives":false,
+        "container_class":"hor-scroll",
+    });
+    wysiwygctm_content.setup("exact");
+    editorFormValidationHandler = wysiwygctm_content.onFormValidation.bind(wysiwygctm_content);
+    Event.observe("togglectm_content", "click", wysiwygctm_content.toggle.bind(wysiwygctm_content));
+    varienGlobalEvents.attachEventHandler("formSubmit", editorFormValidationHandler);
+    varienGlobalEvents.attachEventHandler("tinymceBeforeSetContent", wysiwygctm_content.beforeSetContent.bind(wysiwygctm_content));
+    varienGlobalEvents.attachEventHandler("tinymceSaveContent", wysiwygctm_content.saveContent.bind(wysiwygctm_content));
+    varienGlobalEvents.clearEventHandlers("open_browser_callback");
+    varienGlobalEvents.attachEventHandler("open_browser_callback", wysiwygctm_content.openFileBrowser.bind(wysiwygctm_content));
+    //]]>
+</script>

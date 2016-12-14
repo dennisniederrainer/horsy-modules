@@ -14,6 +14,9 @@ Horsebrands_Reporting/app/design/adminhtml/default/default/layout/horsebrands/ne
 Horsebrands_Reporting/app/design/adminhtml/default/default/layout/horsebrands/reporting.xml            app/design/adminhtml/default/default/layout/horsebrands/reporting.xml
 Horsebrands_Reporting/app/etc/modules/Horsebrands_Reporting.xml   app/etc/modules/Horsebrands_Reporting.xml
 
+Horsebrands_RMA/app/code/local/Horsebrands/ProductReturn        app/code/local/Horsebrands/ProductReturn
+Horsebrands_RMA/app/etc/modules/Horsebrands_ProductReturn.xml   app/etc/modules/Horsebrands_ProductReturn.xml
+
 DHL-Intraship/app/etc/modules/Dhl_Account.xml         app/etc/modules/Dhl_Account.xml
 DHL-Intraship/app/etc/modules/Dhl_Intraship.xml       app/etc/modules/Dhl_Account.xml
 DHL-Intraship/app/etc/modules/Dhl_OnlineRetoure.xml   app/etc/modules/Dhl_OnlineRetoure.xml
@@ -312,5 +315,69 @@ Horsebrands_Newsletter/app/code/local/Horsebrands/NewsletterAdvanced/   app/code
 Horsebrands_Newsletter/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml    app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
 Horsebrands_Newsletter/app/etc/modules/Horsebrands_NewsletterAdvanced.xml    app/etc/modules/Horsebrands_NewsletterAdvanced.xml
 
+MDN_Productreturn/app/code/community/MDN/ProductReturn  app/code/community/MDN/ProductReturn
+
+MDN_Productreturn/app/design/adminhtml/default/default/layout/ProductReturn.xml   app/design/adminhtml/default/default/layout/ProductReturn.xml
+MDN_Productreturn/app/design/adminhtml/default/default/template/ProductReturn   app/design/adminhtml/default/default/template/ProductReturn
+
+MDN_Productreturn/app/design/frontend/base/default/layout/ProductReturn.xml   app/design/frontend/base/default/layout/ProductReturn.xml
+MDN_Productreturn/app/design/frontend/base/default/template/ProductReturn   app/design/frontend/base/default/template/ProductReturn
+
+MDN_Productreturn/app/etc/modules/MDN_ProductReturn.xml   app/etc/modules/MDN_ProductReturn.xml
+MDN_Productreturn/app/locale/de_DE/MDN_ProductReturn.csv   app/locale/de_DE/MDN_ProductReturn.csv
+MDN_Productreturn/app/locale/fr_FR/MDN_ProductReturn.csv   app/locale/fr_FR/MDN_ProductReturn.csv
+MDN_Productreturn/app/locale/en_US/MDN_ProductReturn.csv    app/locale/en_US/MDN_ProductReturn.csv
+MDN_Productreturn/app/locale/en_US/template/email/ProductReturn   app/locale/en_US/template/email/ProductReturn
+
+MDN_Productreturn/js/mdn/productReturn.js   js/mdn/productReturn.js
+MDN_Productreturn/skin/adminhtml/default/default/ProductReturn/mail.png   skin/adminhtml/default/default/ProductReturn/mail.png
+MDN_Productreturn/skin/adminhtml/default/default/purchase/grid-cal.gif    skin/adminhtml/default/default/purchase/grid-cal.gif
+
 Horsebrands_Appextension/app/code/local/Horsebrands/Appextensions/   app/code/local/Horsebrands/Appextensions/
 Horsebrands_Appextension/app/etc/modules/Horsebrands_Appextensions.xml    app/etc/modules/Horsebrands_Appextensions.xml
+
+MDN_CrmTicket/app/code/community/MDN/CrmTicket/                               app/code/community/MDN/CrmTicket/
+
+MDN_CrmTicket/app/design/adminhtml/default/default/layout/CrmTicket.xml       app/design/adminhtml/default/default/layout/CrmTicket.xml
+MDN_CrmTicket/app/design/adminhtml/default/default/template/CrmTicket         app/design/adminhtml/default/default/template/CrmTicket
+
+MDN_CrmTicket/app/design/frontend/base/default/layout/CrmTicket.xml           app/design/frontend/base/default/layout/CrmTicket.xml
+MDN_CrmTicket/app/design/frontend/base/default/template/CrmTicket             app/design/frontend/base/default/template/CrmTicket
+
+MDN_CrmTicket/app/etc/modules/MDN_CrmTicket.xml                               app/etc/modules/MDN_CrmTicket.xml
+
+Easylog_15.11.16/app/code/local/TechDivision/Easylog     app/code/local/TechDivision/Easylog
+Easylog_15.11.16/app/design/adminhtml/default/default/layout/easylog.xml   app/design/adminhtml/default/default/layout/easylog.xml
+Easylog_15.11.16/app/design/adminhtml/default/default/template/easylog    app/design/adminhtml/default/default/template/easylog
+
+Easylog_15.11.16/app/design/frontend/base/default/layout/easylog.xml   app/design/frontend/base/default/layout/easylog.xml
+Easylog_15.11.16/app/design/frontend/base/default/template/easylog     app/design/frontend/base/default/template/easylog
+Easylog_15.11.16/app/design/frontend/default/default/layout/easylog.xml   app/design/frontend/default/default/layout/easylog.xml
+Easylog_15.11.16/app/design/frontend/default/default/template/easylog     app/design/frontend/default/default/template/easylog
+
+Easylog_15.11.16/app/etc/modules/TechDivision_Easylog.xml    app/etc/modules/TechDivision_Easylog.xml
+Easylog_15.11.16/app/locale/de_DE/TechDivision_Easylog.csv   app/locale/de_DE/TechDivision_Easylog.csv
+Easylog_15.11.16/app/locale/en_US/TechDivision_Easylog.csv   app/locale/en_US/TechDivision_Easylog.csv
+
+Easylog_15.11.16/doc/TechDivision_Easylog    doc/TechDivision_Easylog
+
+Easylog_15.11.16/skin/adminhtml/default/default/css/modalbox.css   skin/adminhtml/default/default/css/modalbox.css
+Easylog_15.11.16/skin/adminhtml/default/default/js/modalbox.js     skin/adminhtml/default/default/js/modalbox.js
+
+snm-portal-pdf-print/app/design/adminhtml/default/default/layout/auit_pdf.xml                   app/design/adminhtml/default/default/layout/auit_pdf.xml
+snm-portal-pdf-print/lib/Varien/Data/Form/Element/Auitfile.php                                  lib/Varien/Data/Form/Element/Auitfile.php
+snm-portal-pdf-print/lib/snm/auit                                                               lib/snm/auit
+snm-portal-pdf-print/app/etc/modules/XAuIt_Pdf.xml                                              app/etc/modules/XAuIt_Pdf.xml
+snm-portal-pdf-print/js/auit/snm-pdf/widgets/widgets.js                                         js/auit/snm-pdf/widgets/widgets.js
+snm-portal-pdf-print/lib/snm/fpdi                                                               lib/snm/fpdi
+snm-portal-pdf-print/app/locale/en_US/AuIt_pdfprint.csv                                         app/locale/en_US/AuIt_pdfprint.csv
+snm-portal-pdf-print/js/auit/snm-pdf/widgets/avi.swf                                            js/auit/snm-pdf/widgets/avi.swf
+snm-portal-pdf-print/app/design/adminhtml/default/default/template/auit/pdf/renderer            app/design/adminhtml/default/default/template/auit/pdf/renderer
+snm-portal-pdf-print/lib/snm/overloads                                                          lib/snm/overloads
+snm-portal-pdf-print/app/locale/de_DE/AuIt_pdfprint.csv                                         app/locale/de_DE/AuIt_pdfprint.csv
+snm-portal-pdf-print/app/design/frontend/base/default/template/auit/pdf                         app/design/frontend/base/default/template/auit/pdf
+snm-portal-pdf-print/lib/snm/tcpdf                                                              lib/snm/tcpdf
+snm-portal-pdf-print/app/code/community/AuIt/Pdf                                                app/code/community/AuIt/Pdf
+snm-portal-pdf-print/app/design/frontend/base/default/layout/auit_pdf.xml                       app/design/frontend/base/default/layout/auit_pdf.xml
+snm-portal-pdf-print/media/snm-portal/sales/pdf/stores/default/template_shipment.pdf            media/snm-portal/sales/pdf/stores/default/template_shipment.pdf
+snm-portal-pdf-print/media/snm-portal/sales/pdf/test.jpg                                        media/snm-portal/sales/pdf/test.jpg                              

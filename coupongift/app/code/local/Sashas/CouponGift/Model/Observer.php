@@ -142,8 +142,7 @@ class Sashas_CouponGift_Model_Observer {
 		$quoteItem->setIsCoupongift(1);
 		$quoteItem->setCoupongiftRuleId($rule->getRuleId());
 		$quoteObj->addItem($quoteItem );
-		// die($quoteItem->getName());
-		// $quoteObj->save();
+		$quoteObj->save();
 		if (!Mage::registry('coupongift_rule_applied_'.$rule->getRuleId()))
 			Mage::register('coupongift_rule_applied_'.$rule->getRuleId(),1);
 

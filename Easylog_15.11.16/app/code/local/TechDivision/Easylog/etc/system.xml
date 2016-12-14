@@ -1,0 +1,382 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Open Software License (OSL 3.0)
+ * that is available through the world-wide-web at this URL:
+ * http://opensource.org/licenses/osl-3.0.php
+ */
+
+/**
+ * @category   	TechDivision
+ * @package    	TechDivision_Easylog
+ * @copyright  	Copyright (c) 2010 <info@techdivision.com> - TechDivision GmbH
+ * @license    	http://opensource.org/licenses/osl-3.0.php
+ * 				Open Software License (OSL 3.0)
+ * @author      Johann Zelger <j.zelger@techdivision.com>
+ */
+-->
+<config>
+    <tabs>
+        <techdivision>
+            <label>TechDivision</label>
+            <sort_order>301</sort_order>
+        </techdivision>
+    </tabs>
+	<sections>
+		<carriers>
+			<groups>
+                <easylog_dhl translate="label" module="easylog">
+	                <label>DHL Easylog</label>
+	                <frontend_type>text</frontend_type>
+	                <sort_order>13</sort_order>
+	                <show_in_default>1</show_in_default>
+	                <show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+                        <active translate="label">
+                            <label>Aktiviert</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>10</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </active>
+                        <title translate="label">
+                            <label>Title</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>20</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </title>
+                        <selected_methods translate="label">
+                            <label>Erlaubte Versandarten</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <source_model>easylog/carrier_dhl_source_method</source_model>
+                            <sort_order>30</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>0</show_in_store>
+                            <can_be_empty>1</can_be_empty>
+                        </selected_methods>
+                        <pricetable_national translate="label">
+                            <label>Staffelpreise National Standard</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>31</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_national>
+                        <participation_number_national translate="label">
+                            <label>Teilnahmenummer National Standard</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>32</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_national>
+                        <pricetable_nationalexpress translate="label">
+                            <label>Staffelpreise National Express</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>33</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_nationalexpress>
+                         <participation_number_nationalexpress translate="label">
+                            <label>Teilnahmenummer National Express</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>34</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_nationalexpress>
+                        <servicetable_nationalexpress translate="label">
+                            <label>Servicepreise National Express</label>
+                            <frontend_model>easylog/admin_system_config_form_field_servicetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>35</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </servicetable_nationalexpress>
+                        <participation_number_servicetable_nationalexpress translate="label">
+                            <label>Teilnahmenummer Servicetable nationalexpress</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>36</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_servicetable_nationalexpress>
+                        <pricetable_regioat translate="label">
+                            <label>Staffelpreise Regionalpaket AT</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>37</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_regioat>
+                         <participation_number_regioat translate="label">
+                            <label>Teilnahmenummer Regionalpaket AT</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>38</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_regioat>
+                        <pricetable_euro translate="label">
+                            <label>Staffelpreise Europaket</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>39</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_euro>
+                         <participation_number_euro translate="label">
+                            <label>Teilnahmenummer Europaket</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>40</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_euro>
+                        <pricetable_europlus translate="label">
+                            <label>Staffelpreise Europlus</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>41</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_europlus>
+                         <participation_number_europlus translate="label">
+                            <label>Teilnahmenummer Europlus</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>42</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_europlus>
+                        <pricetable_international translate="label">
+                            <label>Staffelpreise International</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>43</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_international>
+                        <participation_number_international translate="label">
+                            <label>Teilnahmenummer International</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>44</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_international>
+                        <pricetable_internationalexpress translate="label">
+                            <label>Staffelpreise International Express</label>
+                            <frontend_model>easylog/admin_system_config_form_field_pricetable</frontend_model>
+                            <backend_model>adminhtml/system_config_backend_serialized_array</backend_model>
+                            <sort_order>45</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </pricetable_internationalexpress>
+                        <participation_number_internationalexpress translate="label">
+                            <label>Teilnahmenummer International Express</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>46</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </participation_number_internationalexpress>
+                        <price_bulky translate="label">
+                            <label>Aufpreis Sperrgut</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>47</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </price_bulky>
+                        <max_package_weight translate="label">
+                            <label>Maximal Gewicht</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>48</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </max_package_weight>
+                        <no_shipping_on_bulky>
+                        	<label>Kein Versand bei Sperrgut</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>49</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </no_shipping_on_bulky>                        
+                        <no_freeshipping_on_bulky>
+                        	<label>Keine Versandkostenfreiheit bei Sperrgut</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>50</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </no_freeshipping_on_bulky>
+                        <free_shipping_enable translate="label">
+                            <label>Versandkostenfrei innerhalb Deutschland</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_enabledisable</source_model>
+                            <sort_order>51</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_enable>
+                        <free_shipping_subtotal translate="label">
+                            <label>Mindestbestellpreis für versandkostenfreie Lieferung</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>52</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_subtotal>
+						<free_shipping_incl_tax>
+                        	<label>Mindestbestellpreis inkl. Steuern</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>65</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </free_shipping_incl_tax>
+                        <sallowspecific translate="label">
+                            <label>Versand in mögliche Länder</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>70</sort_order>
+                            <frontend_class>shipping-applicable-country</frontend_class>
+                            <source_model>adminhtml/system_config_source_shipping_allspecificcountries</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sallowspecific>
+                        <specificcountry translate="label">
+                            <label>Versand in bestimmte Länder</label>
+                            <frontend_type>multiselect</frontend_type>
+                            <sort_order>80</sort_order>
+                            <source_model>adminhtml/system_config_source_country</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificcountry>
+                        <showmethod translate="label">
+                            <label>Versandart zeigen, auch wenn nicht möglich</label>
+                            <frontend_type>select</frontend_type>
+                            <sort_order>90</sort_order>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </showmethod>
+                        <specificerrmsg translate="label">
+                            <label>Angezeigte Fehlermeldung</label>
+                            <frontend_type>textarea</frontend_type>
+                            <sort_order>100</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </specificerrmsg>
+                        <sort_order translate="label">
+                            <label>Reihenfolge</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>200</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </sort_order>
+                    </fields>
+                </easylog_dhl>
+            </groups>
+        </carriers>
+        <easylog translate="label" module="easylog">
+            <label>Easylog Einstellungen</label>
+            <tab>techdivision</tab>
+            <sort_order>130</sort_order>
+            <show_in_default>1</show_in_default>
+            <show_in_website>1</show_in_website>
+            <show_in_store>1</show_in_store>
+            <groups>
+                <support translate="label">
+                    <label>Information</label>
+                    <frontend_type>text</frontend_type>
+                    <frontend_model>easylog/adminhtml_system_config_notice</frontend_model>
+                    <sort_order>0</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                </support>
+            	<allgemein translate="label">
+                    <label>Allgemein</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>1</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <mandant_id translate="label">
+                            <label>Mandant ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </mandant_id>
+                        <absender_id translate="label">
+                            <label>Absender ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>2</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </absender_id>
+                        <teilnahme_id translate="label">
+                            <label>Teilnahme ID</label>
+                            <frontend_type>text</frontend_type>
+                            <sort_order>3</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </teilnahme_id>
+                    </fields>
+                </allgemein>
+                <extras translate="label">
+                    <label>Extras</label>
+                    <frontend_type>text</frontend_type>
+                    <sort_order>5</sort_order>
+                    <show_in_default>1</show_in_default>
+                    <show_in_website>1</show_in_website>
+                    <show_in_store>1</show_in_store>
+                    <fields>
+                        <retoure translate="label">
+                            <label>Retouren Labels mitdrucken</label>
+                            <frontend_type>select</frontend_type>
+                            <source_model>adminhtml/system_config_source_yesno</source_model>
+                            <sort_order>1</sort_order>
+                            <show_in_default>1</show_in_default>
+                            <show_in_website>1</show_in_website>
+                            <show_in_store>1</show_in_store>
+                        </retoure>
+                    </fields>
+                </extras>
+            </groups>                        
+        </easylog>
+    </sections>
+</config>
