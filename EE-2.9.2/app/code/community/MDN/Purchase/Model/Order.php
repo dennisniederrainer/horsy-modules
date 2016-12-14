@@ -147,7 +147,7 @@ class MDN_Purchase_Model_Order extends Mage_Core_Model_Abstract {
         }
         return $orderAmount;
     }
-    
+
     /**
      * Return total including taxes
      *
@@ -279,7 +279,7 @@ class MDN_Purchase_Model_Order extends Mage_Core_Model_Abstract {
                 if ($item->getpop_supplier_ref() != '')
                     $ProductSupplier->setpps_reference($item->getpop_supplier_ref());
                 $ProductSupplier->setpps_last_order_date($this->getpo_date());
-                
+
                 $ProductSupplier->setpps_last_price($item->getUnitPriceWithExtendedCosts_base());
                 $ProductSupplier->setpps_last_unit_price($item->getpop_price_ht_base());
                 $ProductSupplier->setpps_last_unit_price_supplier_currency($item->getpop_price_ht());
@@ -397,13 +397,13 @@ class MDN_Purchase_Model_Order extends Mage_Core_Model_Abstract {
     }
 
     /**
-     * 
+     *
      *
      * @param unknown_type $ProductId
      * @param unknown_type $order
      */
     public function AddProduct($ProductId, $qty = 1) {
-        
+
         $purchaseOrderProduct = $this->getPurchaseOrderItem($ProductId);
 
         //if product is not present
@@ -466,7 +466,7 @@ class MDN_Purchase_Model_Order extends Mage_Core_Model_Abstract {
             $orderProduct->save();
 
             $this->_products = null;
-            
+
             return $orderProduct;
         } else {
             //if product already belong to the PO, increase qty
