@@ -68,8 +68,9 @@ class Sashas_CouponGift_Model_Observer {
 	public function SalesRuleGiftValidator(Varien_Event_Observer $observer) {
 
 		$rule = $observer->getRule ();
-		if ($rule->getSimpleAction () != self::COUPON_GIFT_CODE)
+		if ($rule->getSimpleAction () != self::COUPON_GIFT_CODE) {
 			return $this;
+		}
 
 		$force_price = $rule->getGiftProductForcePrice ();
 		$gift_product_sku = $rule->getGiftProductSku ();
@@ -96,8 +97,9 @@ class Sashas_CouponGift_Model_Observer {
 				 break;
 			}
 		}
-		if ($gift_quote_item)
+		if ($gift_quote_item) {
 			$gift_quote_item->setQty (1);
+		}
 
 		/*
 		 * Check if original product was deleted
