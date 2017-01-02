@@ -30,7 +30,7 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
     	$this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
      * Nouveau
      *
@@ -40,17 +40,17 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
     	$this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
      * Creation
      *
      */
     public function CreateAction()
     {
-    	
-    	
+
+
     }
-    
+
     /**
 	 * Edition d'un manufacturer
 	 *
@@ -60,7 +60,7 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
     	$this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
      * Enregistre les modifs faite sur le manufacturer
      *
@@ -69,7 +69,7 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
     {
     	//Charge le contact
     	$Contact = Mage::getModel('Purchase/Contact')->load($this->getRequest()->getParam('pc_num'));
-    	
+
     	//Enregistre les modifs
 		$Contact->setpc_firstname($this->getRequest()->getParam('pc_firstname'));
 		$Contact->setpc_lastname($this->getRequest()->getParam('pc_lastname'));
@@ -81,15 +81,15 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
 		$Contact->setpc_country($this->getRequest()->getParam('pc_country'));
 		$Contact->setpc_comments($this->getRequest()->getParam('pc_comments'));
     	$Contact->save();
-    	
+
     	//confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Contact Saved'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('Purchase/Contacts/Edit/pc_num/'.$Contact->getId());
-    	
+
     }
-    
+
     /**
      * Retourne en ajax les informations sur un contact
      *
@@ -99,12 +99,12 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
         //recupere l'objet
     	$object = mage::GetModel('Purchase/Contact')
     				->load($this->getRequest()->getParam('pc_num'));
-    	
+
     	//retourne en ajax
     	$this->getResponse()->setHeader('Content-type', 'application/x-json');
-        $this->getResponse()->setBody($object->toJson());	
+        $this->getResponse()->setBody($object->toJson());
     }
-    
+
     /**
      * Supprime un contact
      *
@@ -115,16 +115,16 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
     	$object = mage::GetModel('Purchase/Contact')
     				->load($this->getRequest()->getParam('pc_num'))
     				->delete();
-    		
+
     }
-    
+
     /**
      * Sav les infos d'un contact
      *
      */
     public function SaveContactAction()
     {
-    	//Si on est en création
+    	//Si on est en crï¿½ation
     	if ($this->getRequest()->getParam('pc_num') == -1)
     	{
 			$contact = Mage::getModel('Purchase/Contact');
@@ -138,9 +138,9 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
 			$contact->setpc_comments($this->getRequest()->getParam('pc_comments'));
 			$contact->setpc_type($this->getRequest()->getParam('pc_type'));
 			$contact->setpc_entity_id($this->getRequest()->getParam('pc_entity_id'));
-			$contact->save();		
+			$contact->save();
     	}
-    	else 
+    	else
     	{
 			$contact = Mage::getModel('Purchase/Contact')->load($this->getRequest()->getParam('pc_num'));
 			$contact->setpc_firstname($this->getRequest()->getParam('pc_firstname'));
@@ -153,12 +153,12 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
 			$contact->setpc_comments($this->getRequest()->getParam('pc_comments'));
 			$contact->save();
     	}
-    	
+
     }
-    
+
     /**
      * Retourne une sous liste de contact
-     * cad les contacts liés à un manufacturer ou un supplier
+     * cad les contacts liï¿½s ï¿½ un manufacturer ou un supplier
      *
      */
     public function getSubGridAction()
@@ -166,14 +166,18 @@ class MDN_Purchase_ContactsController extends Mage_Adminhtml_Controller_Action
     	//recupere les infos
     	$EntityType = Mage::app()->getRequest()->getParam('entity_type');
     	$EntityId = Mage::app()->getRequest()->getParam('entity_id');
-    	
+
     	//cree le block et le retourne
     	$block = $this->getLayout()->createBlock('Purchase/Contact_SubGrid', 'contacts');
     	$block->setEntityType($EntityType);
     	$block->setEntityId($EntityId);
     	$block->setTemplate('Purchase/Contact/SubGrid.phtml');
-    	
+
     	$this->getResponse()->setBody($block->toHtml());
-        
+
+    }
+
+		protected function _isAllowed() {
+      return true;
     }
 }

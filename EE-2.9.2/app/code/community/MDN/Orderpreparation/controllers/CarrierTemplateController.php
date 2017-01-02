@@ -244,4 +244,7 @@ class MDN_Orderpreparation_CarrierTemplateController extends Mage_Adminhtml_Cont
         }
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

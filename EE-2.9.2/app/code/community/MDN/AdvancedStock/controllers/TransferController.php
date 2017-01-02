@@ -203,22 +203,22 @@ class MDN_AdvancedStock_TransferController extends Mage_Adminhtml_Controller_Act
         $transferId = $this->getRequest()->getParam('st_id');
         $transfer = mage::getModel('AdvancedStock/StockTransfer')->load($transferId);
         Mage::register('current_transfer', $transfer);
-        
+
         //render
         $this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
-     * Return product information in JSON from product barcode 
+     * Return product information in JSON from product barcode
      */
     public function ScannerProductInformationAction()
     {
         $result = array('');
-        
+
         $barcode = $this->getRequest()->getParam('barcode');
         $product = Mage::helper('AdvancedStock/Product_Barcode')->getProductFromBarcode($barcode);
-        
+
         $result['error'] = ($product == null);
         if ($product)
         {
@@ -232,20 +232,20 @@ class MDN_AdvancedStock_TransferController extends Mage_Adminhtml_Controller_Act
         {
             $result['message'] = $this->__('No product matching to barcode %s', $barcode);
         }
-        
+
         //return result as json
         $result = Zend_Json::encode($result);
-        $this->getResponse()->setBody($result);        
+        $this->getResponse()->setBody($result);
     }
-    
+
     /**
-     * Add products to transfer (coming from the screen to add products scanning barcode) 
+     * Add products to transfer (coming from the screen to add products scanning barcode)
      */
     public function AddProductsToTransferAction()
     {
         $transferId = $this->getRequest()->getPost('st_id');
         $transfer = mage::getModel('AdvancedStock/StockTransfer')->load($transferId);
-        
+
         $productData = $this->getRequest()->getPost('data');
         $rows = explode('#', $productData);
         foreach($rows as $row)
@@ -253,12 +253,12 @@ class MDN_AdvancedStock_TransferController extends Mage_Adminhtml_Controller_Act
             list($productId, $qty) = explode('=', $row);
             $transfer->addProduct($productId, $qty);
         }
-        
+
         //confirm & redirect
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Products added to transfer'));
         $this->_redirect('AdvancedStock/Transfer/Edit', array('st_id' => $transfer->getId()));
     }
-    
+
     /**
      * Return image url for product
      * @param <type> $product
@@ -280,5 +280,7 @@ class MDN_AdvancedStock_TransferController extends Mage_Adminhtml_Controller_Act
         return '';
     }
 
-    
+    protected function _isAllowed() {
+      return true;
+    }
 }

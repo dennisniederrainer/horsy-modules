@@ -11,7 +11,7 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
     }
 
     public function OrderInformationAction() {
-        
+
         //init var
         $response = array();
         $response['error'] = false;
@@ -20,12 +20,12 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
         $barcode = $this->getRequest()->getParam('barcode');
 
         try {
-            
+
             //get order
             $order = Mage::getModel('sales/order')->load($barcode, 'increment_id');
             if (!$order->getId())
                 throw new Exception($this->__('Unable to find order #%s', $barcode));
-            
+
             //get order to prepare
             $orderToPrepare = Mage::getModel('Orderpreparation/ordertoprepare')->load($order->getId(), 'order_id');
             if (!$orderToPrepare->getId())
@@ -38,7 +38,7 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
                        throw new Exception($this->__('This order is not in the selected orders'));
                 }
             }
-            
+
             //check that order is not shipped
             if (Mage::getStoreConfig('orderpreparation/packing/prevent_packing_if_order_already_shipped')) {
                 if ($orderToPrepare->getshipment_id())
@@ -92,9 +92,9 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
 
     /**
      * return true if product manage stocks
-     * 
+     *
      * @param type $orderToPrepareItem
-     * @return type 
+     * @return type
      */
     public function productManageStock($orderToPrepareItem) {
         $productId = $orderToPrepareItem->getproduct_id();
@@ -103,7 +103,7 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
     }
 
     /**
-     * Commit packing 
+     * Commit packing
      */
     public function CommitAction() {
         $orderId = $this->getRequest()->getPost('order_id');
@@ -133,7 +133,7 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
 
             //reload order to prepare (to consider new shipment / invoice)
             $orderToPrepare = mage::getModel('Orderpreparation/ordertoprepare')->load($orderId, 'order_id');
-            
+
             //Print packing slip (if configured)
             if (Mage::getStoreConfig('orderpreparation/packing/print_packing_slip_when_order_packed')) {
                 if ($shipment) {
@@ -198,10 +198,10 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
     }
 
     /**
-     * Print shipment PDF 
+     * Print shipment PDF
      */
     public function printShipmentAction() {
-        
+
         //load shipment
         $shipmentId = $this->getRequest()->getParam('shipment_id');
         $shipmentIncrementId = $this->getRequest()->getParam('shipment_increment_id');
@@ -209,7 +209,7 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
             $shipment = Mage::getModel('sales/order_shipment')->load($shipmentId);
         else
             $shipment = Mage::getModel('sales/order_shipment')->loadByIncrementId($shipmentIncrementId);
-            
+
         //generate & download PDF
         $pdf = Mage::getModel('sales/order_pdf_shipment')->getPdf(array($shipment));
         $fileName = 'shipment_' . $shipment->getIncrementId() . '.pdf';
@@ -217,14 +217,14 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
     }
 
     /**
-     * Print invoice PDF 
+     * Print invoice PDF
      */
     public function printInvoiceAction() {
-        
+
         //load invoice
         $invoiceId = $this->getRequest()->getParam('invoice_id');
         $invoiceIncrementId = $this->getRequest()->getParam('invoice_increment_id');
-        
+
         if ($invoiceId)
             $invoice = Mage::getModel('sales/order_invoice')->load($invoiceId);
         else
@@ -235,7 +235,7 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
         $fileName = 'invoice_' . $invoice->getIncrementId() . '.pdf';
         $this->_prepareDownloadResponse($fileName, $pdf->render(), 'application/pdf');
     }
-    
+
     /**
      * Download file for shipping software
      */
@@ -256,12 +256,15 @@ class MDN_Orderpreparation_PackingController extends Mage_Adminhtml_Controller_A
             $collection = mage::getModel('Orderpreparation/ordertoprepare')
                     ->getCollection()
                     ->addFieldToFilter('order_id', $orderId);
-            $content = $carrierTemplate->createExportFile($collection);  
-            
+            $content = $carrierTemplate->createExportFile($collection);
+
             $fileName = 'order_' . $order->getIncrementId() . '.csv';
             $this->_prepareDownloadResponse($fileName, $content, 'text/csv');
         }
-        
+
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

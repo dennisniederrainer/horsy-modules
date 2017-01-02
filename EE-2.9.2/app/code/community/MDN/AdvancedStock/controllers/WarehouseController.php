@@ -119,7 +119,7 @@ class MDN_AdvancedStock_WarehouseController extends Mage_Adminhtml_Controller_Ac
     }
 
     /**
-     * 
+     *
      *
      * @param unknown_type $fileName
      * @param unknown_type $content
@@ -173,6 +173,10 @@ class MDN_AdvancedStock_WarehouseController extends Mage_Adminhtml_Controller_Ac
         $block = $this->getLayout()->createBlock('core/template', 'import_result', array('template' => 'AdvancedStock/Warehouse/Result.phtml'));
         $this->getLayout()->getBlock('content')->append($block);
         $this->renderLayout();
+    }
+
+    protected function _isAllowed() {
+      return true;
     }
 
 }

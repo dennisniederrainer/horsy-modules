@@ -24,6 +24,10 @@
         <Dhl_Intraship>
             <active>true</active>
             <codePool>community</codePool>
+            <depends>
+              <AuIt_Pdf />
+              <MDN_AdvancedStock />
+            </depends>
         </Dhl_Intraship>
     </modules>
 </config>

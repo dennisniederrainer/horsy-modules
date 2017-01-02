@@ -34,5 +34,7 @@ class MDN_CrmTicket_Admin_SummaryController extends Mage_Adminhtml_Controller_Ac
         $this->renderLayout();
     }
 
-
+    protected function _isAllowed() {
+      return true;
+    }
 }

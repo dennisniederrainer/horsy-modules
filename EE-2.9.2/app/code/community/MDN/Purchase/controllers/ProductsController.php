@@ -22,16 +22,16 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
     public function LinkSupplierAction()
     {
     	//recupere les infos
-		$product_id = $this->getRequest()->getParam('product_id');    	
-		$supplier_id = $this->getRequest()->getParam('supplier_id');    	
-		
+		$product_id = $this->getRequest()->getParam('product_id');
+		$supplier_id = $this->getRequest()->getParam('supplier_id');
+
 		//insere dans la base
 		mage::getModel('Purchase/ProductSupplier')
 			->setpps_product_id($product_id)
 			->setpps_supplier_num($supplier_id)
 			->save();
     }
-        
+
     /**
      * Retourne la liste des suppliers associ�s (juste le tableau)
      *
@@ -40,16 +40,16 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
     {
     	//recupere les infos
     	$product_id = Mage::app()->getRequest()->getParam('product_id');
-    	
+
     	//cree le block et le retourne
     	$this->loadLayout();	//Charge le layout pour appliquer le theme pour l'admin
     	$block = $this->getLayout()->createBlock('Purchase/Product_Edit_Tabs_AssociatedSuppliers', 'associatedsuppliers');
     	$block->setProductId($product_id);
     	$block->setTemplate('Purchase/Product/Edit/Tab/AssociatedSuppliers.phtml');
-    	
+
     	$this->getResponse()->setBody($block->toHtml());
     }
-    
+
     /**
      * Supprime l'association avec un supplier
      *
@@ -58,21 +58,21 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
     {
     	//recupere l'id
     	$pps_id = Mage::app()->getRequest()->getParam('pps_id');
-    	
+
     	//supprime
-		Mage::getModel('Purchase/ProductSupplier')    	
+		Mage::getModel('Purchase/ProductSupplier')
 			->load($pps_id)
 			->delete();
-			
+
     }
-        
+
     /**
      * Retourne en ajax les informations sur l'association entre un produit et un supplier
      *
      */
     public function GetSupplierInformationAction()
     {
-    	
+
     	//recupere l'objet
     	$object = mage::GetModel('Purchase/ProductSupplier')
     				->load($this->getRequest()->getParam('pps_id'));
@@ -85,7 +85,7 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
     	$this->getResponse()->setHeader('Content-type', 'application/x-json');
         $this->getResponse()->setBody($object->toJson());
     }
-        
+
     /**
      * Sauvegarde les informations sur un supplier associ� a un produit
      *
@@ -94,7 +94,7 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
     {
     	//recupere l'id
     	$pps_num = $this->getRequest()->getParam('pps_num');
-    	
+
     	//met a jour & save
     	$object = mage::getModel('Purchase/ProductSupplier')->load($pps_num);
     	$object->setpps_comments($this->getRequest()->getParam('pps_comments'));
@@ -115,7 +115,7 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
 
         $object->save();
     }
-           
+
     /**
      * Method for associated order ajax refresh
      *
@@ -129,7 +129,7 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
 		$Block->setProduct($product);
         $this->getResponse()->setBody($Block->toHtml());
     }
-    
+
     /**
      * Return product stock details to display in prototype window
      *
@@ -139,14 +139,14 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
     	//init vars
     	$productId = $this->getRequest()->getParam('product_id');
      	$product = mage::getModel('catalog/product')->load($productId);
-     	
+
      	//retrieve block hmlt output
      	$block = $this->getLayout()->createBlock('Purchase/Product_Widget_StockDetails');
      	$block->setTemplate('Purchase/Product/StockDetails.phtml');
      	$block->setProduct($product);
      	$html = $block->toHtml();
-     	
-     	//return html 
+
+     	//return html
      	$this->getResponse()->setBody($html);
     }
 
@@ -167,5 +167,9 @@ class MDN_Purchase_ProductsController extends Mage_Adminhtml_Controller_Action
 
      	//return html
      	$this->getResponse()->setBody($html);
+    }
+
+    protected function _isAllowed() {
+      return true;
     }
 }

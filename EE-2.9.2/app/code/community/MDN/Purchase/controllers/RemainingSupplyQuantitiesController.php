@@ -19,7 +19,7 @@ class MDN_Purchase_RemainingSupplyQuantitiesController extends Mage_Adminhtml_Co
     	$this->loadLayout();
         $this->renderLayout();
 	}
-	
+
 	public function exportCsvAction()
 	{
     	$fileName   = 'remaining_supply_quantities.csv';
@@ -27,5 +27,8 @@ class MDN_Purchase_RemainingSupplyQuantitiesController extends Mage_Adminhtml_Co
             ->getCsv();
 
         $this->_prepareDownloadResponse($fileName, $content);
+	}
+	protected function _isAllowed() {
+		return true;
 	}
 }

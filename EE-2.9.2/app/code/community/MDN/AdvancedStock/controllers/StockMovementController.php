@@ -8,7 +8,7 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 	 */
 	public function ProductStockMovementGridAction()
 	{
-		
+
     	$this->loadLayout();
      	$productId = $this->getRequest()->getParam('product_id');
      	$product = mage::getModel('catalog/product')->load($productId);
@@ -16,7 +16,7 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 		$Block->setProduct($product);
         $this->getResponse()->setBody($Block->toHtml());
 	}
-	
+
 	/**
 	 * Validation stock movement creation (check if qty are available)
 	 *
@@ -29,16 +29,16 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 		$targetWarehouse = $this->getRequest()->getPost('sm_target_stock');
 		$qty = $this->getRequest()->getPost('sm_qty');
 		$description = $this->getRequest()->getPost('sm_description');
-		
+
 		//check
 		$error = 0;
 		$message = '';
-		
-		try 
+
+		try
 		{
 			if ($description == '')
 				throw new Exception($this->__('Please fill description'));
-			
+
 			$model = mage::getModel('AdvancedStock/StockMovement');
 			$model->validateStockMovement($productId, $sourceWarehouse, $targetWarehouse, $qty);
 		}
@@ -48,14 +48,14 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 			$message = $ex->getMessage();
 		}
 
-   		//return ajax result 
+   		//return ajax result
    		$response = array();
    		$response['error'] = $error;
    		$response['message'] = $message;
    		$response = Zend_Json::encode($response);
         $this->getResponse()->setBody($response);
 	}
-	
+
 	/**
 	 * Create stock movement
 	 *
@@ -69,20 +69,20 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 		$qty = $this->getRequest()->getPost('sm_qty');
 		$description = $this->getRequest()->getPost('sm_description');
 		$type = $this->getRequest()->getPost('sm_type');
-		
+
 		//check
 		$error = 0;
 		$message = '';
-		
-		try 
+
+		try
 		{
 			$additionalData = array('sm_type' => $type);
 			$model = mage::getModel('AdvancedStock/StockMovement');
-			$model->createStockMovement($productId, 
-										$sourceWarehouse, 
-										$targetWarehouse, 
-										$qty, 
-										$description, 
+			$model->createStockMovement($productId,
+										$sourceWarehouse,
+										$targetWarehouse,
+										$qty,
+										$description,
 										$additionalData);
 		}
 		catch (Exception $ex)
@@ -91,15 +91,15 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 			$message = $ex->getMessage();
 		}
 
-		
-   		//return ajax result 
+
+   		//return ajax result
    		$response = array();
    		$response['error'] = $error;
    		$response['message'] = $message;
    		$response = Zend_Json::encode($response);
         $this->getResponse()->setBody($response);
 	}
-	
+
 	/**
 	 * Display all stock movements
 	 *
@@ -109,7 +109,7 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 		$this->loadLayout();
 		$this->renderLayout();
 	}
-	
+
 	/**
 	 * Delete stock movement
 	 *
@@ -119,9 +119,13 @@ class MDN_AdvancedStock_StockMovementController extends Mage_Adminhtml_Controlle
 		$smId = $this->getRequest()->getParam('sm_id');
 		$stockMovement = mage::getModel('AdvancedStock/StockMovement')->load($smId);
 		$stockMovement->delete();
-		
-		Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Stock Movement deleted')); 
-		$this->_redirect('AdvancedStock/StockMovement/Grid');		
 
+		Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Stock Movement deleted'));
+		$this->_redirect('AdvancedStock/StockMovement/Grid');
+
+	}
+
+	protected function _isAllowed() {
+		return true;
 	}
 }

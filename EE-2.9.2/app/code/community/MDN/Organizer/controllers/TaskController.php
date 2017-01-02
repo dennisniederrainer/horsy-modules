@@ -162,4 +162,7 @@ class MDN_Organizer_TaskController extends Mage_Adminhtml_Controller_Action {
         $Task->notifyTarget();
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

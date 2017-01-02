@@ -431,4 +431,7 @@ class MDN_Purchase_Adminhtml_Sales_Order_ShipmentController extends Mage_Adminht
         }
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

@@ -59,7 +59,7 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
 
                   //try to link
                   $ticket = Mage::getModel('CrmTicket/Email_EmailToTicket_TicketDefiner')->getTicket($result);
-                  
+
                   if($ticket){
                     Mage::helper('CrmTicket/String')->getVarDumpInString($ticket,'Linked to ticket :');
                   }
@@ -93,7 +93,7 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
 
 
     /**
-     * 
+     *
      */
     public function ConvertNewMailAction() {
         try
@@ -104,10 +104,10 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
         catch(Exception $ex)
         {
             Mage::getSingleton('adminhtml/session')->addError($this->__('%s', $ex->getMessage()));
-        }        
+        }
         $this->_redirect('CrmTicket/Admin_Email/Grid');
     }
-    
+
     /**
      * Mass action : associate mail to ticket
      */
@@ -120,7 +120,7 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
             $mail = Mage::getModel('CrmTicket/Email')->load($id);
             $ignoreSpam = true;
             $mail->convertToTicket($ignoreSpam);
-        }        
+        }
 
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Emails processed'));
         $this->_redirect('*/*/Grid');
@@ -136,7 +136,7 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
     }
 
     public function addToEmailSpamListAction(){
-        
+
         $request = $this->getRequest();
         $email = $request->getParam('email');
         $ticketId = $request->getParam('ticket_id');
@@ -145,9 +145,9 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
 
         $ticket = Mage::getModel('CrmTicket/Ticket')->load($ticketId);
         $ticket->close();
-        
+
         Mage::getSingleton('adminhtml/session')->addSuccess($email.' '.$this->__('marked as spam'));
-        
+
         //go back to the good place
         $referer = $request->getOriginalRequest()->getHeader('Referer');
         if ($referer && strpos($referer, '/Edit/') > 0) {
@@ -161,4 +161,7 @@ class MDN_CrmTicket_Admin_EmailController extends Mage_Adminhtml_Controller_Acti
 
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

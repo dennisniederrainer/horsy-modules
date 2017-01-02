@@ -4,7 +4,7 @@ class MDN_Orderpreparation_OnePagePreparationController extends Mage_Adminhtml_C
 
     /**
      * Main screen for processing order in order by order mode
-     * @return boolean 
+     * @return boolean
      */
     public function indexAction() {
 
@@ -143,7 +143,7 @@ class MDN_Orderpreparation_OnePagePreparationController extends Mage_Adminhtml_C
                 'error' => false
             );
         } catch (Exception $ex) {
-            //manage exception    		
+            //manage exception
             $response = array(
                 'error' => true,
                 'message' => $this->__($ex->getMessage())
@@ -161,7 +161,7 @@ class MDN_Orderpreparation_OnePagePreparationController extends Mage_Adminhtml_C
      * Create shipment & invoice for order
      */
     private function createInvoiceAndShipment($orderId) {
-        
+
         //retrieve data
         $order = mage::getModel('sales/order')->load($orderId);
 
@@ -346,4 +346,7 @@ class MDN_Orderpreparation_OnePagePreparationController extends Mage_Adminhtml_C
         $this->renderLayout();
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

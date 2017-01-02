@@ -44,7 +44,7 @@ class MDN_AdvancedStock_ProductsController extends Mage_Adminhtml_Controller_Act
         $Block->setProduct($product);
         $this->getResponse()->setBody($Block->toHtml());
     }
-    
+
     /**
      * Return all orders grid for one product
      *
@@ -270,6 +270,10 @@ class MDN_AdvancedStock_ProductsController extends Mage_Adminhtml_Controller_Act
         $Block = $this->getLayout()->createBlock('AdvancedStock/Product_Edit_Tabs_Serials');
         $Block->setProduct($product);
         $this->getResponse()->setBody($Block->toHtml());
+    }
+
+    protected function _isAllowed() {
+      return Mage::getSingleton('admin/session')->isAllowed('erp/products');
     }
 
 }

@@ -35,7 +35,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
 
         $this->renderLayout();
     }
-    
+
     public function SearchCreateAction()
     {
         $this->loadLayout();
@@ -45,7 +45,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
 
         $this->renderLayout();
     }
-    
+
 
     public function SearchCustomerAction()
     {
@@ -69,10 +69,10 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
                 ->setOrderId($orderId)
                 ->setMarketPlaceOrderId($marketPlaceOrderId)
                 ->setTemplate('CrmTicket/Ticket/SearchEngine/Orders.phtml');
-        
+
         $this->getResponse()->setBody($block->toHtml());
     }
-    
+
 
 
     /**
@@ -236,7 +236,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
         $newMessageData['ctm_content'] = $this->getRequest()->getPost('ctm_content');
 
         $isNewTicket = ($ticketId) ? false : true;
-        
+
         // load ticket
         $ticket = mage::getModel('CrmTicket/Ticket')->load($ticketId);
 
@@ -246,7 +246,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
             if (!$ticketData['ct_manager']) {
                 $ticketData['ct_manager'] = Mage::getSingleton('admin/session')->getUser()->getId();
             }
-            
+
             // save ticket datas
             foreach ($ticketData as $id => $value) {
                 $ticket->setData($id, $value);
@@ -353,7 +353,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
                 }
             }
         }
-        
+
         return $attachments;
     }
 
@@ -453,14 +453,14 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
                 foreach ($messages as $message) {
                     $message->delete();
                 }
-            
+
             //finally delete the ticket
             $ticket->delete();
             }
         }
         //confirm
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Ticket and messages deleted'));
-        
+
         //Redirect
         $this->_redirect('CrmTicket/Admin_Ticket/Grid');
     }
@@ -504,7 +504,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
         }
         $this->_redirect('CrmTicket/Admin_Ticket/Edit/ticket_id/', array('ticket_id' => $ticketId, 'customer_id' => $customerId));
     }
-    
+
      /**
      * Delete the attachement file selected
      *
@@ -710,7 +710,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
                 mage::helper('CrmTicket/Mail')->processAsSpam($spamAction, $ticketId);
                 continue;
             }
-            
+
             $ticket = Mage::getModel('CrmTicket/Ticket')->load($ticketId);
             if ($ticket) {
                 if ($categoryId>0) {
@@ -828,7 +828,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
         $this->_redirect('CrmTicket/Admin_Ticket/Edit/ticket_id/', array('ticket_id' => $ticketId));
     }
 
-    
+
     /**
      * Downlaod all new mails from all active mail boxes
      */
@@ -837,7 +837,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
         try {
             $count = mage::helper('CrmTicket/Mail')->getNewEmails(false); //get the count and not the message
         } catch (Exception $ex) {
-            
+
         }
         $this->getResponse()->setBody($count);
     }
@@ -848,7 +848,7 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
     public function MessageListAjaxAction() {
 
         $ticketId = $this->getRequest()->getParam('ticket_id');
-        
+
         $ticket = Mage::getModel('CrmTicket/Ticket')->load($ticketId);
 
         //$html = '';
@@ -863,6 +863,10 @@ class MDN_CrmTicket_Admin_TicketController extends Mage_Adminhtml_Controller_Act
         //}
 
         $this->getResponse()->setBody($html);
+    }
+
+    protected function _isAllowed() {
+      return true;
     }
 
 }

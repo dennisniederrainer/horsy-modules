@@ -14,6 +14,10 @@ class MDN_AdvancedStock_BarcodeController extends Mage_Adminhtml_Controller_Acti
             $this->_prepareDownloadResponse(mage::helper('purchase')->__('Barcode labels') . '.pdf', $pdf->render(), 'application/pdf');
 
 	}
-	
+
+	protected function _isAllowed() {
+		return true;
+	}
+
 
 }

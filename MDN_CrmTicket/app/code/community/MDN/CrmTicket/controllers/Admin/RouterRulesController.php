@@ -21,7 +21,7 @@ class MDN_CrmTicket_Admin_RouterRulesController extends Mage_Adminhtml_Controlle
         $this->getLayout()->getBlock('head')->setTitle($this->__('CRM router rules'));
         $this->renderLayout();
     }
-    
+
     /**
      *
      *
@@ -32,9 +32,9 @@ class MDN_CrmTicket_Admin_RouterRulesController extends Mage_Adminhtml_Controlle
         $this->getLayout()->getBlock('head')->setTitle($this->__('Edit a CRM router rule'));
         $this->renderLayout();
     }
-    
+
     /**
-     * 
+     *
      */
     public function SaveAction() {
 
@@ -43,7 +43,7 @@ class MDN_CrmTicket_Admin_RouterRulesController extends Mage_Adminhtml_Controlle
 
         // load
         $rule = mage::getModel('CrmTicket/RouterRules')->load($crrId);
-        foreach ($data as $key => $value) {           
+        foreach ($data as $key => $value) {
             $rule->setData($key, $value);
         }
         $rule->save();
@@ -66,9 +66,12 @@ class MDN_CrmTicket_Admin_RouterRulesController extends Mage_Adminhtml_Controlle
 
         //confirm
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Rule deleted'));
-        
+
         //Redirect
         $this->_redirect('*/*/Grid');
-    }    
-   
+    }
+
+    protected function _isAllowed() {
+      return true;
+    }
 }

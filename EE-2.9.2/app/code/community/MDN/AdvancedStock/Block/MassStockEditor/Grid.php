@@ -25,7 +25,7 @@ class MDN_AdvancedStock_Block_MassStockEditor_Grid extends Mage_Adminhtml_Block_
     }
 
     /**
-     * 
+     *
      *
      * @return unknown
      */
@@ -34,7 +34,7 @@ class MDN_AdvancedStock_Block_MassStockEditor_Grid extends Mage_Adminhtml_Block_
         $collection = mage::getModel('cataloginventory/stock_item')
                 ->getCollection()
                 ->join('catalog/product', 'product_id=`catalog/product`.entity_id')
-                ->addFieldToFilter('`catalog/product`.type_id', array('in' => array('simple', 'virtual')))
+                ->addFieldToFilter('catalog/product.type_id', array('in' => array('simple', 'virtual')))
                 ->join('AdvancedStock/CatalogProductVarchar', '`catalog/product`.entity_id=`AdvancedStock/CatalogProductVarchar`.entity_id and `AdvancedStock/CatalogProductVarchar`.store_id = 0 and `AdvancedStock/CatalogProductVarchar`.attribute_id = ' . mage::getModel('AdvancedStock/Constant')->GetProductNameAttributeId())
         ;
 
@@ -59,7 +59,7 @@ class MDN_AdvancedStock_Block_MassStockEditor_Grid extends Mage_Adminhtml_Block_
         $this->addColumn('sku', array(
             'header' => Mage::helper('AdvancedStock')->__('Sku'),
             'index' => 'sku',
-            'filter_index' => '`catalog/product`.sku'
+            'filter_index' => 'catalog/product.sku'
         ));
 
         $this->addColumn('name', array(
@@ -110,7 +110,7 @@ class MDN_AdvancedStock_Block_MassStockEditor_Grid extends Mage_Adminhtml_Block_
             'renderer' => 'MDN_AdvancedStock_Block_MassStockEditor_Widget_Grid_Column_Renderer_StockLocation',
             'align' => 'center'
         ));
-        
+
         //raise event to allow other modules to add columns
         Mage::dispatchEvent('advancedstock_masstockeditor_grid_preparecolumns', array('grid'=>$this));
 

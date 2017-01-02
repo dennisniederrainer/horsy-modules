@@ -182,4 +182,7 @@ class MDN_Scanner_InventoryController extends Mage_Adminhtml_Controller_Action {
         $this->getResponse()->setBody($response);
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

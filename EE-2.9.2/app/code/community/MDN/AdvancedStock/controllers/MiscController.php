@@ -10,9 +10,9 @@ class MDN_AdvancedStock_MiscController extends Mage_Adminhtml_Controller_Action 
         $this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
-     * Return mass stock editor grid using Ajax 
+     * Return mass stock editor grid using Ajax
      */
     public function MassStockEditorAjaxAction()
     {
@@ -26,7 +26,7 @@ class MDN_AdvancedStock_MiscController extends Mage_Adminhtml_Controller_Action 
      *
      */
     public function MassStockSaveAction() {
-        
+
         $datas = $this->getRequest()->getPost('mass_stock_editor_logs');
         $datas = $this->convertChangesData($datas);
 
@@ -39,22 +39,22 @@ class MDN_AdvancedStock_MiscController extends Mage_Adminhtml_Controller_Action 
             }
             $stockItem->save();
         }
-        
+
         //confirm & redirect
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Data saved'));
         $this->_redirect('AdvancedStock/Misc/MassStockEditor');
-        
+
     }
 
     /**
      * Convert data from persistant grid to array
-     * 
-     * @param type $data 
+     *
+     * @param type $data
      */
     protected function convertChangesData($flatDatas)
     {
         $datas = array();
-        
+
         $flatDatas = explode(';', $flatDatas);
         foreach($flatDatas as $flatData)
         {
@@ -65,16 +65,16 @@ class MDN_AdvancedStock_MiscController extends Mage_Adminhtml_Controller_Action 
             $lastUnderscore = strrpos($fields[0], '_');
             $fieldName = substr($fields[0], 0, $lastUnderscore);
             $pk = substr($fields[0], $lastUnderscore + 1);
-            
+
             if (!isset($datas[$pk]))
                 $datas[$pk] = array();
             $datas[$pk][$fieldName] = $value;
         }
-        
+
         return $datas;
     }
-    
-    
+
+
     /**
      * Mass action to validate payment
      *
@@ -213,4 +213,7 @@ class MDN_AdvancedStock_MiscController extends Mage_Adminhtml_Controller_Action 
         $this->renderLayout();
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

@@ -44,7 +44,7 @@
                 </entities>
             </newsletteradvanced_resource>
         </models>
-        <events>
+        <!-- <events>
             <customer_save_after>
                 <observers>
                     <Horsebrands_NewsletterAdvanced_observer>
@@ -54,7 +54,7 @@
                     </Horsebrands_NewsletterAdvanced_observer>
                 </observers>
             </customer_save_after>
-        </events>
+        </events> -->
 
         <resources>
             <newsletteradvanced_setup>
@@ -89,7 +89,7 @@
             </newsletter>
         </routers>
     </frontend>
-    <!-- <admin>
+    <admin>
       <routers>
         <adminhtml>
           <args>
@@ -99,7 +99,7 @@
           </args>
         </adminhtml>
       </routers>
-    </admin> -->
+    </admin>
     <adminhtml>
         <layout>
             <updates>

@@ -16,11 +16,11 @@
 class MDN_Purchase_SupplyNeedsController extends Mage_Adminhtml_Controller_Action {
 
     public function indexAction() {
-        
+
     }
 
     /**
-     * 
+     *
      *
      */
     public function StatsAction() {
@@ -33,11 +33,11 @@ class MDN_Purchase_SupplyNeedsController extends Mage_Adminhtml_Controller_Actio
      *
      */
     public function GridAction() {
-        
+
         //if manufacturer attribute is not set, display warning message
         if (!Mage::getStoreConfig('purchase/supplyneeds/manufacturer_attribute'))
             Mage::getSingleton('adminhtml/session')->addError($this->__('Manufacturer attribute is not set in system > configuration > purchase > supply needs, supply needs may not be displayed'));
-        
+
         $this->loadLayout();
 
         $warehouseId = $this->getRequest()->getParam('warehouse');
@@ -127,7 +127,7 @@ class MDN_Purchase_SupplyNeedsController extends Mage_Adminhtml_Controller_Actio
                 ->getCollection()
                 ->join('Purchase/ProductSupplier', 'pps_product_id=product_id')
                 ->addFieldToFilter('pps_supplier_num', $supplierId);
-        
+
         foreach ($supplyNeeds as $supplyNeed) {
             $qty = $supplyNeed->getData($mode);
             $productId = $supplyNeed->getproduct_id();
@@ -141,6 +141,10 @@ class MDN_Purchase_SupplyNeedsController extends Mage_Adminhtml_Controller_Actio
         //confirm and redirect to PO
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Order successfully Created'));
         $this->_redirect('Purchase/Orders/Edit', array('po_num' => $po->getId()));
+    }
+
+    protected function _isAllowed() {
+      return true;
     }
 
 }

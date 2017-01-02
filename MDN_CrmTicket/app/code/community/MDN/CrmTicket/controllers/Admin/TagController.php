@@ -68,7 +68,7 @@ class MDN_CrmTicket_Admin_TagController extends Mage_Adminhtml_Controller_Action
         $id = $this->getRequest()->getParam('ctg_id');
 
         $tag = mage::getModel('CrmTicket/Tag')->load($id);
-        
+
         if($tag->getId()>0){
             $tag->delete();
         }
@@ -80,7 +80,7 @@ class MDN_CrmTicket_Admin_TagController extends Mage_Adminhtml_Controller_Action
         $this->_redirect('CrmTicket/Admin_Tag/Grid');
     }
 
-   
+
     public function TicketTagAjaxAction() {
 
         $status = false;
@@ -109,7 +109,8 @@ class MDN_CrmTicket_Admin_TagController extends Mage_Adminhtml_Controller_Action
         echo $html;
     }
 
-
-   
+    protected function _isAllowed() {
+      return true;
+    }
 
 }

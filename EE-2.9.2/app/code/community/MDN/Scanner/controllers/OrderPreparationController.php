@@ -23,4 +23,8 @@ class MDN_Scanner_OrderPreparationController extends Mage_Adminhtml_Controller_A
 		$this->loadLayout();
 		$this->renderLayout();
 	}
+
+	protected function _isAllowed() {
+    return true;
+  }
 }

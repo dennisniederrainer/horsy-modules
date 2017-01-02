@@ -15,6 +15,7 @@ class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Ac
             ->getBlock('aktionen');
 
 		$this->_initLayoutMessages('customer/session');
+		$this->_initLayoutMessages('core/session');
 
     $this->renderLayout();
   }
@@ -34,6 +35,12 @@ class Horsebrands_Aktionen_IndexController extends Mage_Core_Controller_Front_Ac
 	}
 
 	public function loginAction() {
+
+		if(Mage::getSingleton('customer/session')->isLoggedIn()) {
+			$this->_redirect('aktionen');
+			return;
+		}
+
 		$this->loadLayout();
 		$this->renderLayout();
 	}

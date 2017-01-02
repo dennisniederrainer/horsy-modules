@@ -34,7 +34,7 @@ class MDN_CrmTicket_Admin_StatusController extends Mage_Adminhtml_Controller_Act
     }
 
     /**
-     * 
+     *
      */
     public function SaveAction() {
 
@@ -69,9 +69,12 @@ class MDN_CrmTicket_Admin_StatusController extends Mage_Adminhtml_Controller_Act
 
         //confirm
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Status deleted'));
-        
+
         //Redirect
         $this->_redirect('CrmTicket/Admin_Status/Grid');
-    }    
-    
+    }
+
+    protected function _isAllowed() {
+      return true;
+    }
 }

@@ -38,15 +38,15 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
         $this->getLayout()->getBlock('head')->setTitle($this->__('Edit CRM category N.'.$categoryId));
         $this->renderLayout();
     }
-    
+
     /**
      * version for Tree edition
      */
     public function EditCategoryAction() {
-       
+
         $categoryId = $this->getRequest()->getParam('category_id');
-        Mage::register('ctc_id', $categoryId); 
-               
+        Mage::register('ctc_id', $categoryId);
+
         $html = $this->getLayout()->createBlock('CrmTicket/Admin_Category_Edit')->setTemplate('CrmTicket/Category/Edit/Tab/Category.phtml')->toHtml();
 
         $this->getResponse()->setBody($html);
@@ -75,11 +75,11 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
 
         if ($data['ctc_reply_delay'] == '')
             $data['ctc_reply_delay'] = new Zend_Db_Expr('null');
-        
+
         // load category
         $category = mage::getModel('CrmTicket/Category')->load($categoryId);
 
-        //save category translation        
+        //save category translation
         $ctc_name_translation_by_store_array  = array();
         $translationField = 'ctc_name_translation_by_store';
         foreach ($data as $key => $value) {
@@ -105,7 +105,7 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
         }
 
         $category->save();
-        
+
 
         //confirm
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Data saved'));
@@ -134,12 +134,12 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
         //confirm
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Category deleted'));
 
-        //Redirect        
+        //Redirect
         $this->_redirect('CrmTicket/Admin_Category/Tree');
     }
 
     /**
-     * link to the form of the new category 
+     * link to the form of the new category
      */
     public function NewCategoryAction() {
         $this->loadLayout();
@@ -149,10 +149,10 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
     }
 
     /**
-     * save new category 
+     * save new category
      */
     public function CreateNewCategoryAction() {
-   
+
         // get data
         $data = $this->getRequest()->getPost('category');
 
@@ -176,7 +176,7 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
         //Redirect
         $this->_redirect('CrmTicket/Admin_Category/Tree');
     }
-    
+
     /**
      * Test connection to SMTP
      */
@@ -191,9 +191,12 @@ class MDN_CrmTicket_Admin_CategoryController extends Mage_Adminhtml_Controller_A
         {
             Mage::getSingleton('adminhtml/session')->addSuccess($this->__('An error occured : %s', $ex->getMessage()));
         }
-        
+
         //Redirect
         $this->_redirect('CrmTicket/Admin_Category/Edit', array('category_id' => $categoryId));
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

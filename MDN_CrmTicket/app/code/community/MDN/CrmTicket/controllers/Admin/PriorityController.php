@@ -34,9 +34,9 @@ class MDN_CrmTicket_Admin_PriorityController extends Mage_Adminhtml_Controller_A
         $this->getLayout()->getBlock('head')->setTitle($this->__('Edit CRM priority N.'.$priorityyId));
         $this->renderLayout();
     }
-    
+
     /**
-     * 
+     *
      */
     public function SaveAction() {
 
@@ -89,7 +89,7 @@ class MDN_CrmTicket_Admin_PriorityController extends Mage_Adminhtml_Controller_A
               $ticket->setct_priority(0);
               $ticket->save();
             }
-            
+
             $success = true;
           }
         }
@@ -103,6 +103,8 @@ class MDN_CrmTicket_Admin_PriorityController extends Mage_Adminhtml_Controller_A
         //Redirect
         $this->_redirect('*/*/Grid');
     }
-    
-    
+
+    protected function _isAllowed() {
+      return true;
+    }
 }

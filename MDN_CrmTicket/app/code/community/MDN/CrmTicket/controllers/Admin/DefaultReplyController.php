@@ -30,7 +30,7 @@ class MDN_CrmTicket_Admin_DefaultReplyController extends Mage_Adminhtml_Controll
      */
     public function EditAction() {
         $this->loadLayout();
-        
+
         $cdrId = $this->getRequest()->getParam('cdr_id');
 
         Mage::register('cdr_id', $cdrId);
@@ -44,7 +44,7 @@ class MDN_CrmTicket_Admin_DefaultReplyController extends Mage_Adminhtml_Controll
 
         $this->renderLayout();
     }
-    
+
     /**
      * Save default reply
      */
@@ -54,8 +54,8 @@ class MDN_CrmTicket_Admin_DefaultReplyController extends Mage_Adminhtml_Controll
         $data = $this->getRequest()->getPost('data');
         $cdrId = $data['cdr_id'];
         unset($data['cdr_id']);
-        
-        
+
+
         //save
         $defaultReply = Mage::getModel('CrmTicket/DefaultReply')->load($cdrId);
         foreach($data as $k => $v)
@@ -63,7 +63,7 @@ class MDN_CrmTicket_Admin_DefaultReplyController extends Mage_Adminhtml_Controll
             $defaultReply->setData($k, $v);
         }
         $defaultReply->save();
-        
+
         //confirm & redirect
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Data saved'));
         $this->_redirect('CrmTicket/Admin_DefaultReply/Edit', array('cdr_id' => $defaultReply->getId()));
@@ -90,4 +90,7 @@ class MDN_CrmTicket_Admin_DefaultReplyController extends Mage_Adminhtml_Controll
         $this->_redirect('CrmTicket/Admin_DefaultReply/Grid');
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }
