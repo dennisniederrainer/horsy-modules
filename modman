@@ -50,7 +50,6 @@ DHL-Intraship/js/dhl   /js/dhl
 DHL-Intraship/lib/fpdf   /lib/fpdf
 DHL-Intraship/doc/Dhl_Intraship    /doc/Dhl_Intraship
 
-
 EE-2.9.2/app/code/community/MDN/AdvancedStock/    app/code/community/MDN/AdvancedStock/
 EE-2.9.2/app/code/community/MDN/BackgroundTask/    app/code/community/MDN/BackgroundTask/
 EE-2.9.2/app/code/community/MDN/Orderpreparation/    app/code/community/MDN/Orderpreparation/
@@ -227,88 +226,6 @@ DHL-Intraship/skin/frontend/enterprise/default/css/dhl_account.css  /skin/fronte
 DHL-Intraship/js/dhl   /js/dhl
 DHL-Intraship/lib/fpdf   /lib/fpdf
 DHL-Intraship/doc/Dhl_Intraship    /doc/Dhl_Intraship
-
-
-EE-2.9.2/app/code/community/MDN/AdvancedStock/    app/code/community/MDN/AdvancedStock/
-EE-2.9.2/app/code/community/MDN/BackgroundTask/    app/code/community/MDN/BackgroundTask/
-EE-2.9.2/app/code/community/MDN/Orderpreparation/    app/code/community/MDN/Orderpreparation/
-EE-2.9.2/app/code/community/MDN/Organizer/    app/code/community/MDN/Organizer/
-EE-2.9.2/app/code/community/MDN/Purchase/    app/code/community/MDN/Purchase/
-EE-2.9.2/app/code/community/MDN/SalesOrderPlanning/    app/code/community/MDN/SalesOrderPlanning/
-EE-2.9.2/app/code/community/MDN/Scanner/    app/code/community/MDN/Scanner/
-
-EE-2.9.2/app/design/adminhtml/default/default/layout/AdvancedStock.xml   app/design/adminhtml/default/default/layout/AdvancedStock.xml
-EE-2.9.2/app/design/adminhtml/default/default/layout/BackgroundTask.xml   app/design/adminhtml/default/default/layout/BackgroundTask.xml
-EE-2.9.2/app/design/adminhtml/default/default/layout/orderpreparation.xml   app/design/adminhtml/default/default/layout/orderpreparation.xml
-EE-2.9.2/app/design/adminhtml/default/default/layout/organizer.xml   app/design/adminhtml/default/default/layout/organizer.xml
-EE-2.9.2/app/design/adminhtml/default/default/layout/purchase.xml   app/design/adminhtml/default/default/layout/purchase.xml
-EE-2.9.2/app/design/adminhtml/default/default/layout/SalesOrderPlanning.xml   app/design/adminhtml/default/default/layout/SalesOrderPlanning.xml
-EE-2.9.2/app/design/adminhtml/default/default/layout/Scanner.xml   app/design/adminhtml/default/default/layout/Scanner.xml
-
-EE-2.9.2/app/design/adminhtml/default/default/template/AdvancedStock/   app/design/adminhtml/default/default/template/AdvancedStock/
-EE-2.9.2/app/design/adminhtml/default/default/template/BackgroundTask/   app/design/adminhtml/default/default/template/BackgroundTask/
-EE-2.9.2/app/design/adminhtml/default/default/template/Orderpreparation/   app/design/adminhtml/default/default/template/Orderpreparation/
-EE-2.9.2/app/design/adminhtml/default/default/template/Organizer/   app/design/adminhtml/default/default/template/Organizer/
-EE-2.9.2/app/design/adminhtml/default/default/template/page/popup.phtml   app/design/adminhtml/default/default/template/page/popup.phtml
-EE-2.9.2/app/design/adminhtml/default/default/template/Purchase/   app/design/adminhtml/default/default/template/Purchase/
-EE-2.9.2/app/design/adminhtml/default/default/template/sales/order/view/tab/Margins.phtml   app/design/adminhtml/default/default/template/sales/order/view/tab/Margins.phtml
-EE-2.9.2/app/design/adminhtml/default/default/template/sales/order/view/tab/Payment.phtml   app/design/adminhtml/default/default/template/sales/order/view/tab/Payment.phtml
-EE-2.9.2/app/design/adminhtml/default/default/template/sales/order/view/tab/Planning.phtml   app/design/adminhtml/default/default/template/sales/order/view/tab/Planning.phtml
-EE-2.9.2/app/design/adminhtml/default/default/template/sales/order/view/tab/Preparation.phtml   app/design/adminhtml/default/default/template/sales/order/view/tab/Preparation.phtml
-EE-2.9.2/app/design/adminhtml/default/default/template/SalesOrderPlanning/   app/design/adminhtml/default/default/template/SalesOrderPlanning/
-EE-2.9.2/app/design/adminhtml/default/default/template/Scanner/   app/design/adminhtml/default/default/template/Scanner/
-
-EE-2.9.2/app/design/frontend/default/default/layout/AdvancedStock.xml   app/design/frontend/default/default/layout/AdvancedStock.xml
-EE-2.9.2/app/design/frontend/default/default/layout/SalesOrderPlanning.xml   app/design/frontend/default/default/layout/SalesOrderPlanning.xml
-
-EE-2.9.2/app/design/frontend/default/default/template/catalog/product/view/type/options/configurable.phtml   app/design/frontend/default/default/template/catalog/product/view/type/options/configurable.phtml
-EE-2.9.2/app/design/frontend/default/default/template/catalog/product/view/type/configurable.phtml    app/design/frontend/default/default/template/catalog/product/view/type/configurable.phtml
-EE-2.9.2/app/design/frontend/default/default/template/catalog/product/view/type/default.phtml   app/design/frontend/default/default/template/catalog/product/view/type/default.phtml
-EE-2.9.2/app/design/frontend/default/default/template/catalog/product/view/type/simple.phtml    app/design/frontend/default/default/template/catalog/product/view/type/simple.phtml
-
-EE-2.9.2/app/design/frontend/default/default/template/checkout/planning.phtml   app/design/frontend/default/default/template/checkout/planning.phtml
-EE-2.9.2/app/design/frontend/default/default/template/sales/order/planning.phtml   app/design/frontend/default/default/template/sales/order/planning.phtml
-
-EE-2.9.2/app/etc/modules/MDN_AdvancedStock.xml    app/etc/modules/MDN_AdvancedStock.xml
-EE-2.9.2/app/etc/modules/MDN_BackgroundTask.xml   app/etc/modules/MDN_BackgroundTask.xml
-EE-2.9.2/app/etc/modules/MDN_ExternalLogistic.xml   app/etc/modules/MDN_ExternalLogistic.xml
-EE-2.9.2/app/etc/modules/MDN_Orderpreparation.xml   app/etc/modules/MDN_Orderpreparation.xml
-EE-2.9.2/app/etc/modules/MDN_Organizer.xml      app/etc/modules/MDN_Organizer.xml
-EE-2.9.2/app/etc/modules/MDN_Purchase.xml     app/etc/modules/MDN_Purchase.xml
-EE-2.9.2/app/etc/modules/MDN_SalesOrderPlanning.xml   app/etc/modules/MDN_SalesOrderPlanning.xml
-EE-2.9.2/app/etc/modules/MDN_Scanner.xml    app/etc/modules/MDN_Scanner.xml
-
-EE-2.9.2/app/locale/de_DE/MDN_AdvancedStock.csv   app/locale/de_DE/MDN_AdvancedStock.csv
-EE-2.9.2/app/locale/de_DE/MDN_BackgoundTask.csv   app/locale/de_DE/MDN_BackgoundTask.csv
-EE-2.9.2/app/locale/de_DE/MDN_BackgroundTask.csv    app/locale/de_DE/MDN_BackgroundTask.csv
-EE-2.9.2/app/locale/de_DE/MDN_ClientComputer.csv    app/locale/de_DE/MDN_ClientComputer.csv
-EE-2.9.2/app/locale/de_DE/MDN_ExternalLogistic.csv    app/locale/de_DE/MDN_ExternalLogistic.csv
-EE-2.9.2/app/locale/de_DE/MDN_Orderpreparation.csv    app/locale/de_DE/MDN_Orderpreparation.csv
-EE-2.9.2/app/locale/de_DE/MDN_Organizer.csv   app/locale/de_DE/MDN_Organizer.csv
-EE-2.9.2/app/locale/de_DE/MDN_Purchase.csv    app/locale/de_DE/MDN_Purchase.csv
-EE-2.9.2/app/locale/de_DE/MDN_SalesOrderPlanning.csv    app/locale/de_DE/MDN_SalesOrderPlanning.csv
-
-EE-2.9.2/app/locale/en_US/template/email/Organizer/Notification.html    app/locale/en_US/template/email/Organizer/Notification.html
-EE-2.9.2/app/locale/en_US/template/email/Purchase/PurchaseOrder/NotifySupplier.html   app/locale/en_US/template/email/Purchase/PurchaseOrder/NotifySupplier.html
-EE-2.9.2/app/locale/en_US/template/email/external_logistic_empty.html   app/locale/en_US/template/email/external_logistic_empty.html
-EE-2.9.2/app/locale/en_US/MDN_Purchase.csv    app/locale/en_US/MDN_Purchase.csv
-
-EE-2.9.2/carrier_templates/   carrier_templates/
-EE-2.9.2/js/mdn/   js/mdn
-EE-2.9.2/scripts/   scripts/
-
-EE-2.9.2/skin/adminhtml/default/default/css/OrderPreparation.css    skin/adminhtml/default/default/css/OrderPreparation.css
-EE-2.9.2/skin/adminhtml/default/default/css/organizer.css   skin/adminhtml/default/default/css/organizer.css
-EE-2.9.2/skin/adminhtml/default/default/css/Purchase.css    skin/adminhtml/default/default/css/Purchase.css
-EE-2.9.2/skin/adminhtml/default/default/css/Touch.css   skin/adminhtml/default/default/css/Touch.css
-EE-2.9.2/skin/adminhtml/default/default/images/orderpreparation/    skin/adminhtml/default/default/images/orderpreparation/
-EE-2.9.2/skin/adminhtml/default/default/images/Organizer/   skin/adminhtml/default/default/images/Organizer/
-EE-2.9.2/skin/adminhtml/default/default/images/planning/    skin/adminhtml/default/default/images/planning/
-EE-2.9.2/skin/adminhtml/default/default/images/purchase/    skin/adminhtml/default/default/images/purchase/
-EE-2.9.2/skin/adminhtml/default/default/images/scanner/   skin/adminhtml/default/default/images/scanner/
-EE-2.9.2/skin/adminhtml/default/default/images/wizard.png   skin/adminhtml/default/default/images/wizard.png
-
-EE-2.9.2/skin/frontend/default/default/images/planning/   skin/frontend/default/default/images/planning/
 
 Fishpigs_Attribute_Splash_Page/app/code/community/Fishpig/AttributeSplash                         app/code/community/Fishpig/AttributeSplash
 Fishpigs_Attribute_Splash_Page/app/design/adminhtml/default/default/layout/attribute-splash.xml   app/design/adminhtml/default/default/layout/attribute-splash.xml
