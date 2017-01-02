@@ -93,9 +93,6 @@ class Horsebrands_ProductReturn_Helper_CreateCreditmemo extends MDN_ProductRetur
 
             $creditmemo->setShippingAmount($refundAmountInclTax);
             $creditmemo->setBaseShippingAmount($refundAmountInclTax);
-
-            Mage::log('ist: '.$creditmemo->getShippingAmount(), null, 'createcreditmemo.log');
-            Mage::log('ist base: '.$creditmemo->setBaseShippingAmount(), null, 'createcreditmemo.log');
         } else {
             $creditmemo->setBaseShippingAmount(0.00);
         }
