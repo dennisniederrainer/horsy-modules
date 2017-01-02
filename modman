@@ -116,7 +116,30 @@ EE-2.9.2/app/locale/en_US/template/email/external_logistic_empty.html   app/loca
 EE-2.9.2/app/locale/en_US/MDN_Purchase.csv    app/locale/en_US/MDN_Purchase.csv
 
 EE-2.9.2/carrier_templates/   carrier_templates/
-EE-2.9.2/js/mdn/   js/mdn
+
+EE-2.9.2/js/mdn/AdvancedStock/Inventory.js            js/mdn/AdvancedStock/Inventory.js
+EE-2.9.2/js/mdn/AdvancedStockProduct.js            js/mdn/AdvancedStockProduct.js
+EE-2.9.2/js/mdn/configurableProductAvailability.js            js/mdn/configurableProductAvailability.js
+EE-2.9.2/js/mdn/onePagePreparation.js            js/mdn/onePagePreparation.js
+EE-2.9.2/js/mdn/OrderPreparation/Packing.js            js/mdn/OrderPreparation/Packing.js
+EE-2.9.2/js/mdn/orderPreparation.js            js/mdn/orderPreparation.js
+EE-2.9.2/js/mdn/organizer.js            js/mdn/organizer.js
+EE-2.9.2/js/mdn/packaging.js            js/mdn/packaging.js
+EE-2.9.2/js/mdn/persistantGridControl.js            js/mdn/persistantGridControl.js
+EE-2.9.2/js/mdn/PoWizard.js            js/mdn/PoWizard.js
+EE-2.9.2/js/mdn/product.js            js/mdn/product.js
+EE-2.9.2/js/mdn/productStockWindow.js            js/mdn/productStockWindow.js
+EE-2.9.2/js/mdn/PurchaseOrder/ScannerDelivery.js            js/mdn/PurchaseOrder/ScannerDelivery.js
+EE-2.9.2/js/mdn/purchaseOrder.js            js/mdn/purchaseOrder.js
+EE-2.9.2/js/mdn/purchaseProduct.js            js/mdn/purchaseProduct.js
+EE-2.9.2/js/mdn/scanner.css            js/mdn/scanner.css
+EE-2.9.2/js/mdn/Scanner.js            js/mdn/Scanner.js
+EE-2.9.2/js/mdn/ScannerReader.js            js/mdn/ScannerReader.js
+EE-2.9.2/js/mdn/StockDetails.css            js/mdn/StockDetails.css
+EE-2.9.2/js/mdn/StockMovement.js            js/mdn/StockMovement.js
+EE-2.9.2/js/mdn/SupplyNeeds.js            js/mdn/SupplyNeeds.js
+EE-2.9.2/js/mdn/Transfer/AddProducts.js            js/mdn/Transfer/AddProducts.js
+
 EE-2.9.2/scripts/   scripts/
 
 EE-2.9.2/skin/adminhtml/default/default/css/OrderPreparation.css    skin/adminhtml/default/default/css/OrderPreparation.css
@@ -380,4 +403,4 @@ snm-portal-pdf-print/lib/snm/tcpdf                                              
 snm-portal-pdf-print/app/code/community/AuIt/Pdf                                                app/code/community/AuIt/Pdf
 snm-portal-pdf-print/app/design/frontend/base/default/layout/auit_pdf.xml                       app/design/frontend/base/default/layout/auit_pdf.xml
 snm-portal-pdf-print/media/snm-portal/sales/pdf/stores/default/template_shipment.pdf            media/snm-portal/sales/pdf/stores/default/template_shipment.pdf
-snm-portal-pdf-print/media/snm-portal/sales/pdf/test.jpg                                        media/snm-portal/sales/pdf/test.jpg                              
+snm-portal-pdf-print/media/snm-portal/sales/pdf/test.jpg                                        media/snm-portal/sales/pdf/test.jpg
