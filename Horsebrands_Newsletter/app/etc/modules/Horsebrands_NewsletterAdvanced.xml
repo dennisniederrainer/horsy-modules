@@ -4,6 +4,7 @@
     <Horsebrands_NewsletterAdvanced>
       <active>true</active>
       <codePool>local</codePool>
+      <depends>Conlabz_CrConnect</depends>
     </Horsebrands_NewsletterAdvanced>
   </modules>
 </config>

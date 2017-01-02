@@ -46,7 +46,7 @@ class MDN_CrmTicket_Admin_EmailRouterRulesController extends Mage_Adminhtml_Cont
         $this->_redirect('*/*/Grid');
     }
 
-  
+
     public function EditAction() {
         $ceaId = $this->getRequest()->getParam('cerr_id');
 
@@ -74,7 +74,7 @@ class MDN_CrmTicket_Admin_EmailRouterRulesController extends Mage_Adminhtml_Cont
         foreach ($data as $k => $v) {
             $rule->setData($k, trim($v));
         }
-     
+
         $rule->save();
 
         //confirm & redirect
@@ -87,7 +87,7 @@ class MDN_CrmTicket_Admin_EmailRouterRulesController extends Mage_Adminhtml_Cont
      */
     public function CreateNewRuleAction() {
         $data = $this->getRequest()->getPost('rule');
-        
+
         //save
         $rule = Mage::getModel('CrmTicket/EmailRouterRules');
         foreach ($data as $k => $v) {
@@ -101,5 +101,7 @@ class MDN_CrmTicket_Admin_EmailRouterRulesController extends Mage_Adminhtml_Cont
         $this->_redirect('CrmTicket/Admin_EmailRouterRules/Edit', array('cerr_id' => $rule->getId()));
     }
 
-
+    protected function _isAllowed() {
+      return true;
+    }
 }

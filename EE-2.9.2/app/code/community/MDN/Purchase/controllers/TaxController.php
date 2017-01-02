@@ -20,21 +20,21 @@ class MDN_Purchase_TaxController extends Mage_Adminhtml_Controller_Action
     	$this->loadLayout();
         $this->renderLayout();
 	}
-	
+
 	//Liste des taux de tax
 	public function EditAction()
 	{
     	$this->loadLayout();
         $this->renderLayout();
 	}
-	
+
 	//Nouveau taux de tax
 	public function NewAction()
 	{
     	$this->loadLayout();
         $this->renderLayout();
 	}
-	
+
 	/**
 	 * Cree un nouveau taux
 	 *
@@ -46,17 +46,17 @@ class MDN_Purchase_TaxController extends Mage_Adminhtml_Controller_Action
 		$TaxRate = $model->setptr_name($this->getRequest()->getPost('ptr_name'))
 						->setptr_value($this->getRequest()->getPost('ptr_value'))
 						->save();
-				
-		    	
+
+
     	//confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Data saved'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('Purchase/Tax/Edit/ptr_id/'.$TaxRate->getId());
 	}
-	
+
 	/**
-	 * Enregistre les données modifiées
+	 * Enregistre les donnï¿½es modifiï¿½es
 	 *
 	 */
 	public function SaveAction()
@@ -68,17 +68,17 @@ class MDN_Purchase_TaxController extends Mage_Adminhtml_Controller_Action
 		$TaxRate->setptr_name($this->getRequest()->getPost('ptr_name'))
 				->setptr_value($this->getRequest()->getPost('ptr_value'))
 				->save();
-				
-		    	
+
+
     	//confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Data saved'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('Purchase/Tax/Edit/ptr_id/'.$TaxRate->getId());
 	}
-	
+
 	/**
-	 * Enregistre les données modifiées
+	 * Enregistre les donnï¿½es modifiï¿½es
 	 *
 	 */
 	public function DeleteAction()
@@ -87,12 +87,16 @@ class MDN_Purchase_TaxController extends Mage_Adminhtml_Controller_Action
 
         $model = Mage::getModel('Purchase/TaxRates');
 		$TaxRate = $model->load($ptr_id)->delete();
-		    	
+
     	//confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Tax Rate deleted'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('Purchase/Tax/List');
 	}
-	
+
+	protected function _isAllowed() {
+		return true;
+	}
+
 }

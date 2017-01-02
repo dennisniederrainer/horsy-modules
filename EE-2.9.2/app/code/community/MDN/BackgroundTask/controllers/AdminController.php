@@ -162,4 +162,7 @@ class MDN_BackgroundTask_AdminController extends Mage_Adminhtml_Controller_Actio
         $this->_redirect('BackgroundTask/Admin/Grid');
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

@@ -17,11 +17,11 @@
 class MDN_Purchase_SuppliersController extends Mage_Adminhtml_Controller_Action {
 
     public function indexAction() {
-        
+
     }
 
     /**
-     * 
+     *
      *
      */
     public function ListAction() {
@@ -30,7 +30,7 @@ class MDN_Purchase_SuppliersController extends Mage_Adminhtml_Controller_Action 
     }
 
     /**
-     *  
+     *
      *
      */
     public function NewAction() {
@@ -39,7 +39,7 @@ class MDN_Purchase_SuppliersController extends Mage_Adminhtml_Controller_Action 
     }
 
     /**
-     * 
+     *
      *
      */
     public function CreateAction() {
@@ -109,7 +109,7 @@ class MDN_Purchase_SuppliersController extends Mage_Adminhtml_Controller_Action 
     }
 
     /**
-     * 
+     *
      */
     public function SynchronizeWithManufacturersAction() {
         try {
@@ -122,7 +122,7 @@ class MDN_Purchase_SuppliersController extends Mage_Adminhtml_Controller_Action 
     }
 
     /**
-     * Delete a supplier 
+     * Delete a supplier
      */
     public function deleteAction() {
         $supId = $this->getRequest()->getParam('sup_id');
@@ -140,12 +140,15 @@ class MDN_Purchase_SuppliersController extends Mage_Adminhtml_Controller_Action 
             //confirm & redirect
             Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Supplier deleted'));
             $this->_redirect('*/*/List');
-            
+
         } catch (Exception $ex) {
             Mage::getSingleton('adminhtml/session')->addError($this->__('An error occured : %s', $ex->getMessage()));
             $this->_redirect('*/*/Edit', array('sup_id' => $supplier->getId()));
         }
-        
+
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

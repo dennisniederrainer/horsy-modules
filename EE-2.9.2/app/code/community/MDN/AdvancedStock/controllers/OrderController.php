@@ -14,7 +14,11 @@ class MDN_AdvancedStock_OrderController extends Mage_Adminhtml_Controller_Action
         //confirm & redirect
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Order validity updated'));
         $this->_redirect('adminhtml/sales_order/view', array('order_id' => $orderId));
-        
+
+    }
+
+    protected function _isAllowed() {
+      return true;
     }
 
 }

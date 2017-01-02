@@ -30,7 +30,7 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
     	$this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
      * Nouveau manufacturer
      *
@@ -40,14 +40,14 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
     	$this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
      * Creation d'un manufacturer
      *
      */
     public function CreateAction()
     {
-    	//Charge les données
+    	//Charge les donnï¿½es
     	$Manufacturer = mage::getModel('Purchase/Manufacturer');
     	$Manufacturer->setman_name($this->getRequest()->getParam('man_name'));
     	$Manufacturer->setman_contact($this->getRequest()->getParam('man_contact'));
@@ -61,18 +61,18 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
     	$Manufacturer->setman_email($this->getRequest()->getParam('man_email'));
     	$Manufacturer->setman_website($this->getRequest()->getParam('man_website'));
     	$Manufacturer->setman_comments($this->getRequest()->getParam('man_comments'));
-    	
+
     	//Cree
     	$Manufacturer->save();
-    	
+
     	//confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Manufacturer Created'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('Purchase/Manufacturers/Edit/man_id/'.$Manufacturer->getId());
-    	
+
     }
-    
+
     /**
 	 * Edition d'un manufacturer
 	 *
@@ -80,13 +80,13 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
 	public function EditAction()
     {
     	$this->loadLayout();
-    	
+
     	$this->getLayout()->getBlock('contacts')->setEntityType('manufacturer');
     	$this->getLayout()->getBlock('contacts')->setEntityId(Mage::app()->getRequest()->getParam('man_id'));
-    	    	
+
         $this->renderLayout();
     }
-    
+
     public function DeleteAction()
     {
     	$manId = $this->getRequest()->getParam('man_id');
@@ -97,7 +97,7 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Manufacturer deleted'));
     	$this->_redirect('Purchase/Manufacturers/List');
     }
-    
+
     /**
      * Enregistre les modifs faite sur le manufacturer
      *
@@ -106,7 +106,7 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
     {
     	//Charge le manufacturer
     	$Manufacturer = Mage::getModel('Purchase/Manufacturer')->load($this->getRequest()->getParam('man_id'));
-    	
+
     	//Enregistre les modifs
     	$Manufacturer->setman_name($this->getRequest()->getParam('man_name'));
     	$Manufacturer->setman_contact($this->getRequest()->getParam('man_contact'));
@@ -121,8 +121,8 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
     	$Manufacturer->setman_website($this->getRequest()->getParam('man_website'));
     	$Manufacturer->setman_comments($this->getRequest()->getParam('man_comments'));
     	$Manufacturer->setman_attribute_option_id($this->getRequest()->getParam('man_attribute_option_id'));
-    	
-    	//Si on doit créer le manufacturer magento
+
+    	//Si on doit crï¿½er le manufacturer magento
     	if ($this->getRequest()->getParam('create_magento_manufacturer') == '1')
     	{
     		//cree l'option
@@ -130,40 +130,43 @@ class MDN_Purchase_ManufacturersController extends Mage_Adminhtml_Controller_Act
 			$option['value'][0][0] = $Manufacturer->getman_name();
 			$setup = new Mage_Eav_Model_Entity_Setup('core_setup');
 			$setup->addAttributeOption($option);
-			
+
 			//recupere son id
 			$OptionId = null;
 			$sql = "
-				SELECT 
+				SELECT
 					".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option_value.option_id id, ".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option_value.value name
-				from 
+				from
 					".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option,
 					".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option_value
-				where 
+				where
 					".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option.attribute_id = ".mage::getModel('Purchase/Constant')->GetProductManufacturerAttributeId()."
-					and ".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option.option_id = ".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option_value.option_id 
+					and ".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option.option_id = ".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option_value.option_id
 					order by ".mage::getModel('Purchase/Constant')->getTablePrefix()."eav_attribute_option_value.value
 				";
-							
+
 			//execute la requete
-			$data = mage::getResourceModel('sales/order_item_collection')->getConnection()->fetchAll($sql);	
+			$data = mage::getResourceModel('sales/order_item_collection')->getConnection()->fetchAll($sql);
 			for ($i=0;$i<count($data);$i++)
 			{
 				if ($data[$i]['name'] == $Manufacturer->getman_name())
 					$OptionId = $data[$i]['id'];
 			}
-			
+
 			//l'associe
 			$Manufacturer->setman_attribute_option_id($OptionId);
     	}
-    	
+
     	$Manufacturer->save();
-    	
+
     	//confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Manufacturer Saved'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('Purchase/Manufacturers/Edit/man_id/'.$Manufacturer->getId());
-    	
+
+    }
+		protected function _isAllowed() {
+      return true;
     }
 }

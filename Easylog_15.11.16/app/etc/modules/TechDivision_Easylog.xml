@@ -20,7 +20,7 @@
 <config>
     <modules>
         <TechDivision_Easylog>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
         </TechDivision_Easylog>
     </modules>

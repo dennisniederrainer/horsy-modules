@@ -55,4 +55,7 @@ class MDN_Orderpreparation_PickupDeliveryController extends Mage_Adminhtml_Contr
         $this->_prepareDownloadResponse('order_pickup.pdf', $pdf->render(), 'application/pdf');
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

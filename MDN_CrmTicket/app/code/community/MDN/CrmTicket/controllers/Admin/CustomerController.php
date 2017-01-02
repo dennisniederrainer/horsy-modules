@@ -24,18 +24,18 @@ class MDN_CrmTicket_Admin_CustomerController extends Mage_Adminhtml_Controller_A
         //get param
         $param = $this->getRequest()->getParam('object_id');
         list($objectType, $objectId) = explode('_', $param);
-        
+
         //find class
         $class = Mage::getModel('CrmTicket/Customer_Object')->getClassByType($objectType);
         if (!$class) {
             die('Unable to find class for object '.$objectType);
         }
-        
+
         $urlInfo = $class->getObjectAdminLink($objectId);
-        
+
         $this->_redirect($urlInfo['url'], $urlInfo['param']);
     }
-    
+
     /**
      * Display object summary in popup
      */
@@ -51,7 +51,7 @@ class MDN_CrmTicket_Admin_CustomerController extends Mage_Adminhtml_Controller_A
         } catch (Exception $ex) {
             $html = $ex->getMessage();
         }
-        
+
         echo $html;
     }
 
@@ -143,8 +143,8 @@ class MDN_CrmTicket_Admin_CustomerController extends Mage_Adminhtml_Controller_A
                 Mage::getSingleton('adminhtml/session')->addError($this->__('Email adress, first and last name are mandatory'));
             }
 
-          
-         
+
+
 
             if ($exist) {
                 Mage::getSingleton('adminhtml/session')->addError($this->__('Customer #%s already exist', $customerId));
@@ -164,5 +164,9 @@ class MDN_CrmTicket_Admin_CustomerController extends Mage_Adminhtml_Controller_A
         } else {
             $this->_redirect('CrmTicket/Admin_Ticket/SearchCreate/Grid', array('customer_id' => $customerId));
         }
+    }
+
+    protected function _isAllowed() {
+      return true;
     }
 }

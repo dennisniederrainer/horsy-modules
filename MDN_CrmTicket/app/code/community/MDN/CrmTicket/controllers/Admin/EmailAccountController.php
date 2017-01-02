@@ -15,7 +15,7 @@
  */
 class MDN_CrmTicket_Admin_EmailAccountController extends Mage_Adminhtml_Controller_Action {
 
-    
+
 
    public function RouterAction() {
 
@@ -82,7 +82,7 @@ class MDN_CrmTicket_Admin_EmailAccountController extends Mage_Adminhtml_Controll
                   }
               }
             }
-          }          
+          }
         }
       }
 
@@ -95,7 +95,7 @@ class MDN_CrmTicket_Admin_EmailAccountController extends Mage_Adminhtml_Controll
       }else{
          Mage::getSingleton('adminhtml/session')->addError($this->__('No rule were updated'));
       }
-      
+
       $this->_redirect('CrmTicket/Admin_EmailAccount/Router');
    }
 
@@ -143,10 +143,10 @@ class MDN_CrmTicket_Admin_EmailAccountController extends Mage_Adminhtml_Controll
     }
 
     /**
-     * Save ticket 
+     * Save ticket
      */
     public function SaveAction() {
-      
+
         //load data
         $data = $this->getRequest()->getPost('data');
         $ceaId = $data['cea_id'];
@@ -220,7 +220,7 @@ class MDN_CrmTicket_Admin_EmailAccountController extends Mage_Adminhtml_Controll
         Mage::helper('CrmTicket')->log(implode("\n", $debug));
         $this->_redirect('CrmTicket/Admin_EmailAccount/Edit', array('cea_id' => $ceaId));
     }
-    
+
     /**
      * Mass check messages
      */
@@ -243,4 +243,7 @@ class MDN_CrmTicket_Admin_EmailAccountController extends Mage_Adminhtml_Controll
         $this->_redirect('CrmTicket/Admin_EmailAccount/Grid');
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

@@ -7,4 +7,8 @@ class MDN_SalesOrderPlanning_LateOrdersController extends Mage_Adminhtml_Control
 		$this->loadLayout();
 		$this->renderLayout();
 	}
+
+	protected function _isAllowed() {
+		return true;
+	}
 }

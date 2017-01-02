@@ -14,7 +14,7 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
                 ->_addContent($this->getLayout()->createBlock('Orderpreparation/Widget_Tab_OrderPreparationTab'))
                 ->renderLayout();
     }
-    
+
     public function ShipmentAndInvoicesCreatedAction()
     {
         $this->loadLayout();
@@ -23,11 +23,11 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
                 ->_addContent($this->getLayout()->createBlock('Orderpreparation/Header'))
                 ->_addContent($this->getLayout()->createBlock('Orderpreparation/Widget_Tab_OrderPreparationTab'))
                 ->renderLayout();
-        
+
     }
 
     /**
-     * 
+     *
      *
      */
     public function editAction() {
@@ -158,7 +158,7 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
     }
 
     /**
-     * 
+     *
      *
      * @param unknown_type $fileName
      * @param unknown_type $content
@@ -207,7 +207,7 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
     }
 
     /**
-     * Import tracking numbers 
+     * Import tracking numbers
      */
     public function ImportTrackingAction() {
         $carrierCode = $this->getRequest()->getPost('carrier');
@@ -289,10 +289,10 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
     }
 
     /**
-     * 
+     *
      * @param type $FullStr
      * @param type $EndStr
-     * @return type 
+     * @return type
      */
     public function EndsWith($FullStr, $EndStr) {
         // Get the length of the end string
@@ -366,7 +366,7 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
     }
 
     /*
-     * 	
+     *
      *
      */
 
@@ -629,9 +629,9 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('You are now using operator %s', $user->getusername()));
         $this->_redirect('OrderPreparation/OrderPreparation/');
     }
-    
+
     /**
-     * Remove an item from an order 
+     * Remove an item from an order
      */
     public function removeItemAction()
     {
@@ -639,10 +639,13 @@ class MDN_Orderpreparation_OrderPreparationController extends Mage_Adminhtml_Con
         $orderItemId = $this->getRequest()->getParam('order_item_id');
         $orderItem = Mage::getModel('Orderpreparation/ordertoprepareitem')->load($orderItemId, 'order_item_id');
         $orderItem->delete();
-        
+
         //confirm & redirect
         Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Order item removed from preparation'));
         $this->_redirect('OrderPreparation/OrderPreparation/');
     }
 
+    protected function _isAllowed() {
+      return true;
+    }
 }

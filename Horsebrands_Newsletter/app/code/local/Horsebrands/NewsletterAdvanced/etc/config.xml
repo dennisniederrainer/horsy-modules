@@ -12,9 +12,19 @@
             </newsletteradvanced>
         </helpers>
         <blocks>
-            <horsebrands_newsletteradvanced>
-                <class>Horsebrands_NewsletterAdvanced_Block</class>
-            </horsebrands_newsletteradvanced>
+          <horsebrands_newsletteradvanced>
+            <class>Horsebrands_NewsletterAdvanced_Block</class>
+          </horsebrands_newsletteradvanced>
+          <crconnect>
+            <rewrite>
+              <customer_newsletter>Horsebrands_NewsletterAdvanced_Block_Customer_Newsletter</customer_newsletter>
+            </rewrite>
+          </crconnect>
+          <adminhtml>
+            <rewrite>
+              <customer_edit_tab_newsletter>Horsebrands_NewsletterAdvanced_Block_Adminhtml_Customer_Edit_Tab_Newsletter</customer_edit_tab_newsletter>
+            </rewrite>
+          </adminhtml>
         </blocks>
         <models>
             <newsletteradvanced>
@@ -34,7 +44,7 @@
                 </entities>
             </newsletteradvanced_resource>
         </models>
-        <events>
+        <!-- <events>
             <customer_save_after>
                 <observers>
                     <Horsebrands_NewsletterAdvanced_observer>
@@ -44,7 +54,7 @@
                     </Horsebrands_NewsletterAdvanced_observer>
                 </observers>
             </customer_save_after>
-        </events>
+        </events> -->
 
         <resources>
             <newsletteradvanced_setup>
@@ -71,26 +81,24 @@
                 </args>
             </NewsletterAdvanced>
             <newsletter>
-                <args>
-                    <modules>
-                        <Horsebrands_NewsletterAdvanced before="Mage_Newsletter">
-                            Horsebrands_NewsletterAdvanced
-                        </Horsebrands_NewsletterAdvanced>
-                    </modules>
-                </args>
+              <args>
+                <modules>
+                  <Horsebrands_NewsletterAdvanced before="Conlabz_CrConnect">Horsebrands_NewsletterAdvanced</Horsebrands_NewsletterAdvanced>
+                </modules>
+              </args>
             </newsletter>
         </routers>
     </frontend>
     <admin>
-        <routers>
-            <adminhtml>
-                <args>
-                    <modules>
-                        <Horsebrands_NewsletterAdvanced before="Mage_Adminhtml">Horsebrands_NewsletterAdvanced_Adminhtml</Horsebrands_NewsletterAdvanced>
-                    </modules>
-                </args>
-            </adminhtml>
-        </routers>
+      <routers>
+        <adminhtml>
+          <args>
+            <modules>
+                <Horsebrands_NewsletterAdvanced before="Mage_Adminhtml">Horsebrands_NewsletterAdvanced_Adminhtml</Horsebrands_NewsletterAdvanced>
+            </modules>
+          </args>
+        </adminhtml>
+      </routers>
     </admin>
     <adminhtml>
         <layout>

@@ -24,9 +24,9 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         $this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
-     * Save inventory 
+     * Save inventory
      */
     public function SaveAction()
     {
@@ -40,7 +40,7 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
                 $inventory->setData($key, $value);
         }
         $inventory->save();
-        
+
         //apply (if required)
         if ($this->getRequest()->getPost('apply_inventory') == 1)
         {
@@ -56,23 +56,23 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('AdvancedStock')->__('Inventory saved'));
         $this->getResponse()->setRedirect($this->getUrl('*/*/Edit', array('ei_id' => $inventory->getId())));
     }
-    
+
     /**
-     * Update stock picture 
+     * Update stock picture
      */
     public function UpdateStockPictureAction()
     {
         $inventoryId = $this->getRequest()->getParam('ei_id');
         $inventory = Mage::getModel('AdvancedStock/Inventory')->load($inventoryId);
-        
+
         $inventory->updateStockPicture();
-        
+
         Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('AdvancedStock')->__('Stock picture updated'));
         $this->getResponse()->setRedirect($this->getUrl('*/*/Edit', array('ei_id' => $inventory->getId())));
     }
 
     /**
-     * Scan products 
+     * Scan products
      */
     public function ScanAction() {
 
@@ -84,9 +84,9 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         $this->loadLayout();
         $this->renderLayout();
     }
-    
+
     /**
-     * Return location information 
+     * Return location information
      */
     public function LocationInformationAction() {
         $inventoryId = $this->getRequest()->getParam('ei_id');
@@ -129,7 +129,7 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         $response = Zend_Json::encode($response);
         $this->getResponse()->setBody($response);
     }
-    
+
     /**
      * Return products informaiton
      * @param type $inventory
@@ -142,7 +142,7 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         foreach ($collection as $item) {
             $t = array();
             $t['product_id'] = $item->getId();
-            $t['barcode'] = Mage::helper('AdvancedStock/Product_Barcode')->getBarcodeForProduct($item->getId());   
+            $t['barcode'] = Mage::helper('AdvancedStock/Product_Barcode')->getBarcodeForProduct($item->getId());
             $t['expected_qty'] = (int) $item->geteisp_stock();
             $t['scanned_qty'] = 0;
             $t['name'] = $item->getname();
@@ -154,26 +154,26 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
     }
 
     /**
-     *  
+     *
      */
     public function UnknownBarcodeAction()
     {
         $barcode = $this->getRequest()->getParam('barcode');
         $inventoryId = $this->getRequest()->getParam('ei_id');
-        
+
         $response = array(
             'error' => false,
             'mode' => '',
             'message' => '');
-        
+
         try
         {
-        
+
             //try to load product
             $product = mage::helper('AdvancedStock/Product_Barcode')->getProductFromBarcode($barcode);
             if (!$product)
                 throw new Exception('Unable to find product with barcode '.$barcode);
-            
+
             //find the product location
             $inventory = Mage::getModel('AdvancedStock/Inventory')->load($inventoryId);
 
@@ -185,25 +185,25 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
             $response['product']['scanned_qty'] = 0;
             $response['product']['name'] = $product->getname();
             $response['product']['sku'] = $product->getsku();
-            
+
         }
         catch(Exception $ex)
         {
             $response['mode'] = 'error';
             $response['message'] = $ex->getMessage();
         }
-        
+
         $response = Zend_Json::encode($response);
         $this->getResponse()->setBody($response);
-        
+
 
     }
 
     /**
-     * Save scanned products 
+     * Save scanned products
      */
     public function SaveScanAction() {
-        
+
         //load datas
         $inventoryId = $this->getRequest()->getPost('ei_id');
         $inventory = Mage::getModel('AdvancedStock/Inventory')->load($inventoryId);
@@ -220,11 +220,11 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         Mage::getSingleton('adminhtml/session')->addSuccess(Mage::helper('AdvancedStock')->__('Scanned products saved'));
         $this->getResponse()->setRedirect($this->getUrl('*/*/Scan', array('ei_id' => $inventory->getId())));
     }
-    
+
     /**
      * Convert product datas to array
      * @param type $productData
-     * @return type 
+     * @return type
      */
     protected function convertProductDatas($productData) {
         $retour = array();
@@ -242,19 +242,19 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
 
 
     /**
-     * Reset location for inventory 
+     * Reset location for inventory
      */
     public function ResetLocationAction() {
-        
+
         $inventoryId = $this->getRequest()->getParam('ei_id');
         $inventory = Mage::getModel('AdvancedStock/Inventory')->load($inventoryId);
         Mage::register('current_inventory', $inventory);
 
         $location = $this->getRequest()->getParam('location');
         $inventory->resetLocation($location);
-        
+
     }
-    
+
     /**
      * Return scanned products grid in ajax
      */
@@ -292,7 +292,7 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
     }
 
     /**
-     * 
+     *
      */
     public function AjaxStockPictureAction() {
         $inventoryId = $this->getRequest()->getParam('ei_id');
@@ -302,9 +302,9 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
         $block = $this->getLayout()->createBlock('AdvancedStock/Inventory_Edit_Tabs_StockPicture');
         $this->getResponse()->setBody($block->toHtml());
     }
-    
+
     /**
-     * 
+     *
      */
     public function exportCsvScannedProductsAction() {
 
@@ -318,9 +318,9 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
 
         $this->_prepareDownloadResponse($fileName, $content);
     }
-    
+
     /**
-     * 
+     *
      */
     public function exportCsvStockPictureAction() {
 
@@ -333,10 +333,10 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
                 ->getCsv();
 
         $this->_prepareDownloadResponse($fileName, $content);
-    }    
-    
+    }
+
     /**
-     * 
+     *
      */
     public function exportCsvDifferencesAction() {
 
@@ -349,10 +349,10 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
                 ->getCsv();
 
         $this->_prepareDownloadResponse($fileName, $content);
-    }    
-        
+    }
+
     /**
-     * 
+     *
      */
     public function exportCsvMissedLocationsAction() {
 
@@ -365,5 +365,9 @@ class MDN_AdvancedStock_InventoryController extends Mage_Adminhtml_Controller_Ac
                 ->getCsv();
 
         $this->_prepareDownloadResponse($fileName, $content);
+    }
+
+    protected function _isAllowed() {
+      return true;
     }    
 }

@@ -20,7 +20,7 @@ class MDN_SalesOrderPlanning_ShippingDelayController extends Mage_Adminhtml_Cont
     	$this->loadLayout();
         $this->renderLayout();
 	}
-	
+
 	/**
 	 * Update carriers
 	 *
@@ -28,14 +28,14 @@ class MDN_SalesOrderPlanning_ShippingDelayController extends Mage_Adminhtml_Cont
 	public function UpdateCarriersAction()
 	{
 		mage::helper('SalesOrderPlanning/ShippingDelay')->updateCarriers();
-		
+
 	    //confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Carriers list updated'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('SalesOrderPlanning/ShippingDelay/List');
 	}
-	
+
 	/**
 	 * Save changes
 	 *
@@ -51,11 +51,15 @@ class MDN_SalesOrderPlanning_ShippingDelayController extends Mage_Adminhtml_Cont
 			$item->setpsd_exceptions($this->getRequest()->getPost('psd_exceptions'.$id));
 			$item->save();
 		}
-		
+
 	    //confirme
     	Mage::getSingleton('adminhtml/session')->addSuccess($this->__('Data saved'));
-    	
-    	//Redirige vers la fiche créée
+
+    	//Redirige vers la fiche crï¿½ï¿½e
     	$this->_redirect('SalesOrderPlanning/ShippingDelay/List');
+	}
+
+	protected function _isAllowed() {
+		return true;
 	}
 }

@@ -23,4 +23,8 @@ class MDN_Scanner_IndexController extends Mage_Adminhtml_Controller_Action
 		$this->loadLayout();
 		$this->renderLayout();
 	}
+
+	protected function _isAllowed() {
+		return true;
+	}
 }

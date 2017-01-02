@@ -23,7 +23,7 @@ class MDN_Scanner_PurchaseOrderController extends Mage_Adminhtml_Controller_Acti
 		$this->loadLayout();
 		$this->renderLayout();
 	}
-	
+
 	/**
 	 * Select purchase order
 	 *
@@ -43,7 +43,7 @@ class MDN_Scanner_PurchaseOrderController extends Mage_Adminhtml_Controller_Acti
 		$this->loadLayout();
 		$this->renderLayout();
 	}
-	
+
 	/**
 	 * Create delivery
 	 *
@@ -54,10 +54,10 @@ class MDN_Scanner_PurchaseOrderController extends Mage_Adminhtml_Controller_Acti
 		$poId = $this->getRequest()->getPost('po_num');
 		$purchaseOrder = mage::getModel('Purchase/Order')->load($poId);
 		$purchaseOrderUpdater = mage::getModel('Purchase/Order_Updater')->init($purchaseOrder);
-                
+
 		$warehouseId = $purchaseOrder->getpo_target_warehouse();
 		$warehouse = mage::getModel('AdvancedStock/Warehouse')->load($warehouseId);
-		
+
 		foreach ($purchaseOrder->getProducts() as $product)
 		{
 			$qty = $this->getRequest()->getPost('product_'.$product->getId());
@@ -66,12 +66,12 @@ class MDN_Scanner_PurchaseOrderController extends Mage_Adminhtml_Controller_Acti
 				//todo : add a setting to enable to select warehouse at user level
 				$description = 'Purchase Order #'.$purchaseOrder->getpo_order_id();
 				$purchaseOrder->createDelivery($product, $qty, date('Y-m-d'), $description, $warehouseId);
-				
+
 				//store location (if set)
 				$location = $this->getRequest()->getPost('location_'.$product->getId());
 				if ($location != '')
-					$warehouse->setProductLocation($product->getpop_product_id(), $location);									
-				
+					$warehouse->setProductLocation($product->getpop_product_id(), $location);
+
 				//add barcode (if set)
 				$barcode = $this->getRequest()->getPost('barcode_'.$product->getId());
 				if ($barcode != '')
@@ -79,7 +79,7 @@ class MDN_Scanner_PurchaseOrderController extends Mage_Adminhtml_Controller_Acti
 					$productId = $product->getpop_product_id();
 					mage::helper('AdvancedStock/Product_Barcode')->addBarcodeIfNotExists($productId, $barcode);
 				}
-				
+
 			}
 		}
 
@@ -87,13 +87,14 @@ class MDN_Scanner_PurchaseOrderController extends Mage_Adminhtml_Controller_Acti
                 if ($purchaseOrder->isCompletelyDelivered())
                     $purchaseOrder->setpo_status(MDN_Purchase_Model_Order::STATUS_COMPLETE);
 		$purchaseOrder->computeDeliveryProgress();
-                
+
                 $purchaseOrderUpdater->checkForChangesAndLaunchUpdates($purchaseOrder);
-                
+
 		$this->loadLayout();
 		$this->renderLayout();
 	}
 
+	protected function _isAllowed() {
+    return true;
+  }
 }
-
-	
