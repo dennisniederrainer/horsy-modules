@@ -40,7 +40,7 @@ class Horsebrands_ProductReturn_Model_Rma extends MDN_ProductReturn_Model_Rma {
 
         //send email
         Mage::getModel('core/email_template')
-            ->setDesignConfig(array('area' => 'adminhtml', 'store' => $this->getCustomer()->getStoreId()))
+            ->setDesignConfig(array('area' => 'frontend', 'store' => $this->getCustomer()->getStoreId()))
             ->sendTransactional(
                 $templateId,
                 $identityId,

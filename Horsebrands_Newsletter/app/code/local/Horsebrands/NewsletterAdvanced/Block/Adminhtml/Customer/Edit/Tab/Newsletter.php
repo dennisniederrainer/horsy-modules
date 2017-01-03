@@ -32,8 +32,14 @@ class Horsebrands_NewsletterAdvanced_Block_Adminhtml_Customer_Edit_Tab_Newslette
         );
 
         $subscribedToType = $this->checkSubscriptionToNewsletterType($newsletterType);
+        $isSubscribed = false;
         if($subscribedToType) {
+          $isSubscribed = true;
           $form->getElement('newsletterType_'.$key)->setIsChecked(true);
+        }
+
+        if($isSubscribed) {
+          $form->getElement('subscription')->setIsChecked(true);
         }
       }
 

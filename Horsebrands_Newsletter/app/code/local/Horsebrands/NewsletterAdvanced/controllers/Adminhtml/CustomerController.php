@@ -6,7 +6,6 @@ class Horsebrands_NewsletterAdvanced_Adminhtml_CustomerController extends Mage_A
 
   public function saveAction() {
     parent::saveAction();
-    return;
 
     $customer = Mage::registry('current_customer');
     $subscriber = Mage::getModel('newsletter/subscriber')->loadByCustomer($customer);
@@ -27,6 +26,8 @@ class Horsebrands_NewsletterAdvanced_Adminhtml_CustomerController extends Mage_A
               ->setSubscriberId($subscriber->getId())
               ->save();
         }
+
+        $subscriber->setIsSubscribed(true)->save();
       }
       else {
         $typeSubscriberCollection = Mage::getModel('newsletteradvanced/typesubscriber')->getCollection();
@@ -35,6 +36,8 @@ class Horsebrands_NewsletterAdvanced_Adminhtml_CustomerController extends Mage_A
           $typeSubscriber->delete();
         }
       }
+
+      Mage::helper('newsletteradvanced')->syncCustomerWithCleverreach($customer);
     }
   }
 

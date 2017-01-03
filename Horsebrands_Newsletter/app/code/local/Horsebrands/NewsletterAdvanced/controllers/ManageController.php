@@ -11,16 +11,6 @@ class Horsebrands_NewsletterAdvanced_ManageController extends Mage_Newsletter_Ma
       $this->client = new SoapClient(Mage::helper('crconnect')->getWsdl(), array("trace" => true));
     }
 
-    // new indexAction
-    /*
-      get listIds
-      client connection
-       - check every listid with customer email receiverGetByEmail
-       - save list ids the customer is subscribed to
-
-      check if customer has subscriber, otherwise create one
-       - save NLtypes with certain list ids to this subscriber
-    */
     public function indexAction() {
       parent::indexAction();
       return;
@@ -91,18 +81,8 @@ class Horsebrands_NewsletterAdvanced_ManageController extends Mage_Newsletter_Ma
       parent::indexAction();
     }
 
-
-    // new saveAction
-    /*
-      is customer subscribed to NL?
-       - yes: get all types the customer is subscribed to
-
-      get subscriber, if not existing create one
-      get currently active subscriber_types
-       - check differences
-       - activate/deactivate from differing subscriptions -- update hashtoken as well?
-    */
     public function saveAction() {
+
       if (!$this->_validateFormKey()) {
         Mage::getSingleton('customer/session')->addError('Formkey ist abgelaufen. Bitte versuche es erneut.');
         return $this->_redirect('newsletter/manage/');
@@ -182,7 +162,7 @@ class Horsebrands_NewsletterAdvanced_ManageController extends Mage_Newsletter_Ma
 
         $subscriberNewsletterTypeIDs = array();
         foreach($newslettertypeCollection as $typeSubscriber) {
-            $subscriberNewsletterTypeIDs[] = $typeSubscriber->getTypeId();
+          $subscriberNewsletterTypeIDs[] = $typeSubscriber->getTypeId();
         }
 
         $newsletterTypes = Mage::getModel('newsletteradvanced/type')->getCollection();
@@ -212,6 +192,13 @@ class Horsebrands_NewsletterAdvanced_ManageController extends Mage_Newsletter_Ma
                   $client->receiverSetActive($apiKey, $listID, $customer->getEmail());
                   Mage::log("CleverReach_CrConnect: subscribed - ".$customer->getEmail()." to List ".$listID, null, "cr_subscribe.log");
                 }
+              } else {
+                // customer is not in list -- add her!
+                $hashToken = hash('md5', $customer->getId());
+                $crReceiver = Mage::helper('crconnect')->prepareUserdata($customer, array('newsletter' => 1, 'hash_token' => $hashToken), true);
+                $crReceiver["deactivated"] = 0;
+                $return = $client->receiverAdd($apiKey, $listID, $crReceiver);
+                Mage::log("CleverReach_CrConnect: subscribed - ".$customer->getEmail()." to List ".$listID, null, "cr_subscribe.log");
               }
             } catch(Exception $e) {
               Mage::log("ManageController: Error in SOAP call: ".$e->getMessage(), null, 'horsy_newsletter.log');
@@ -223,8 +210,6 @@ class Horsebrands_NewsletterAdvanced_ManageController extends Mage_Newsletter_Ma
               if($return->status=="SUCCESS") {
                 Mage::log("CleverReach_CrConnect: unsubscribed - ".$customer->getEmail(), null, "cr_unsubscribe.log");
               } else {
-                //call failed
-                Mage::log("ManageController: Fehler beim Inaktiv setzen: ".$e->getMessage(), null, 'horsy_newsletter.log');
                 Mage::log("CleverReach_CrConnect: error - ".$return->message, null, "cr_unsubscribe.log");
               }
             }
@@ -237,3 +222,4 @@ class Horsebrands_NewsletterAdvanced_ManageController extends Mage_Newsletter_Ma
       }
     }
 }
+?>
