@@ -21,33 +21,32 @@ class MDN_AdvancedStock_Helper_ProductReturn_Stock extends MDN_ProductReturn_Hel
      * @param unknown_type $productId
      * @param unknown_type $qty
      */
-    public function productBackInStock($productId, $qty, $destination, $websiteId, $description) {
-        switch ($destination) {
-            case MDN_ProductReturn_Model_RmaProducts::kDestinationCustomer:
-                //nothing
-                break;
-            case MDN_ProductReturn_Model_RmaProducts::kDestinationDestroy:
-                //nothing
-                break;
-            case MDN_ProductReturn_Model_RmaProducts::kDestinationStock:
-                //create new stock movement
-                $targetWarehouse = mage::helper('AdvancedStock/Warehouse')->getWarehouseForAssignment($websiteId, MDN_AdvancedStock_Model_Assignment::_assignmentProductReturn);
-                if ($targetWarehouse) {
-                    $additionalData = array('sm_type' => 'rma');
-                    mage::getModel('AdvancedStock/StockMovement')->createStockMovement($productId,
-                            null,
-                            $targetWarehouse->getId(),
-                            $qty,
-                            $description,
-                            $additionalData);
-                }
-                else
-                       throw new Exception('No product return warehouse assignments for website #'.$websiteId);
-                break;
-            case MDN_ProductReturn_Model_RmaProducts::kDestinationSupplier:
-                //nothing
-                break;
-        }
-    }
+     public function productBackInStock($productId, $qty, $destination, $websiteId, $description, $rmaId = null)
+     {
+
+         switch ($destination) {
+             case MDN_ProductReturn_Model_RmaProducts::kDestinationCustomer:
+                 //nothing
+                 break;
+             case MDN_ProductReturn_Model_RmaProducts::kDestinationDestroy:
+                 //nothing
+                 break;
+             case MDN_ProductReturn_Model_RmaProducts::kDestinationStock:
+                 //increase product stock (magento way)
+                 $product = mage::getModel('catalog/product')->load($productId);
+
+                 if ($product->getId()) {
+                     $stockItem = $product->getStockItem();
+                     if ($stockItem) {
+                         $stockItem->setqty($stockItem->getqty() + $qty);
+                         $stockItem->save();
+                     }
+                 }
+                 break;
+             case MDN_ProductReturn_Model_RmaProducts::kDestinationSupplier:
+                 //nothing
+                 break;
+         }
+     }
 
 }
