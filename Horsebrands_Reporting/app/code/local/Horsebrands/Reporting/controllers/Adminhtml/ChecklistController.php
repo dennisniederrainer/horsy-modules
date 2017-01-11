@@ -1,6 +1,7 @@
 <?php
-class Horsebrands_Reporting_Adminhtml_ChecklistController extends Mage_Adminhtml_Controller_Action
-{
+
+class Horsebrands_Reporting_Adminhtml_ChecklistController extends Mage_Adminhtml_Controller_Action {
+
     /*protected function _initAction() {
         $this->loadLayout();
         return $this;
@@ -39,5 +40,9 @@ class Horsebrands_Reporting_Adminhtml_ChecklistController extends Mage_Adminhtml
         $fileName = date("Y-m-d", Mage::getModel('core/date')->timestamp(time())).'_pruefliste-payment.xml';
         $grid = $this->getLayout()->createBlock('reporting/adminhtml_checklist_grid');
         $this->_prepareDownloadResponse($fileName, $grid->getExcelFile($fileName));
+    }
+
+    protected function _isAllowed() {
+        return true;
     }
 }

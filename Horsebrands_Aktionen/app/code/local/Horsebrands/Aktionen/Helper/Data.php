@@ -18,10 +18,28 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
 
         return false;
     }
-
     public function hasCategoriesWithoutFlashsaleReferenceByProductId($productId) {
         $product = Mage::getModel('catalog/product')->load($productId);
         return $this->hasCategoriesWithoutFlashsaleReferenceByProduct($product);
+    }
+
+    public function hasProductCurrentFlashsale($product) {
+      $categoryIds = array_unique($this->getAssignedCategoriesForProduct($product));
+
+      if(count($categoryIds) > 0) {
+          $fsCollection = Mage::getModel('PrivateSales/FlashSales')->getCollection()
+                              ->addFieldToFilter('fs_category_id', array('in' => $categoryIds));
+          $fsCollection->getSelect()->group('fs_category_id');
+
+          foreach ($fsCollection as $fs) {
+            if($fs->isActive() &&
+                  strtotime($fs->getFsEndDate()) >= Mage::getModel('core/date')->timestamp(time())) {
+              return true;
+            }
+          }
+      }
+
+      return false;
     }
 
     /**
