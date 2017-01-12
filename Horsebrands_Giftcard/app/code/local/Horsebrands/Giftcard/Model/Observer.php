@@ -12,31 +12,30 @@ class Horsebrands_Giftcard_Model_Observer {
 		$giftcardHelper = Mage::helper('giftcard');
 
     // see if gift card is in it
-    $hasGiftCard = $giftcardHelper->hasGiftCardItemInOrder($order);
-		if($hasGiftCard) {
-			$giftcardItems = $giftcardHelper->getGiftCardItems($order);
-			$allGiftcardItems = array();
-			$orderItems = array();
+		$giftcardItems = $giftcardHelper->getGiftCardItems($order);
+		if( $giftcardItems && count($giftcardItems) > 0 ) {
+			$giftcardItemsBundle = array();
+			$shippingitemsQuantity = array();
 
 			$i = 1;
 			foreach($giftcardItems as $item) {
 				if($item->getQtyOrdered() == 1) {
-					$allGiftcardItems = $giftcardHelper->prepareGiftCard($allGiftcardItems, $order, $item, $i);
+					$giftcardItemsBundle = $giftcardHelper->prepareGiftCard($giftcardItemsBundle, $order, $item, $i);
 				} elseif ($item->getQtyOrdered() > 1) {
 					for ($j=0; $j < $item->getQtyOrdered(); $j++) {
-						$allGiftcardItems = $giftcardHelper->prepareGiftCard($allGiftcardItems, $order, $item, intval($i.$j));
+						$giftcardItemsBundle = $giftcardHelper->prepareGiftCard($giftcardItemsBundle, $order, $item, intval($i.$j));
 					}
 				}
 
-				$orderItems[$item->getId()] = $item->getQtyOrdered();
+				$shippingitemsQuantity[$item->getId()] = $item->getQtyOrdered();
 				$i++;
 			}
 
-			if($giftcardHelper->sendGiftCardToReceiverBundle($allGiftcardItems, $order)) {
+			if($giftcardHelper->sendGiftCardToReceiverBundle($giftcardItemsBundle, $order)) {
+				Mage::log('Ordernumber: ' . $order->getIncrementId() . ' -- Email sent.', null, 'GIFTCARDS-donot-delete.log');
 				$shipmentId = Mage::getModel('sales/order_shipment_api')->create(
-					$order->getIncrementId(), $orderItems);
+					$order->getIncrementId(), $shippingitemsQuantity);
 			}
 		}
-		// possibility to resend the coupon
 	}
 }

@@ -2,21 +2,20 @@
 
 class Horsebrands_GiftCard_Helper_Data extends Mage_Core_Helper_Abstract {
 
-    const SALES_RULE_25_ID = 107;
-    const SALES_RULE_50_ID = 108;
-    const SALES_RULE_100_ID = 109;
+    const GIFTCARD_ATTRIBUTE_SET_NAME = "Giftcard";
+    const XML_PATH_THEME = "customer/giftcard/theme_path";
+    const XML_PATH_GIFTCARD_PRODUCTS = "customer/giftcard/giftcard_product_path";
+    const XML_PATH_GIFTCARD_TEMPLATE = "customer/giftcard/giftcard_email_template";
 
-    const GIFTCARD_ATTRIBUTE_SET_ID = 186;
-
-    const giftcardURI = '/html/horsebrands-prod/giftcards/';
-    const pathToPdfTemplate = '/html/horsebrands-prod/giftcards/templates/horsebrands_gutschein_template_individualisierbar.pdf';
-    const pdfFontColor = '#521515';
+    const pdfFontColor = '#1d1d1d';
 
     const fromLabel = "von";
-    const toLabel = "an";
+    const toLabel = "für";
+
 
     public function hasGiftcardAttributeSet($product) {
-        return ($product->getAttributeSetId() == self::GIFTCARD_ATTRIBUTE_SET_ID);
+      $productAttributeset = Mage::getModel("eav/entity_attribute_set")->load($product->getAttributeSetId());
+      return ($productAttributeset->getAttributeSetName() == self::GIFTCARD_ATTRIBUTE_SET_NAME);
     }
 
     public function hasGiftCardItemInQuote($quote) {
@@ -31,68 +30,125 @@ class Horsebrands_GiftCard_Helper_Data extends Mage_Core_Helper_Abstract {
     }
 
     public function hasGiftCardItemInOrder($order) {
-        foreach ($order->getAllItems() as $item) {
-            if($item->getProduct()->getAttributeSetId() == self::GIFTCARD_ATTRIBUTE_SET_ID) {
-                return true;
-            }
+      foreach ($order->getAllItems() as $item) {
+        if( $this->hasGiftcardAttributeSet($item->getProduct()) ) {
+          return true;
         }
+      }
 
-        return false;
+      return false;
     }
 
     public function getGiftCardItems($order) {
-        $giftcardItems = array();
+      $giftcardItems = array();
 
-        foreach ($order->getAllItems() as $item) {
-            if($item->getProduct()->getAttributeSetId() == self::GIFTCARD_ATTRIBUTE_SET_ID) {
-                array_push($giftcardItems, $item);
-            }
+      foreach ($order->getAllItems() as $item) {
+        if( $this->hasGiftcardAttributeSet($item->getProduct()) ) {
+          array_push($giftcardItems, $item);
         }
-
-        return $giftcardItems;
-    }
-
-    public function prepareGiftCard($array, $order, $item, $index) {
-        $price = Mage::helper('tax')->getPrice($item->getProduct(), $item->getProduct()->getFinalPrice());
-        // $code = $this->generateCouponCode($item->getPrice(), $order->getCustomerId());
-        $code = $this->generateCouponCode($price, $order->getCustomerId());
-
-        $productOptions = $item->getProductOptions();
-        $options = $productOptions['options'];
-
-        $giftcardData = $this->getProductOptions($options);
-        // $giftcardData['amount'] = Mage::app()->getLocale()->currency('EUR')->toCurrency($item->getPrice());
-        $giftcardData['amount'] = Mage::app()->getLocale()->currency('EUR')->toCurrency($price);
-        $giftcardData['code'] = $code;
-        $giftcardData['orderid'] = $order->getId();
-        $giftcardData['itemid'] = $item->getId();
-
-        // create PDF
-        $this->generateGiftCardAsPdf($giftcardData, $order->getCustomerId(), $index);
-        array_push($array, $giftcardData);
-
-        return $array;
-    }
-
-    public function generateCouponCode($amount, $customerid) {
-      $salesruleid = 0;
-
-      switch (intval($amount)) {
-          case 25:
-              $salesruleid = self::SALES_RULE_25_ID;
-              break;
-          case 50:
-              $salesruleid = self::SALES_RULE_50_ID;
-              break;
-          case 100:
-              $salesruleid = self::SALES_RULE_100_ID;
-              break;
-          default:
-              throw new Exception('No Salesrule for amount: '.intval($amount));
       }
 
+      return $giftcardItems;
+    }
+
+    public function prepareGiftCard($giftcardBundle, $order, $item, $index) {
+      $couponId = $item->getProduct()->getData('giftcard_coupon_code_id');
+      $couponcode = $this->generateCouponCode($couponId, $order->getCustomerId());
+
+      Mage::log('Ordernumber: ' . $order->getIncrementId() . ' -- Couponcode: ' . $couponcode, null, 'GIFTCARDS-donot-delete.log');
+
+      $productOptions = $item->getProductOptions();
+      $options = $productOptions['options'];
+
+      $giftcardData = $this->getProductOptions($options);
+      $giftcardData['amount'] = $item->getProduct()->getAttributeText('giftcard_amount');
+      $giftcardData['theme_file'] = $item->getProduct()->getgiftcard_theme_filename();
+      $giftcardData['code'] = $couponcode;
+      $giftcardData['orderid'] = $order->getIncrementId();
+      $giftcardData['itemid'] = $item->getId();
+
+      // create PDF
+      $this->generateGiftCardAsPdf($giftcardData, $order->getCustomerId());
+      array_push($giftcardBundle, $giftcardData);
+
+      return $giftcardBundle;
+    }
+
+    public function generateGiftCardAsPdf(&$vars, $customerId) {
+      $path = Mage::getStoreConfig(self::XML_PATH_THEME) . $vars['theme_file'];
+      $pdf = new Zend_Pdf($path, null, true);
+      $dateGiftCard = date('d.m.Y');
+      $dateFilename = date('Y-m-d');
+
+      $page = $pdf->pages[0];
+      // Set font
+      $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 12)
+          ->setFillColor(Zend_Pdf_Color_Html::color(self::pdfFontColor));
+
+      // $page->drawText( TEXT , X, Y);
+      $page->drawText($vars['amount'], 157, 50, 'UTF-8');
+      $page->drawText($vars['code'], 251, 50, 'UTF-8');
+
+      $page->drawText($vars['to'], 245, 140, 'UTF-8');
+      $page->drawText($vars['from'], 245, 110, 'UTF-8');
+
+      $filename = $vars['orderid'].'-'.$vars['code'].'_'.$dateFilename.'.pdf';
+      $path = Mage::getStoreConfig(self::XML_PATH_GIFTCARD_PRODUCTS) . $filename;
+      $pdf->save($path);
+      $vars["pathToPdf"] = $path;
+    }
+
+    public function sendGiftCardToReceiverBundle($allItemsData, $order) {
+        $storeId = $order->getStoreId();
+        $templateId = Mage::getStoreConfig(self::XML_PATH_GIFTCARD_TEMPLATE);
+        $mailTemplate = Mage::getModel('core/email_template');
+
+        $i = 1;
+        foreach ($allItemsData as $data) {
+          if (array_key_exists("pathToPdf", $data) && file_exists($data["pathToPdf"])) {
+            $filename = 'Horsebrands_Geschenkgutschein_'.intval($data["amount"]).'Euro_'.$i.'.pdf';
+
+            $mailTemplate
+                ->getMail()
+                ->createAttachment(
+                    file_get_contents($data["pathToPdf"]),
+                    'text/csv',
+                    Zend_Mime::DISPOSITION_ATTACHMENT,
+                    Zend_Mime::ENCODING_BASE64,
+                    $filename
+                );
+
+            $i++;
+          }
+        }
+
+        $vars = array();
+        $customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
+        $vars["customer_is_female"] = ($customer->getPrefix() === 'Frau');
+        $vars["customer_firstname"] = $customer->getFirstname();
+        $vars["order_id"] = $order->getIncrementId();
+
+        $sender = array('name' => 'Horsebrands Service',
+        'email' => 'service@horsebrands.de');
+
+        $name = $customer->getName();
+
+        try {
+            $mailTemplate
+                // ->addBcc('jochen.haget@horsebrands.de')
+                ->sendTransactional($templateId, $sender, $order->getCustomerEmail(), $name, $vars, $storeId);
+            // $mailTemplate->setTemplateSubject($mailSubject)
+            //     ->sendTransactional($templateId, $sender, 'dennis.niederrainer@gmail.com', $name, $vars, $storeId);
+        } catch (Exception $e) {
+            return false;
+        }
+
+        return true;
+    }
+
+    public function generateCouponCode($couponId, $customerid) {
       // Get coupon rule
-      $rule = Mage::getModel('salesrule/rule')->load($salesruleid);
+      $rule = Mage::getModel('salesrule/rule')->load($couponId);
       // Define a coupon code generator model instance
       $generator = Mage::getModel('salesrule/coupon_massgenerator');
 
@@ -135,93 +191,20 @@ class Horsebrands_GiftCard_Helper_Data extends Mage_Core_Helper_Abstract {
       // $coupon->setExpirationDate(date("Y-m-d ", strtotime("+1 month", time())));
       $coupon->save();
 
-      //manifest coupon to customer
-      $customercoupon = Mage::getModel('coupon/coupon');
-
-      $customercoupon->setCustomerId($customerid);
-      $customercoupon->setCouponId($coupon->getId());
-      //coupontype eigentlich für invitefriend, wurde geworben/hat geworben
-      //zusätzlich type = 2 für geschenkgutscheine
-      $customercoupon->setCouponType(2);
-      $customercoupon->setInviteFriendId(0);
-
-      $customercoupon->save();
+      // TODO: generate customer coupon
+      // //manifest coupon to customer
+      // $customercoupon = Mage::getModel('coupon/coupon');
+      //
+      // $customercoupon->setCustomerId($customerid);
+      // $customercoupon->setCouponId($coupon->getId());
+      // //coupontype eigentlich für invitefriend, wurde geworben/hat geworben
+      // //zusätzlich type = 2 für geschenkgutscheine
+      // $customercoupon->setCouponType(2);
+      // $customercoupon->setInviteFriendId(0);
+      //
+      // $customercoupon->save();
 
       return $coupon->getCode();
-    }
-
-    public function generateGiftCardAsPdf(&$vars, $customerId, $giftcardIndex = 1) {
-      $pdf = new Zend_Pdf(self::pathToPdfTemplate, null, true);
-      $dateGiftCard = date('d.m.Y');
-      $dateFilename = date('Y-m-d');
-
-      $page = $pdf->pages[0];
-      // Set font
-      $page->setFont(Zend_Pdf_Font::fontWithName(Zend_Pdf_Font::FONT_HELVETICA), 12)
-          ->setFillColor(Zend_Pdf_Color_Html::color(self::pdfFontColor));
-
-      $page->drawText($vars['to'], 159, 299, 'UTF-8');
-      $page->drawText(substr($vars['orderid'], -5), 447, 299, 'UTF-8');
-
-      $page->drawText($vars['from'], 159, 254, 'UTF-8');
-      $page->drawText($dateGiftCard, 402, 254, 'UTF-8');
-
-      // $page->drawText($vars['amount'] . ' Euro', 159, 125);
-      $page->drawText($vars['amount'], 165, 125, 'UTF-8');
-      $page->drawText($vars['code'], 373, 125, 'UTF-8');
-
-      $path = '/html/horsebrands-prod/giftcards/'.$dateFilename.'_'.$vars['orderid'].'-'.$vars['code'].'.pdf';
-      $pdf->save($path);
-      $vars["pathToPdf"] = $path;
-    }
-
-    public function sendGiftCardToReceiverBundle($allItemsData, $order) {
-        $storeId = Mage::app()->getStore()->getId();
-        $templateId = 'horsebrands_email_giftcard_template';
-        $mailTemplate = Mage::getModel('core/email_template');
-
-        $i = 1;
-        foreach ($allItemsData as $data) {
-            if (array_key_exists("pathToPdf", $data) && file_exists($data["pathToPdf"])) {
-
-                $filename = 'Horsebrands_Geschenkgutschein_'.intval($data["amount"]).'Euro_'.$i.'.pdf';
-
-                $mailTemplate
-                    ->getMail()
-                    ->createAttachment(
-                        file_get_contents($data["pathToPdf"]),
-                        'text/csv',
-                        Zend_Mime::DISPOSITION_ATTACHMENT,
-                        Zend_Mime::ENCODING_BASE64,
-                        $filename
-                    );
-
-                $i++;
-            }
-        }
-
-        $vars = array();
-        $customer = Mage::getModel('customer/customer')->load($order->getCustomerId());
-        $vars["customer_is_female"] = ($customer->getPrefix() === 'Frau');
-        $vars["customer_firstname"] = $customer->getFirstname();
-        $mailSubject = 'Geschenkgutscheine für Bestellung #' . $order->getIncrementId();
-
-        $sender = array('name' => 'Horsebrands Gutscheinservice',
-        'email' => 'noreply@horsebrands.de');
-
-        $name = $customer->getName();
-
-        try {
-            $mailTemplate->setTemplateSubject($mailSubject)
-                ->addBcc('jochen.haget@horsebrands.de')
-                ->sendTransactional($templateId, $sender, $order->getCustomerEmail(), $name, $vars, $storeId);
-            // $mailTemplate->setTemplateSubject($mailSubject)
-            //     ->sendTransactional($templateId, $sender, 'dennis.niederrainer@gmail.com', $name, $vars, $storeId);
-        } catch (Exception $e) {
-            return false;
-        }
-
-        return true;
     }
 
     public function getProductOptions($options) {
