@@ -4,8 +4,6 @@ require_once 'Mage/Adminhtml/controllers/Sales/CreditmemoController.php';
 
 class Horsebrands_ProductReturn_Adminhtml_Sales_CreditmemoController extends Mage_Adminhtml_Sales_CreditmemoController {
 
-	protected $_refundEmailTemplateId = 101;
-
 	public function refundCreditmemoMassAction() {
 		$creditmemosIds = $this->getRequest()->getPost('creditmemo_ids');
 
@@ -21,7 +19,7 @@ class Horsebrands_ProductReturn_Adminhtml_Sales_CreditmemoController extends Mag
 						// complete creditmemo
 						$creditmemo->setRefundedState();
 						// notify customer
-						$creditmemo->sendEmail(true, '', $this->_refundEmailTemplateId);
+						$creditmemo->sendEmail(true, '', Mage::getStoreConfig('sales_email_creditmemo_template'));
 
 						$comment = mage::helper('ProductReturn')->__('Betrag erstattet am %s', date("d.m.Y"));
         				$creditmemo->addComment($comment, false);
@@ -84,7 +82,7 @@ class Horsebrands_ProductReturn_Adminhtml_Sales_CreditmemoController extends Mag
 						// complete creditmemo
 						$creditmemo->setRefundedState();
 						// notify customer
-						$creditmemo->sendEmail(true, '', $this->_refundEmailTemplateId);
+						$creditmemo->sendEmail(true, '', Mage::getStoreConfig('sales_email_creditmemo_template'));
 
 						$comment = mage::helper('ProductReturn')->__('Betrag erstattet am %s', date("d.m.Y"));
         		$creditmemo->addComment($comment, false);

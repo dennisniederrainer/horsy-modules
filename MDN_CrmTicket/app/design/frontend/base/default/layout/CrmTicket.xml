@@ -1,5 +1,5 @@
 <?xml version="1.0"?>
-<layout version="0.1.0"> 
+<layout version="0.1.0">
 
     <!-- Add "my tickets" tab in customer account-->
     <customer_account>
@@ -19,16 +19,16 @@
             <!-- charger d'autres blocs -->
             <block type="CrmTicket/Front_Product_AskQuestionButton" name="product.askquestion.button" template="CrmTicket/Product/AskQuestionButton.phtml" />
         </reference>
-        
+
         <!-- including javascript files ans CSS -->
         <reference name="head">
             <!-- javascript -->
             <action method="addJs">
                 <script>prototype/window.js</script>
             </action>
-            <action method="addJs">
+            <!-- <action method="addJs">
                 <script>mdn/CrmTicket.js</script>
-            </action>
+            </action> -->
             <action method="addJs">
                 <script>varien/form.js</script>
             </action>
@@ -41,10 +41,10 @@
                 <type>js_css</type>
                 <name>prototype/windows/themes/alphacube.css</name>
             </action>
-        </reference> 
-        
+        </reference>
+
     </catalog_product_view>
-    
+
     <!-- page with form to ask a question  -->
     <crmticket_front_ticket_newticket>
         <reference name="root">
@@ -80,12 +80,12 @@
             <action method="addJs">
                 <name>mage/adminhtml/events.js</name>
             </action>
-        </reference> 
+        </reference>
         <reference name="content">
             <block type="CrmTicket/Front_Ticket_QuestionForm" name="product.askquestionform" template="CrmTicket/Product/AskQuestionForm.phtml" />
         </reference>
     </crmticket_front_ticket_newticket>
- 
+
     <!-- block ticket list on customer account -->
     <crmticket_front_ticket_mytickets>
         <reference name="root">
@@ -103,7 +103,7 @@
             <block type="CrmTicket/Front_Customer_Ticket_List" name="customer.ticketlist" template="CrmTicket/Customer/TicketList.phtml" />
         </reference>
     </crmticket_front_ticket_mytickets>
-    
+
     <!-- block ticket view for editing on customer account -->
     <crmticket_front_ticket_viewticket>
         <reference name="root">
@@ -148,7 +148,7 @@
             <block type="CrmTicket/Front_Customer_Ticket_View" name="customer.ticketview" template="CrmTicket/Customer/TicketView.phtml" />
         </reference>
     </crmticket_front_ticket_viewticket>
-    
+
     <!-- database -->
     <crmticket_front_kb_index>
         <reference name="root">
@@ -159,8 +159,8 @@
         <reference name="content">
             <block type="CrmTicket/Front_Database_Products" name="kb_products" template="CrmTicket/Database/Products.phtml" />
         </reference>
-    </crmticket_front_kb_index>    
-   
+    </crmticket_front_kb_index>
+
     <crmticket_front_kb_list>
         <reference name="root">
             <action method="setTemplate">
@@ -175,7 +175,7 @@
         <reference name="content">
             <block type="CrmTicket/Front_Database_List" name="kb_list" template="CrmTicket/Database/List.phtml" />
         </reference>
-    </crmticket_front_kb_list>    
+    </crmticket_front_kb_list>
 
     <crmticket_front_kb_view>
         <reference name="root">
@@ -192,13 +192,13 @@
             <block type="CrmTicket/Front_Database_View" name="kb_list" template="CrmTicket/Database/View.phtml" />
         </reference>
     </crmticket_front_kb_view>
-    
+
     <!-- override of the contact page  -->
     <contacts_index_index>
         <reference name="head">
             <action method="addCss">
                 <name>CrmTicket.css</name>
-            </action>           
+            </action>
             <action method="addJs">
                 <script>prototype/window.js</script>
             </action>
@@ -218,5 +218,5 @@
         </reference>
     </contacts_index_index>
 
-    
+
 </layout>

@@ -31,14 +31,16 @@ class MDN_Purchase_Model_Supplier extends Mage_Core_Model_Abstract {
      */
     public function getAddressAsText($ShowAll = true) {
         $retour = $this->getsup_name() . " \n ";
+        $retour .= $this->getsup_contact() . " \n ";
         $retour .= $this->getsup_address1() . " \n ";
-        $retour .= $this->getsup_address2() . " \n ";
+        if($this->getsup_address2() != '') $retour .= $this->getsup_address2() . " \n ";
         $retour .= $this->getsup_zipcode() . ' ' . $this->getsup_city() . " \n ";
         if ($this->getsup_country() != '')
             $retour .= Mage::getModel('directory/country')->loadByCode($this->getsup_country())->getName() . " \n ";
         if ($ShowAll) {
-            $retour .= 'Fax : ' . $this->getsup_fax() . " \n ";
-            $retour .= 'Email : ' . $this->getsup_mail();
+            if($this->getsup_tel() != '') $retour .= 'Tel : ' . $this->getsup_tel() . " \n ";
+            // $retour .= 'Fax : ' . $this->getsup_fax() . " \n ";
+            if($this->getsup_mail() != '') $retour .= 'Email : ' . $this->getsup_mail();
         }
         return $retour;
     }

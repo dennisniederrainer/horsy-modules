@@ -25,11 +25,9 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
 
     public function hasProductCurrentFlashsale($product) {
       $categoryIds = array_unique($this->getAssignedCategoriesForProduct($product));
-
       if(count($categoryIds) > 0) {
           $fsCollection = Mage::getModel('PrivateSales/FlashSales')->getCollection()
                               ->addFieldToFilter('fs_category_id', array('in' => $categoryIds));
-          $fsCollection->getSelect()->group('fs_category_id');
 
           foreach ($fsCollection as $fs) {
             if($fs->isActive() &&
