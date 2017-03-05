@@ -7,11 +7,62 @@ class Horsebrands_NewsletterAdvanced_Helper_Data extends Conlabz_CrConnect_Helpe
 
     $collection = Mage::getModel('newsletteradvanced/typesubscriber')->getCollection()
                     ->addFieldToFilter('subscriber_id', $subscriberId)->load();
-    foreach($typeSubscriberCollection as $typeSubscriber) {
+    foreach($collection as $typeSubscriber) {
       array_push($listids, $typeSubscriber->getTypeId());
     }
 
     return (count($listids) > 0 ? $listids : false);
+  }
+
+  public function getTypesubscriber($subscriberId, $typeId) {
+    return Mage::getModel('newsletteradvanced/typesubscriber')->getCollection()
+                ->addFieldToFilter('subscriber_id', $subscriberId)
+                ->addFieldToFilter('type_id', $typeId)
+                ->getFirstItem();
+  }
+
+  public function syncSubscriberCleverreach() {
+    $customer = Mage::getSingleton('customer/session')->getCustomer();
+    $subscriber = Mage::getModel('newsletter/subscriber')->loadByCustomer($customer);
+    $apiKey = trim(Mage::getStoreConfig('crroot/crconnect/api_key'));
+    $client = null;
+
+    $subscriberTypeIds = $this->getSubscriberTypeIds($subscriber->getId());
+
+    try {
+      $client = new SoapClient(Mage::helper('crconnect')->getWsdl(), array("trace" => true));
+    } catch(Exception $e) {
+      echo 'client init error: ' . $e->getMessage();
+      return;
+    }
+
+    $newsletterTypes = Mage::getModel('newsletteradvanced/type')->getCollection();
+    foreach($newsletterTypes as $newslettertype) {
+      $listId = $newslettertype->getListId();
+
+      // get customer by email
+      $result = $client->receiverGetByEmail($apiKey, $listId, $customer->getEmail(), 0);
+      if($result->status == "ERROR") {
+        if($subscriberTypeIds && in_array($newslettertype->getId(), $subscriberTypeIds)) {
+          $typesubscriber = $this->getTypesubscriber($subscriber->getId(), $newslettertype->getId());
+          if($typesubscriber) $typesubscriber->delete();
+        }
+      } elseif($result->status == "SUCCESS") {
+        if($result->data->active) {
+          if(!$subscriberTypeIds || !in_array($newslettertype->getId(), $subscriberTypeIds)) {
+            Mage::getModel('newsletteradvanced/typesubscriber')
+            ->setSubscriberId($subscriber->getId())
+            ->setTypeId($newslettertype->getId())
+            ->save();
+          }
+        } else {
+          if($subscriberTypeIds && in_array($newslettertype->getId(), $subscriberTypeIds)) {
+            $typesubscriber = $this->getTypesubscriber($subscriber->getId(), $newslettertype->getId());
+            if($typesubscriber) $typesubscriber->delete();
+          }
+        }
+      }
+    }
   }
 
   public function syncCustomerWithCleverreach($customer) {
