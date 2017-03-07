@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <modules>
+    <Horsebrands_Invitefriends>
+      <version>0.1.0</version>
+    </Horsebrands_Invitefriends>
+  </modules>
+  <global>
+    <helpers>
+      <invitefriends>
+        <class>Horsebrands_Invitefriends_Helper</class>
+      </invitefriends>
+    </helpers>
+    <blocks>
+      <invitefriends>
+        <class>Horsebrands_Invitefriends_Block</class>
+      </invitefriends>
+    </blocks>
+
+    <models>
+      <invitefriends>
+        <class>Horsebrands_Invitefriends_Model</class>
+        <resourceModel>newsletteradvanced_resource</resourceModel>
+      </invitefriends>
+      <invitefriends_resource>
+        <class>Horsebrands_Invitefriends_Model_Resource</class>
+        <entities>
+          <invitefriends>
+            <table>invites</table>
+          </invitefriends>
+        </entities>
+      </invitefriends_resource>
+    </models>
+    <resources>
+      <invitefriends_setup>
+        <setup>
+          <module>Horsebrands_Invitefriends</module>
+        </setup>
+      </newsletteradvanced_setup>
+    </resources>
+  </global>
+  <frontend>
+    <routers>
+      <invitefriends>
+        <use>standard</use>
+        <args>
+          <module>Horsebrands_Invitefriends</module>
+          <frontName>invitefriends</frontName>
+        </args>
+      </invitefriends>
+    </routers>
+  </frontend>
+</config>

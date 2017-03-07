@@ -255,6 +255,9 @@ Horsebrands_Newsletter/app/code/local/Horsebrands/NewsletterAdvanced/   app/code
 Horsebrands_Newsletter/app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml    app/design/adminhtml/default/default/layout/horsebrands/newsletteradvanced.xml
 Horsebrands_Newsletter/app/etc/modules/Horsebrands_NewsletterAdvanced.xml    app/etc/modules/Horsebrands_NewsletterAdvanced.xml
 
+Horsebrands_Invitefriends/app/code/local/Horsebrands/Invitefriends/         app/code/local/Horsebrands/Invitefriends/
+Horsebrands_Invitefriends/app/etc/modules/Horsebrands_Invitefriends.xml     app/etc/modules/Horsebrands_Invitefriends.xml
+
 MDN_Productreturn/app/code/community/MDN/ProductReturn  app/code/community/MDN/ProductReturn
 
 MDN_Productreturn/app/design/adminhtml/default/default/layout/ProductReturn.xml   app/design/adminhtml/default/default/layout/ProductReturn.xml
