@@ -22,7 +22,10 @@
 			if ( !$bfound )
 			{
 				$pdf = Mage::getModel('auit_pdf/offer')->getPdf(array($this->getOrder()) );
-				$mail->createAttachment($pdf->render(),Zend_Mime::TYPE_OCTETSTREAM,Zend_Mime::DISPOSITION_ATTACHMENT,Zend_Mime::ENCODING_BASE64, $pdf_filename);
+
+				// horsebrans: don't attach offer pdf itself
+				// $mail->createAttachment($pdf->render(),Zend_Mime::TYPE_OCTETSTREAM,Zend_Mime::DISPOSITION_ATTACHMENT,Zend_Mime::ENCODING_BASE64, $pdf_filename);
+
 				Mage::helper('auit_pdf')->addAttachments('email_attachments_order',$mail,array($this->getOrder()));
 				if ( $this->getProcessor()->getQueue() )
 				{
