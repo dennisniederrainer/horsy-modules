@@ -3,11 +3,21 @@
 class Horsebrands_Invitefriends_FrontController extends Mage_Core_Controller_Front_Action
 {
 
-  // public function testAction() {
-  //   $invite = Mage::helper('invitefriends')->getInvite('dennis.niederrainer@gmail.com');
-  //   Mage::helper('invitefriends/coupon')->processInvitingCoupon($invite, $invite->getInvitingCustomer());
-  //   die('bums.');
-  // }
+  public function testAction() {
+    $customer = Mage::getModel('customer/customer')->load(47302);
+    $invite = Mage::helper('invitefriends')->getInvite($customer->getEmail());
+
+    if($invite
+        && $invite->getStatus() == Horsebrands_Invitefriends_Model_Invite::STATUS_NEW) {
+
+      Mage::helper('invitefriends/coupon')->processInviteeCoupon($invite, $customer);
+
+      die('proceed');
+      // send email to invitee
+      Mage::getSingleton('core/session')->addSuccess('Dein Freunde-Einladen-Gutschein wurde erfolgreich deinem Kundenkonto zugeordnet.');
+    }
+
+  }
 
   public function linkAction()
   {

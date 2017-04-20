@@ -53,10 +53,10 @@ class Horsebrands_Invitefriends_InviteController extends Mage_Core_Controller_Fr
 
           $helper->sendInviteEmail($email, $customer);
 
-          Mage::getSingleton('customer/session')->addSuccess($email . ' was invited successfully.');
+          Mage::getSingleton('customer/session')->addSuccess('Eine Einladung an ' .$email. ' wurde erfolgreich versendet.');
 
         } catch (Exception $e) {
-          Mage::getSingleton('customer/session')->addError('Error while inviting ' . $email);
+          Mage::getSingleton('customer/session')->addError('Während der Einladung von ' .$email. ' ist ein Fehler aufgetreten.');
         }
       }
     }

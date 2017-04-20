@@ -3,6 +3,8 @@
 class Horsebrands_Invitefriends_Model_Observer {
 
   public function processInvitation($observer) {
+    mage::log('dong',null,'ding.log');
+    return; 
     $customer = $observer->getEvent()->getCustomer();
     $invite = Mage::helper('invitefriends')->getInvite($customer->getEmail());
 
