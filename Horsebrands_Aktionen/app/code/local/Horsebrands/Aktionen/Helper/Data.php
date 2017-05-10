@@ -108,6 +108,40 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
     return Mage::getModel('core/date')->date('j', $left);
   }
 
+  public function getCountdownMinutesString($fsEndDate) {
+    $now = time();
+    $end = strtotime($fsEndDate);
+    $left = $end - $now;
+    $result = '';
+
+    $days = intval(Mage::getModel('core/date')->date('j', $left));
+    if( $days > 0 ) {
+      if($days > 1) {
+        $result .= $this->__('%s days', $days) . ', ';
+      } else {
+        $result .= $this->__('%s day', $days) . ', ';
+      }
+    }
+
+    $hours = intval(Mage::getModel('core/date')->date('H', $left));
+    if( $hours > 0 ) {
+      if($hours > 1) {
+        $result .= $this->__('%s hours', $hours) . ', ';
+      } else {
+        $result .= $this->__('%s hour', $hours) . ', ';
+      }
+    }
+
+    $minutes = intval(Mage::getModel('core/date')->date('i', $left));
+    if($minutes > 1) {
+      $result .= $this->__('%s minutes', $minutes);
+    } else {
+      $result .= $this->__('%s minute', $minutes);
+    }
+
+    return $this->__('%s left', $result);
+  }
+
   public function getEuropeanDateFormat($date) {
     $date = strtotime($date);
 
