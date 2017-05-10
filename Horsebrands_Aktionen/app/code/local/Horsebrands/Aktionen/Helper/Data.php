@@ -30,7 +30,7 @@ class Horsebrands_Aktionen_Helper_Data extends Mage_Core_Helper_Abstract {
                               ->addFieldToFilter('fs_category_id', array('in' => $categoryIds));
 
           foreach ($fsCollection as $fs) {
-            if($fs->isActive() &&
+            if($fs->getfs_enabled() &&
                   strtotime($fs->getFsEndDate()) >= Mage::getModel('core/date')->timestamp(time())) {
               return true;
             }

@@ -65,7 +65,7 @@ class MDN_AdvancedStock_Block_MassStockEditor_Grid extends Mage_Adminhtml_Block_
         $this->addColumn('name', array(
             'header' => Mage::helper('AdvancedStock')->__('Name'),
             'index' => 'value',
-            'filter_index' => '`AdvancedStock/CatalogProductVarchar`.value'
+            // 'filter_index' => '`AdvancedStock/CatalogProductVarchar`.value'
         ));
 
         mage::helper('AdvancedStock/Product_ConfigurableAttributes')->addConfigurableAttributesColumn($this, 'product_id');
