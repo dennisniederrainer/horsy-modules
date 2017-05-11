@@ -19,15 +19,17 @@ class Horsebrands_NewsletterAdvanced_Adminhtml_CustomerController extends Mage_A
             $typeSubscriber->delete();
         }
 
-        $newsletterTypes = $data['newsletterTypes'];
-        foreach($newsletterTypes as $newsletterType) {
-          $subscriberType = Mage::getModel('newsletteradvanced/typesubscriber');
-          $subscriberType->setTypeId($newsletterType)
-              ->setSubscriberId($subscriber->getId())
-              ->save();
-        }
+        if(isset($data['newsletterTypes'])) {
+          $newsletterTypes = $data['newsletterTypes'];
+          foreach($newsletterTypes as $newsletterType) {
+            $subscriberType = Mage::getModel('newsletteradvanced/typesubscriber');
+            $subscriberType->setTypeId($newsletterType)
+            ->setSubscriberId($subscriber->getId())
+            ->save();
+          }
 
-        $subscriber->setIsSubscribed(true)->save();
+          $subscriber->setIsSubscribed(true)->save();
+        }
       }
       else {
         $typeSubscriberCollection = Mage::getModel('newsletteradvanced/typesubscriber')->getCollection();
